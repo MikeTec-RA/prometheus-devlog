@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The save that deleted things · Prometheus devlog</title>
+<meta name="description" content="Four bugs that could lose work for good, one shape behind all of them, and three rules that came out of it.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="The save that deleted things">
+<meta property="og:description" content="Four bugs that could lose work for good, one shape behind all of them, and three rules that came out of it.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-10-the-save-that-deleted-things/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>The save that deleted things</h1>
+    <p class="meta"><time datetime="2026-09-10">September 10, 2026</time> · 2 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#four-ways-to-lose-a-scene">Four ways to lose a scene</a></li><li><a href="#the-shape">The shape</a></li><li><a href="#three-rules">Three rules</a></li></ol></details>
+  <div class="prose">
+<p>This week I found four bugs that could permanently lose work. They looked unrelated. They turned
+out to be the same bug wearing four hats.</p>
+<h2 id="four-ways-to-lose-a-scene">Four ways to lose a scene</h2>
+<ul>
+<li>A save that quietly dropped the scene&#39;s camera fly-through.</li>
+<li>A loader that gave up waiting a moment too early on a cold start, and threw away every rail
+that objects were riding along.</li>
+<li>An auto-save guard that pressing Pause switched off, so a running simulation, mid-tumble,
+could be saved over the scene you&#39;d actually built.</li>
+<li>An object whose model couldn&#39;t be found was skipped when the scene loaded, and the next
+auto-save, sixty seconds later, wrote the scene without it. Opening a scene while the backend
+was restarting was enough. No edit required.</li>
+</ul>
+<h2 id="the-shape">The shape</h2>
+<p>Every one went the same way. Something failed to load, for a reason that wasn&#39;t its own fault:
+the server was restarting, a cache was cold, a load was still in flight. So it never made it into
+the live scene. Then a save came along, looked at the live scene, and wrote down what it saw.</p>
+<p>To a save, something that failed to load looks exactly like something you deleted on purpose.
+Nothing complains on either side. The load logs a warning and carries on, and the save looks
+perfectly normal. You find out when the thing is gone.</p>
+<h2 id="three-rules">Three rules</h2>
+<ol>
+<li><strong>Missing isn&#39;t the same as unavailable.</strong> &quot;This doesn&#39;t exist&quot; and &quot;I couldn&#39;t reach it just
+now&quot; are different answers, and only the first is allowed to remove anything. A comment in
+the code puts it best: collapsing the two is what let &quot;a backend that was merely restarting
+look like a mass deletion.&quot;</li>
+<li><strong>Hold, don&#39;t drop.</strong> If something can&#39;t be loaded, keep its saved record and write it back
+out unchanged. It&#39;s missing from the screen, which is honest. It isn&#39;t missing from the file.</li>
+<li><strong>Teach the guard you already have.</strong> There was already a check that stops a half-loaded scene
+being saved over a full one. Teaching it about these cases beat bolting a second guard on
+beside it.</li>
+</ol>
+<p>All four bugs are fixed. The rules stay: anything new that saves data gets asked what the next
+save writes when its load goes wrong.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <a class="older" href="../../posts/2026-09-04-the-game-behind-the-engine/"><span>← Older</span>The game behind the engine</a>
+    <a class="newer" href="../../posts/2026-09-11-six-times-faster-type-checking/"><span>Newer →</span>Six times faster type checking</a>
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#four-ways-to-lose-a-scene">Four ways to lose a scene</a></li><li><a href="#the-shape">The shape</a></li><li><a href="#three-rules">Three rules</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A guided tour of every feature · Prometheus devlog</title>
+<meta name="description" content="The showcase scene became a hall with ten stations, and a dry run caught three mistakes before I saved it.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="A guided tour of every feature">
+<meta property="og:description" content="The showcase scene became a hall with ten stations, and a dry run caught three mistakes before I saved it.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-05-a-guided-tour-of-every-feature/">
+<meta property="og:image" content="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-05-a-guided-tour-of-every-feature/overview.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>A guided tour of every feature</h1>
+    <p class="meta"><time datetime="2026-10-05">October 5, 2026</time> · 1 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#ten-stations">Ten stations</a></li><li><a href="#the-dry-run-caught-three-mistakes">The dry run caught three mistakes</a></li></ol></details>
+  <div class="prose">
+<p>Every feature that lands goes into one showcase scene, Re-Forged. By this month it had become a
+pile: lights, particles, sprites, widgets and physics props all fighting over the same patch of
+floor. So I rebuilt it as a tour.</p>
+<figure><a class="zoom" href="../../images/2026-10-05-a-guided-tour-of-every-feature/overview.png" data-caption="The tour hall from above: ten stations down a long hall, with the camera flight weaving between them"><img loading="lazy" src="../../images/2026-10-05-a-guided-tour-of-every-feature/overview.png" alt="The tour hall from above: ten stations down a long hall, with the camera flight weaving between them"></a><figcaption>The tour hall from above: ten stations down a long hall, with the camera flight weaving between them</figcaption></figure>
+<h2 id="ten-stations">Ten stations</h2>
+<p>It&#39;s now a hall 40 metres wide and 140 long, with numbered stations down its length, each with a
+sign: a welcome, then sprites and paths, behaviour trees, scripting, physics, lighting,
+particles, UI widgets, shared simulation, and a wall of materials. A saved camera flight weaves
+between them, so the whole tour plays as a fly-through.</p>
+<figure><a class="zoom" href="../../images/2026-10-05-a-guided-tour-of-every-feature/physics.png" data-caption="The physics station: a scripted spawner sends balls rolling down a ramp"><img loading="lazy" src="../../images/2026-10-05-a-guided-tour-of-every-feature/physics.png" alt="The physics station: a scripted spawner sends balls rolling down a ramp"></a><figcaption>The physics station: a scripted spawner sends balls rolling down a ramp</figcaption></figure>
+<figure><a class="zoom" href="../../images/2026-10-05-a-guided-tour-of-every-feature/particles.png" data-caption="Particles and effects: campfire, torch, pyre, fog and lightning"><img loading="lazy" src="../../images/2026-10-05-a-guided-tour-of-every-feature/particles.png" alt="Particles and effects: campfire, torch, pyre, fog and lightning"></a><figcaption>Particles and effects: campfire, torch, pyre, fog and lightning</figcaption></figure>
+<figure><a class="zoom" href="../../images/2026-10-05-a-guided-tour-of-every-feature/materials.png" data-caption="The materials wall: brick lit by three spotlights over a row of materials"><img loading="lazy" src="../../images/2026-10-05-a-guided-tour-of-every-feature/materials.png" alt="The materials wall: brick lit by three spotlights over a row of materials"></a><figcaption>The materials wall: brick lit by three spotlights over a row of materials</figcaption></figure>
+<h2 id="the-dry-run-caught-three-mistakes">The dry run caught three mistakes</h2>
+<p>I didn&#39;t build the new layout straight into the saved scene. A script built the proposed version
+as a private copy, flew a camera to each station and took a picture, without saving anything.
+Those pictures caught three problems:</p>
+<ul>
+<li><strong>Invisible signs.</strong> They stood outside the camera&#39;s view from the walking line, so nobody
+would ever have read them. They moved five metres in.</li>
+<li><strong>A moonlit wall.</strong> The three spotlights on the brick wall were 30 candela each, eight metres
+away. That works out to roughly the light of two full moons. Atmospheric, but not what a
+showcase wall needs. They went up to 140.</li>
+<li><strong>A distracted camera.</strong> The fly-through was pointing at the wrong places, and now looks at
+the stations.</li>
+</ul>
+<p>At the physics station the spawner dropped four balls while the scene played, and none were left
+after Stop, so stopping really does put the world back. Then the layout was saved, and the same
+camera run against the saved scene gave the same pictures.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <a class="older" href="../../posts/2026-09-22-a-world-that-isnt-there-yet/"><span>← Older</span>A world that isn't there yet</a>
+    <a class="newer" href="../../posts/2026-10-06-teaching-sprites-to-think/"><span>Newer →</span>Teaching sprites to think</a>
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#ten-stations">Ten stations</a></li><li><a href="#the-dry-run-caught-three-mistakes">The dry run caught three mistakes</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>

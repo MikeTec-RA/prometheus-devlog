@@ -5,14 +5,61 @@
   <link href="https://miketec-ra.github.io/prometheus-devlog/" rel="alternate" type="text/html"/>
   <link href="https://miketec-ra.github.io/prometheus-devlog/atom.xml" rel="self" type="application/atom+xml"/>
   <id>https://miketec-ra.github.io/prometheus-devlog/</id>
-  <updated>2026-10-18T07:52:09.752Z</updated>
+  <updated>2026-10-18T08:17:09.826Z</updated>
   <author><name>MikeTec-RA</name></author>
+  <entry>
+    <title>A plugin-shaped future</title>
+    <link href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-plugins-and-the-rebuild/" rel="alternate" type="text/html"/>
+    <id>tag:miketec-ra.github.io,2026:prometheus-devlog:2026-10-18-plugins-and-the-rebuild</id>
+    <published>2026-10-18T08:17:09.826Z</published>
+    <updated>2026-10-18T08:17:09.826Z</updated>
+    <content type="html">&lt;p&gt;The &lt;a href=&quot;https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-catching-up/&quot;&gt;catching-up post&lt;/a&gt; ended with development pausing for a
+rebuild. Here&amp;#39;s the thinking behind it.&lt;/p&gt;
+&lt;h2&gt;The problem&lt;/h2&gt;
+&lt;p&gt;Today, adding something to Prometheus means editing the core in a dozen places: the list of
+entity kinds, the component registry, the inspector, the menus, the tool windows, the frame loop,
+the save system, the event catalogue, script commands, the exporter and the server&amp;#39;s validators.
+Nothing can be switched off without deleting code, and nothing outside the core can add to the
+engine.&lt;/p&gt;
+&lt;h2&gt;Plugins, widgets and modes&lt;/h2&gt;
+&lt;p&gt;The rebuild turns each of those places into a socket.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-plugins-and-the-rebuild/plugin-layers.png&quot; alt=&quot;The planned layers: a core every project needs, built-in plugins on by default, optional plugins on top, and modes that bundle them&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A &lt;strong&gt;plugin&lt;/strong&gt; is a package that adds capabilities: new kinds of entity, components, simulation
+systems, script commands, importers, server jobs.&lt;/li&gt;
+&lt;li&gt;A &lt;strong&gt;widget&lt;/strong&gt; is a piece of UI a plugin brings with it: a tool window, an inspector section, a
+menu item.&lt;/li&gt;
+&lt;li&gt;A &lt;strong&gt;mode&lt;/strong&gt; is a named bundle of plugins.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Modes are the part I&amp;#39;m most excited about. The same engine could be a game, a simulation or a 3D
+development tool depending on which mode you load, even one that renders apps or websites in 3D
+and lets you take them apart.&lt;/p&gt;
+&lt;h2&gt;What stays in the core&lt;/h2&gt;
+&lt;p&gt;Not everything becomes optional. The core keeps what every project needs: scene formats, edits
+and undo, saving and recovery, and the renderer and simulation lifecycle. The everyday tools,
+like the hierarchy, inspectors, scene browser and asset browser, ship as built-in plugins that
+are on by default. Specialist tools become optional plugins: sprite tools, retargeting,
+behaviour-tree authoring, generation labs, and git and review tools.&lt;/p&gt;
+&lt;h2&gt;The rule it can&amp;#39;t break&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Unloading a plugin never loses data.&lt;/strong&gt; A scene that uses a plugin you don&amp;#39;t have loaded must
+still open, save, restore and export with that plugin&amp;#39;s data intact, held exactly as it was.
+It&amp;#39;s &lt;a href=&quot;https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-10-the-save-that-deleted-things/&quot;&gt;the save that deleted things&lt;/a&gt;, grown up:
+missing isn&amp;#39;t the same as unavailable, so hold, don&amp;#39;t drop.&lt;/p&gt;
+&lt;h2&gt;The desktop and beyond&lt;/h2&gt;
+&lt;p&gt;The editor is moving into a desktop app built on Electron, and it will keep running in a browser
+too. Further out there are two ideas: a faster backend, possibly in Rust, that can still run the
+TypeScript plugins, and a Figma connection for managing models and their updates. Those are
+plans, not promises.&lt;/p&gt;
+&lt;p&gt;The order is: settle the plugin contracts, build a minimal desktop editor, then move the first
+tool out of the core and into a plugin. After that the rest follow, one at a time.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Catching up: two months of Prometheus</title>
     <link href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-catching-up/" rel="alternate" type="text/html"/>
     <id>tag:miketec-ra.github.io,2026:prometheus-devlog:2026-10-18-catching-up</id>
-    <published>2026-10-18T07:52:09.752Z</published>
-    <updated>2026-10-18T07:52:09.752Z</updated>
+    <published>2026-10-18T08:17:09.826Z</published>
+    <updated>2026-10-18T08:17:09.826Z</updated>
     <content type="html">&lt;p&gt;Two months and a little over 1,800 commits in, this is where Prometheus stands, with links to
 the posts that go deeper. It ends with why development is pausing for a rebuild.&lt;/p&gt;
 &lt;p&gt;Quick reminder of the goal: &lt;strong&gt;Prometheus&lt;/strong&gt; is a custom 2.5D engine with a browser-based editor.
@@ -81,7 +128,7 @@ including the first numbers from real phones, in
 Electron, and the platform is becoming plugin-based, so features plug into a core rather
 than being built into it. Together those mean a full rewrite. So development is on pause
 while I rework: new designs in Figma, and the platform redesigned from the plugin
-perspective from the ground up.&lt;/p&gt;
+perspective from the ground up. More in &lt;a href=&quot;https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-plugins-and-the-rebuild/&quot;&gt;A plugin-shaped future&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The engine work is more or less done. What it needs now is more thought about how to make
 the rest of the game a reality on top of it. The biggest piece of that thinking is the living
 world. The dungeon won&amp;#39;t be a complete map hidden under fog; ground that nobody has reached
@@ -100,6 +147,60 @@ world. A few friends are taking on the music and ambience, playing the first ver
 as they write for it. That slice is the next real milestone: maybe later this year, maybe
 early 2027, we&amp;#39;ll have something to show for all the hard work. There&amp;#39;s a lot to do until
 then, so stand by.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>The tools behind the tools</title>
+    <link href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-17-the-tools-behind-the-tools/" rel="alternate" type="text/html"/>
+    <id>tag:miketec-ra.github.io,2026:prometheus-devlog:2026-10-17-the-tools-behind-the-tools</id>
+    <published>2026-10-17T12:00:00.000Z</published>
+    <updated>2026-10-17T12:00:00.000Z</updated>
+    <content type="html">&lt;p&gt;Prometheus has a sibling: &lt;strong&gt;Forge&lt;/strong&gt;, a set of project tools that lives in the same repository and
+runs beside the editor. It started life as tools I&amp;#39;d built for earlier projects, got ported in
+under new names, and has grown since.&lt;/p&gt;
+&lt;h2&gt;What&amp;#39;s in it&lt;/h2&gt;
+&lt;p&gt;The names follow the rule from &lt;a href=&quot;https://miketec-ra.github.io/prometheus-devlog/posts/2026-07-20-reforged-from-the-ashes/&quot;&gt;the start of the project&lt;/a&gt;:
+tools that build the game get fire and forging names, and systems inside the game get abyss and
+memory names.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Anvil&lt;/strong&gt; handles repositories, branches, git operations, code review and pull requests.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ember&lt;/strong&gt; is Anvil&amp;#39;s commit graph.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Bench&lt;/strong&gt; has the boards and cards, a burndown chart and a roadmap.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Kiln&lt;/strong&gt; is the documentation library. Every project document is versioned and has a review
+queue: propose a change, approve it or send it back, and the approved version is written to
+disk.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;The file is the truth&lt;/h2&gt;
+&lt;p&gt;Work is tracked as plain Markdown files, one per issue, numbered, with a status line at the top.
+The board cards are a mirror of those files, not the other way round. As of this week the
+mirroring is automatic: change a file and its card updates within seconds, and Forge syncs
+everything once when it starts.&lt;/p&gt;
+&lt;p&gt;Why files? Because they live in git with the code. An issue&amp;#39;s history sits next to the commits
+that closed it, nothing is locked inside a database, and the whole plan for the game is
+something I can search.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Stocking the shelves</title>
+    <link href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-10-stocking-the-shelves/" rel="alternate" type="text/html"/>
+    <id>tag:miketec-ra.github.io,2026:prometheus-devlog:2026-10-10-stocking-the-shelves</id>
+    <published>2026-10-10T12:00:00.000Z</published>
+    <updated>2026-10-10T12:00:00.000Z</updated>
+    <content type="html">&lt;p&gt;A sprite generator is only as good as what you feed it, so this week went into the pantry.&lt;/p&gt;
+&lt;h2&gt;Animations&lt;/h2&gt;
+&lt;p&gt;About 2,400 animation files, sorted by what they do (locomotion, idles, gestures, unarmed combat
+and so on) and by which skeleton they were made for. Clips made for one skeleton don&amp;#39;t fit
+another without retargeting, so that sorting matters more than it sounds. A search finds what
+you need. &amp;quot;Zombie&amp;quot; turns up 44 files, which is more zombie than I expected to own.&lt;/p&gt;
+&lt;p&gt;Every original file is fingerprinted, so I can prove nothing has been changed or lost. Twelve
+exact duplicates are kept on purpose. I&amp;#39;ve learned not to delete things on a hunch.&lt;/p&gt;
+&lt;h2&gt;Models&lt;/h2&gt;
+&lt;p&gt;For the world itself: 409 models from two of Kenney&amp;#39;s free CC0 packs, the Nature Kit with 329
+models and the Survival Kit with 80. Trees, rocks, cliffs, fences, logs and barrels.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://miketec-ra.github.io/prometheus-devlog/images/2026-10-10-stocking-the-shelves/kenney-packs.png&quot; alt=&quot;Kenney&amp;#39;s Nature and Survival kits in the library: 409 CC0 models waiting to become sprites&quot;&gt;&lt;/p&gt;
+&lt;p&gt;They&amp;#39;re split into 13 import batches by category, at most 80 to a folder, each with its licence
+and source kept alongside. Next stop for them is Frieze, to come out the other side as pixel-art
+sprites. Thanks to Kenney for making these free for everyone.&lt;/p&gt;
 </content>
   </entry>
   <entry>
@@ -178,6 +279,42 @@ remembers you too.&amp;quot;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Gamepads and rebindable controls, UI widgets and HUD panels, an event bus, a game clock,
 localisation, collision layers, physics queries for AI, and entity pooling so a burst of spawns
 doesn&amp;#39;t stall a frame. None of it is a game yet. It&amp;#39;s the toolbox the game will be built with.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>A guided tour of every feature</title>
+    <link href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-05-a-guided-tour-of-every-feature/" rel="alternate" type="text/html"/>
+    <id>tag:miketec-ra.github.io,2026:prometheus-devlog:2026-10-05-a-guided-tour-of-every-feature</id>
+    <published>2026-10-05T12:00:00.000Z</published>
+    <updated>2026-10-05T12:00:00.000Z</updated>
+    <content type="html">&lt;p&gt;Every feature that lands goes into one showcase scene, Re-Forged. By this month it had become a
+pile: lights, particles, sprites, widgets and physics props all fighting over the same patch of
+floor. So I rebuilt it as a tour.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://miketec-ra.github.io/prometheus-devlog/images/2026-10-05-a-guided-tour-of-every-feature/overview.png&quot; alt=&quot;The tour hall from above: ten stations down a long hall, with the camera flight weaving between them&quot;&gt;&lt;/p&gt;
+&lt;h2&gt;Ten stations&lt;/h2&gt;
+&lt;p&gt;It&amp;#39;s now a hall 40 metres wide and 140 long, with numbered stations down its length, each with a
+sign: a welcome, then sprites and paths, behaviour trees, scripting, physics, lighting,
+particles, UI widgets, shared simulation, and a wall of materials. A saved camera flight weaves
+between them, so the whole tour plays as a fly-through.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://miketec-ra.github.io/prometheus-devlog/images/2026-10-05-a-guided-tour-of-every-feature/physics.png&quot; alt=&quot;The physics station: a scripted spawner sends balls rolling down a ramp&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://miketec-ra.github.io/prometheus-devlog/images/2026-10-05-a-guided-tour-of-every-feature/particles.png&quot; alt=&quot;Particles and effects: campfire, torch, pyre, fog and lightning&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://miketec-ra.github.io/prometheus-devlog/images/2026-10-05-a-guided-tour-of-every-feature/materials.png&quot; alt=&quot;The materials wall: brick lit by three spotlights over a row of materials&quot;&gt;&lt;/p&gt;
+&lt;h2&gt;The dry run caught three mistakes&lt;/h2&gt;
+&lt;p&gt;I didn&amp;#39;t build the new layout straight into the saved scene. A script built the proposed version
+as a private copy, flew a camera to each station and took a picture, without saving anything.
+Those pictures caught three problems:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Invisible signs.&lt;/strong&gt; They stood outside the camera&amp;#39;s view from the walking line, so nobody
+would ever have read them. They moved five metres in.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A moonlit wall.&lt;/strong&gt; The three spotlights on the brick wall were 30 candela each, eight metres
+away. That works out to roughly the light of two full moons. Atmospheric, but not what a
+showcase wall needs. They went up to 140.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A distracted camera.&lt;/strong&gt; The fly-through was pointing at the wrong places, and now looks at
+the stations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;At the physics station the spawner dropped four balls while the scene played, and none were left
+after Stop, so stopping really does put the world back. Then the layout was saved, and the same
+camera run against the saved scene gave the same pictures.&lt;/p&gt;
 </content>
   </entry>
   <entry>
@@ -330,6 +467,98 @@ fire and smoke, and a camera rail for fly-throughs. It will grow with everything
 </content>
   </entry>
   <entry>
+    <title>Six times faster type checking</title>
+    <link href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-11-six-times-faster-type-checking/" rel="alternate" type="text/html"/>
+    <id>tag:miketec-ra.github.io,2026:prometheus-devlog:2026-09-11-six-times-faster-type-checking</id>
+    <published>2026-09-11T12:00:00.000Z</published>
+    <updated>2026-09-11T12:00:00.000Z</updated>
+    <content type="html">&lt;p&gt;Prometheus is TypeScript across three workspaces: the editor, the engine backend and Forge, my
+project tools. Type checking the lot took about 19 seconds. Today I switched to TypeScript 7,
+the native rewrite of the compiler, and it takes under 7.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;What&lt;/th&gt;
+&lt;th&gt;TypeScript 5.9&lt;/th&gt;
+&lt;th&gt;TypeScript 7&lt;/th&gt;
+&lt;th&gt;Faster&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;The editor, whole program&lt;/td&gt;
+&lt;td&gt;6.6 s&lt;/td&gt;
+&lt;td&gt;0.84 s&lt;/td&gt;
+&lt;td&gt;7.9×&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;All three workspaces, compiler only&lt;/td&gt;
+&lt;td&gt;15.8 s&lt;/td&gt;
+&lt;td&gt;2.5 s&lt;/td&gt;
+&lt;td&gt;6.3×&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;All three workspaces, full typecheck scripts&lt;/td&gt;
+&lt;td&gt;19.3 s&lt;/td&gt;
+&lt;td&gt;6.6 s&lt;/td&gt;
+&lt;td&gt;2.9×&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;p&gt;The full-script number improves less because some of that time isn&amp;#39;t the compiler at all, like
+building the shared libraries first.&lt;/p&gt;
+&lt;h2&gt;Two catches&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;No language service.&lt;/strong&gt; TypeScript 7 doesn&amp;#39;t ship &lt;code&gt;tsserver&lt;/code&gt;, the part a code editor talks to
+for autocomplete and red squiggles. Upgrading in place would have quietly broken my editor. So
+the new compiler is installed under an alias beside the old one: TypeScript 7 does the checking
+and building, and 5.9 keeps the code editor happy.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Two programs, one name.&lt;/strong&gt; Both versions install a command called &lt;code&gt;tsc&lt;/code&gt;, and whichever installs
+last wins. Installing the alias really did repoint &lt;code&gt;tsc&lt;/code&gt; at the new compiler; I checked rather
+than assumed. So no script in the project says a bare &lt;code&gt;tsc&lt;/code&gt; any more. Every one names its
+compiler by its full path.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>The save that deleted things</title>
+    <link href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-10-the-save-that-deleted-things/" rel="alternate" type="text/html"/>
+    <id>tag:miketec-ra.github.io,2026:prometheus-devlog:2026-09-10-the-save-that-deleted-things</id>
+    <published>2026-09-10T12:00:00.000Z</published>
+    <updated>2026-09-10T12:00:00.000Z</updated>
+    <content type="html">&lt;p&gt;This week I found four bugs that could permanently lose work. They looked unrelated. They turned
+out to be the same bug wearing four hats.&lt;/p&gt;
+&lt;h2&gt;Four ways to lose a scene&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;A save that quietly dropped the scene&amp;#39;s camera fly-through.&lt;/li&gt;
+&lt;li&gt;A loader that gave up waiting a moment too early on a cold start, and threw away every rail
+that objects were riding along.&lt;/li&gt;
+&lt;li&gt;An auto-save guard that pressing Pause switched off, so a running simulation, mid-tumble,
+could be saved over the scene you&amp;#39;d actually built.&lt;/li&gt;
+&lt;li&gt;An object whose model couldn&amp;#39;t be found was skipped when the scene loaded, and the next
+auto-save, sixty seconds later, wrote the scene without it. Opening a scene while the backend
+was restarting was enough. No edit required.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;The shape&lt;/h2&gt;
+&lt;p&gt;Every one went the same way. Something failed to load, for a reason that wasn&amp;#39;t its own fault:
+the server was restarting, a cache was cold, a load was still in flight. So it never made it into
+the live scene. Then a save came along, looked at the live scene, and wrote down what it saw.&lt;/p&gt;
+&lt;p&gt;To a save, something that failed to load looks exactly like something you deleted on purpose.
+Nothing complains on either side. The load logs a warning and carries on, and the save looks
+perfectly normal. You find out when the thing is gone.&lt;/p&gt;
+&lt;h2&gt;Three rules&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Missing isn&amp;#39;t the same as unavailable.&lt;/strong&gt; &amp;quot;This doesn&amp;#39;t exist&amp;quot; and &amp;quot;I couldn&amp;#39;t reach it just
+now&amp;quot; are different answers, and only the first is allowed to remove anything. A comment in
+the code puts it best: collapsing the two is what let &amp;quot;a backend that was merely restarting
+look like a mass deletion.&amp;quot;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hold, don&amp;#39;t drop.&lt;/strong&gt; If something can&amp;#39;t be loaded, keep its saved record and write it back
+out unchanged. It&amp;#39;s missing from the screen, which is honest. It isn&amp;#39;t missing from the file.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Teach the guard you already have.&lt;/strong&gt; There was already a check that stops a half-loaded scene
+being saved over a full one. Teaching it about these cases beat bolting a second guard on
+beside it.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;All four bugs are fixed. The rules stay: anything new that saves data gets asked what the next
+save writes when its load goes wrong.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
     <title>The game behind the engine</title>
     <link href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-04-the-game-behind-the-engine/" rel="alternate" type="text/html"/>
     <id>tag:miketec-ra.github.io,2026:prometheus-devlog:2026-09-04-the-game-behind-the-engine</id>
@@ -340,6 +569,9 @@ fire and smoke, and a camera rail for fly-throughs. It will grow with everything
 deep and as far as possible. Humanity has found a dungeon that seems to have no bottom. It&amp;#39;s so
 vast that towns have sprung up just to keep adventurers supplied, and everyone is chasing the
 same questions. Does it end? Why does it exist? Is there a story beneath it all?&lt;/p&gt;
+&lt;p&gt;The name has some history. &lt;em&gt;Forgotten Memories&lt;/em&gt; was a game idea of mine from college, and it
+still has a Steam page from back then. Once there&amp;#39;s a game to talk about, that page will be
+carrying this one.&lt;/p&gt;
 &lt;h2&gt;A dungeon that reads its players&lt;/h2&gt;
 &lt;p&gt;The dungeon isn&amp;#39;t just procedurally generated; it&amp;#39;s behaviourally generated. It watches what
 its players do, in aggregate, and reshapes its landscapes, difficulty and monsters to match.
@@ -379,6 +611,38 @@ and a pipeline that turns 3D models into the pixel-art sprites that live in its 
 also has to run well on phones.&lt;/p&gt;
 &lt;p&gt;So I&amp;#39;m building &lt;strong&gt;Prometheus&lt;/strong&gt;, a custom 2.5D engine and editor on an all-open-source stack with
 no vendor royalties. The next posts are about that.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Reforged from the ashes</title>
+    <link href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-07-20-reforged-from-the-ashes/" rel="alternate" type="text/html"/>
+    <id>tag:miketec-ra.github.io,2026:prometheus-devlog:2026-07-20-reforged-from-the-ashes</id>
+    <published>2026-07-20T12:00:00.000Z</published>
+    <updated>2026-07-20T12:00:00.000Z</updated>
+    <content type="html">&lt;p&gt;Prometheus didn&amp;#39;t start from nothing. It started from the ashes of something else.&lt;/p&gt;
+&lt;p&gt;For about a year before this, a friend and I built an avatar project: animated 3D characters in
+the browser, with an editor for building the scenes they lived in. He did a lot of the animation
+system and a good share of the engine work. As a product it didn&amp;#39;t work out, but a lot of what
+we built was good.&lt;/p&gt;
+&lt;p&gt;So rather than throw it away, I went through it for anything worth saving, and there was plenty:
+the entity system, the editor&amp;#39;s interface, the renderer and the animation work. The parts that
+no longer fit, like the chat layer that let the avatars talk back, were cut out. What was left
+is the starting point for something new.&lt;/p&gt;
+&lt;h2&gt;A new shape&lt;/h2&gt;
+&lt;p&gt;The old project ran everything in the browser. The new one splits it in two: a server owns the
+world and runs the simulation, and the browser becomes a window onto it, using the editor and
+renderer we already had. The game all this is for is an MMO, so the server has to be in charge
+anyway.&lt;/p&gt;
+&lt;h2&gt;Why the fire names&lt;/h2&gt;
+&lt;p&gt;Everything rebuilt on top of the old project is named for fire and forging:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Prometheus&lt;/strong&gt;, who stole fire for humanity, is the engine.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Forge&lt;/strong&gt; is the project tools, with &lt;strong&gt;Anvil&lt;/strong&gt;, &lt;strong&gt;Ember&lt;/strong&gt;, &lt;strong&gt;Bench&lt;/strong&gt; and &lt;strong&gt;Kiln&lt;/strong&gt; inside it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Re-Forged&lt;/strong&gt; is the showcase scene, where every rebuilt feature goes to prove it works.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The old project was melted down, and this is what gets hammered out of it.&lt;/p&gt;
+&lt;p&gt;From here on it&amp;#39;s just me. I&amp;#39;m grateful for the year of work that got it this far. This is
+where the devlog picks up.&lt;/p&gt;
 </content>
   </entry>
 </feed>

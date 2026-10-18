@@ -11,6 +11,10 @@ deep and as far as possible. Humanity has found a dungeon that seems to have no 
 vast that towns have sprung up just to keep adventurers supplied, and everyone is chasing the
 same questions. Does it end? Why does it exist? Is there a story beneath it all?
 
+The name has some history. *Forgotten Memories* was a game idea of mine from college, and it
+still has a Steam page from back then. Once there's a game to talk about, that page will be
+carrying this one.
+
 ## A dungeon that reads its players
 
 The dungeon isn't just procedurally generated; it's behaviourally generated. It watches what

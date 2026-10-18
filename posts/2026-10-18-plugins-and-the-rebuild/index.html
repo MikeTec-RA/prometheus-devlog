@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A plugin-shaped future · Prometheus devlog</title>
+<meta name="description" content="Why Prometheus is being rebuilt around plugins, and the one rule the rebuild can't break.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="A plugin-shaped future">
+<meta property="og:description" content="Why Prometheus is being rebuilt around plugins, and the one rule the rebuild can't break.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-plugins-and-the-rebuild/">
+<meta property="og:image" content="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-plugins-and-the-rebuild/plugin-layers.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>A plugin-shaped future</h1>
+    <p class="meta"><time datetime="2026-10-18">October 18, 2026</time> · 2 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#the-problem">The problem</a></li><li><a href="#plugins-widgets-and-modes">Plugins, widgets and modes</a></li><li><a href="#what-stays-in-the-core">What stays in the core</a></li><li><a href="#the-rule-it-can-t-break">The rule it can&#39;t break</a></li><li><a href="#the-desktop-and-beyond">The desktop and beyond</a></li></ol></details>
+  <div class="prose">
+<p>The <a href="../../posts/2026-10-18-catching-up/">catching-up post</a> ended with development pausing for a
+rebuild. Here&#39;s the thinking behind it.</p>
+<h2 id="the-problem">The problem</h2>
+<p>Today, adding something to Prometheus means editing the core in a dozen places: the list of
+entity kinds, the component registry, the inspector, the menus, the tool windows, the frame loop,
+the save system, the event catalogue, script commands, the exporter and the server&#39;s validators.
+Nothing can be switched off without deleting code, and nothing outside the core can add to the
+engine.</p>
+<h2 id="plugins-widgets-and-modes">Plugins, widgets and modes</h2>
+<p>The rebuild turns each of those places into a socket.</p>
+<figure><a class="zoom" href="../../images/2026-10-18-plugins-and-the-rebuild/plugin-layers.png" data-caption="The planned layers: a core every project needs, built-in plugins on by default, optional plugins on top, and modes that bundle them"><img loading="lazy" src="../../images/2026-10-18-plugins-and-the-rebuild/plugin-layers.png" alt="The planned layers: a core every project needs, built-in plugins on by default, optional plugins on top, and modes that bundle them"></a><figcaption>The planned layers: a core every project needs, built-in plugins on by default, optional plugins on top, and modes that bundle them</figcaption></figure>
+<ul>
+<li>A <strong>plugin</strong> is a package that adds capabilities: new kinds of entity, components, simulation
+systems, script commands, importers, server jobs.</li>
+<li>A <strong>widget</strong> is a piece of UI a plugin brings with it: a tool window, an inspector section, a
+menu item.</li>
+<li>A <strong>mode</strong> is a named bundle of plugins.</li>
+</ul>
+<p>Modes are the part I&#39;m most excited about. The same engine could be a game, a simulation or a 3D
+development tool depending on which mode you load, even one that renders apps or websites in 3D
+and lets you take them apart.</p>
+<h2 id="what-stays-in-the-core">What stays in the core</h2>
+<p>Not everything becomes optional. The core keeps what every project needs: scene formats, edits
+and undo, saving and recovery, and the renderer and simulation lifecycle. The everyday tools,
+like the hierarchy, inspectors, scene browser and asset browser, ship as built-in plugins that
+are on by default. Specialist tools become optional plugins: sprite tools, retargeting,
+behaviour-tree authoring, generation labs, and git and review tools.</p>
+<h2 id="the-rule-it-can-t-break">The rule it can&#39;t break</h2>
+<p><strong>Unloading a plugin never loses data.</strong> A scene that uses a plugin you don&#39;t have loaded must
+still open, save, restore and export with that plugin&#39;s data intact, held exactly as it was.
+It&#39;s <a href="../../posts/2026-09-10-the-save-that-deleted-things/">the save that deleted things</a>, grown up:
+missing isn&#39;t the same as unavailable, so hold, don&#39;t drop.</p>
+<h2 id="the-desktop-and-beyond">The desktop and beyond</h2>
+<p>The editor is moving into a desktop app built on Electron, and it will keep running in a browser
+too. Further out there are two ideas: a faster backend, possibly in Rust, that can still run the
+TypeScript plugins, and a Figma connection for managing models and their updates. Those are
+plans, not promises.</p>
+<p>The order is: settle the plugin contracts, build a minimal desktop editor, then move the first
+tool out of the core and into a plugin. After that the rest follow, one at a time.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <a class="older" href="../../posts/2026-10-18-catching-up/"><span>← Older</span>Catching up: two months of Prometheus</a>
+    
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#the-problem">The problem</a></li><li><a href="#plugins-widgets-and-modes">Plugins, widgets and modes</a></li><li><a href="#what-stays-in-the-core">What stays in the core</a></li><li><a href="#the-rule-it-can-t-break">The rule it can&#39;t break</a></li><li><a href="#the-desktop-and-beyond">The desktop and beyond</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>

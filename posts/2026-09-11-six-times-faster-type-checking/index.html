@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Six times faster type checking · Prometheus devlog</title>
+<meta name="description" content="Moving to TypeScript 7's native compiler, and the command it quietly took over.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="Six times faster type checking">
+<meta property="og:description" content="Moving to TypeScript 7's native compiler, and the command it quietly took over.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-11-six-times-faster-type-checking/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>Six times faster type checking</h1>
+    <p class="meta"><time datetime="2026-09-11">September 11, 2026</time> · 1 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#two-catches">Two catches</a></li></ol></details>
+  <div class="prose">
+<p>Prometheus is TypeScript across three workspaces: the editor, the engine backend and Forge, my
+project tools. Type checking the lot took about 19 seconds. Today I switched to TypeScript 7,
+the native rewrite of the compiler, and it takes under 7.</p>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>TypeScript 5.9</th>
+<th>TypeScript 7</th>
+<th>Faster</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>The editor, whole program</td>
+<td>6.6 s</td>
+<td>0.84 s</td>
+<td>7.9×</td>
+</tr>
+<tr>
+<td>All three workspaces, compiler only</td>
+<td>15.8 s</td>
+<td>2.5 s</td>
+<td>6.3×</td>
+</tr>
+<tr>
+<td>All three workspaces, full typecheck scripts</td>
+<td>19.3 s</td>
+<td>6.6 s</td>
+<td>2.9×</td>
+</tr>
+</tbody></table>
+<p>The full-script number improves less because some of that time isn&#39;t the compiler at all, like
+building the shared libraries first.</p>
+<h2 id="two-catches">Two catches</h2>
+<p><strong>No language service.</strong> TypeScript 7 doesn&#39;t ship <code>tsserver</code>, the part a code editor talks to
+for autocomplete and red squiggles. Upgrading in place would have quietly broken my editor. So
+the new compiler is installed under an alias beside the old one: TypeScript 7 does the checking
+and building, and 5.9 keeps the code editor happy.</p>
+<p><strong>Two programs, one name.</strong> Both versions install a command called <code>tsc</code>, and whichever installs
+last wins. Installing the alias really did repoint <code>tsc</code> at the new compiler; I checked rather
+than assumed. So no script in the project says a bare <code>tsc</code> any more. Every one names its
+compiler by its full path.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <a class="older" href="../../posts/2026-09-10-the-save-that-deleted-things/"><span>← Older</span>The save that deleted things</a>
+    <a class="newer" href="../../posts/2026-09-12-the-server-owns-the-world/"><span>Newer →</span>The server owns the world</a>
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#two-catches">Two catches</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>

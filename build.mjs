@@ -196,6 +196,21 @@ const postCard = (p, prefix, featured) => `<a class="card${featured ? ' featured
   </div>
 </a>`;
 
+// Older posts as a compact list grouped by month, so the home page doesn't become a wall of cards.
+function archive(list) {
+  const months = new Map();
+  for (const p of list) {
+    const [y, m] = p.date.split('-').map(Number);
+    const key = `${MONTHS[m - 1]} ${y}`;
+    if (!months.has(key)) months.set(key, []);
+    months.get(key).push(p);
+  }
+  return `<div class="archive">${[...months].map(([month, items]) => `<section>
+    <h3>${month}</h3>
+    <ul>${items.map((p) => `<li><a href="${p.path}"><time datetime="${p.date}">${longDate(p.date).replace(/, \d{4}$/, '')}</time><span class="title">${escapeHtml(p.title)}</span><span class="excerpt">${escapeHtml(p.excerpt)}</span></a></li>`).join('')}</ul>
+  </section>`).join('')}</div>`;
+}
+
 // The roadmap's current status, as a link from the home page and plain text on the roadmap.
 const statusPill = (href) => {
   if (!roadmap.meta.status) return '';
@@ -218,8 +233,10 @@ write('index.html', page({
 <section class="post-index" aria-label="Posts">
   <h2 class="section-label">Latest</h2>
   ${posts[0] ? postCard(posts[0], '', true) : '<p>No posts yet.</p>'}
-  ${posts.length > 1 ? `<h2 class="section-label">Earlier posts</h2>
-  <div class="card-grid">${posts.slice(1).map((p) => postCard(p, '', false)).join('\n')}</div>` : ''}
+  ${posts.length > 1 ? `<h2 class="section-label">Recent posts</h2>
+  <div class="card-grid">${posts.slice(1, 7).map((p) => postCard(p, '', false)).join('\n')}</div>` : ''}
+  ${posts.length > 7 ? `<h2 class="section-label">Older posts</h2>
+  ${archive(posts.slice(7))}` : ''}
 </section>
 </div>`,
 }));

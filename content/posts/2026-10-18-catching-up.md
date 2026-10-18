@@ -91,7 +91,7 @@ Two decisions have changed the plan. The editor is moving into a desktop app bui
 Electron, and the platform is becoming plugin-based, so features plug into a core rather
 than being built into it. Together those mean a full rewrite. So development is on pause
 while I rework: new designs in Figma, and the platform redesigned from the plugin
-perspective from the ground up.
+perspective from the ground up. More in [A plugin-shaped future](posts/2026-10-18-plugins-and-the-rebuild/).
 
 The engine work is more or less done. What it needs now is more thought about how to make
 the rest of the game a reality on top of it. The biggest piece of that thinking is the living

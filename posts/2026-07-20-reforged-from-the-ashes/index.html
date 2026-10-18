@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reforged from the ashes · Prometheus devlog</title>
+<meta name="description" content="Prometheus started as the remains of a scrapped avatar project. Here's what survived, and where all the fire names come from.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="Reforged from the ashes">
+<meta property="og:description" content="Prometheus started as the remains of a scrapped avatar project. Here's what survived, and where all the fire names come from.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-07-20-reforged-from-the-ashes/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>Reforged from the ashes</h1>
+    <p class="meta"><time datetime="2026-07-20">July 20, 2026</time> · 1 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#a-new-shape">A new shape</a></li><li><a href="#why-the-fire-names">Why the fire names</a></li></ol></details>
+  <div class="prose">
+<p>Prometheus didn&#39;t start from nothing. It started from the ashes of something else.</p>
+<p>For about a year before this, a friend and I built an avatar project: animated 3D characters in
+the browser, with an editor for building the scenes they lived in. He did a lot of the animation
+system and a good share of the engine work. As a product it didn&#39;t work out, but a lot of what
+we built was good.</p>
+<p>So rather than throw it away, I went through it for anything worth saving, and there was plenty:
+the entity system, the editor&#39;s interface, the renderer and the animation work. The parts that
+no longer fit, like the chat layer that let the avatars talk back, were cut out. What was left
+is the starting point for something new.</p>
+<h2 id="a-new-shape">A new shape</h2>
+<p>The old project ran everything in the browser. The new one splits it in two: a server owns the
+world and runs the simulation, and the browser becomes a window onto it, using the editor and
+renderer we already had. The game all this is for is an MMO, so the server has to be in charge
+anyway.</p>
+<h2 id="why-the-fire-names">Why the fire names</h2>
+<p>Everything rebuilt on top of the old project is named for fire and forging:</p>
+<ul>
+<li><strong>Prometheus</strong>, who stole fire for humanity, is the engine.</li>
+<li><strong>Forge</strong> is the project tools, with <strong>Anvil</strong>, <strong>Ember</strong>, <strong>Bench</strong> and <strong>Kiln</strong> inside it.</li>
+<li><strong>Re-Forged</strong> is the showcase scene, where every rebuilt feature goes to prove it works.</li>
+</ul>
+<p>The old project was melted down, and this is what gets hammered out of it.</p>
+<p>From here on it&#39;s just me. I&#39;m grateful for the year of work that got it this far. This is
+where the devlog picks up.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <span></span>
+    <a class="newer" href="../../posts/2026-09-04-the-game-behind-the-engine/"><span>Newer →</span>The game behind the engine</a>
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#a-new-shape">A new shape</a></li><li><a href="#why-the-fire-names">Why the fire names</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>
