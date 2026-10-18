@@ -4,7 +4,8 @@
   "type": "module",
   "description": "The Prometheus devlog: Markdown posts built into an RSS feed that GameDev.net imports.",
   "scripts": {
-    "build": "node build.mjs"
+    "build": "node build.mjs",
+    "preview": "node preview.mjs"
   },
   "dependencies": {
     "marked": "18.0.14"

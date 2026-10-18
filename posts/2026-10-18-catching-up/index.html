@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catching up: two months of Prometheus · Prometheus devlog</title>
+<meta name="description" content="This devlog has been quiet, but the project hasn't. Since September Prometheus has taken a little over 1,800 commits. This post catches up on all of it and ends with why development is pausing for a rebuild. From now on I'll post as things happen instead of saving it all up.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="Catching up: two months of Prometheus">
+<meta property="og:description" content="This devlog has been quiet, but the project hasn't. Since September Prometheus has taken a little over 1,800 commits. This post catches up on all of it and ends with why development is pausing for a rebuild. From now on I'll post as things happen instead of saving it all up.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-catching-up/">
+<meta property="og:image" content="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/reforged.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>Catching up: two months of Prometheus</h1>
+    <p class="meta"><time datetime="2026-10-18">October 18, 2026</time> · 5 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#the-editor-and-the-server">The editor and the server</a></li><li><a href="#frieze-from-3d-models-to-pixel-sprites">Frieze: from 3D models to pixel sprites</a></li><li><a href="#walking-around-delve">Walking around: Delve</a></li><li><a href="#the-gameplay-foundation">The gameplay foundation</a></li><li><a href="#built-for-phones">Built for phones</a></li><li><a href="#what-s-next-a-pause-to-rebuild">What&#39;s next: a pause to rebuild</a></li><li><a href="#three-stores-one-launch">Three stores, one launch</a></li><li><a href="#not-entirely-solo">Not entirely solo</a></li></ol></details>
+  <div class="prose">
+<p>This devlog has been quiet, but the project hasn&#39;t. Since September Prometheus has taken a
+little over 1,800 commits. This post catches up on all of it and ends with why development is
+pausing for a rebuild. From now on I&#39;ll post as things happen instead of saving it all up.</p>
+<p>Quick reminder of the goal: <strong>Prometheus</strong> is a custom 2.5D engine with a browser-based editor.
+The world is fully 3D; the characters and props in it are 2D pixel-art sprites. Everything is
+being built toward <em>Forgotten Memories, Endless Abyss</em>, an online MMO set in an endless dungeon
+that reshapes itself around how its players behave. The game itself is still a future milestone.
+Right now the work is the engine and the tools.</p>
+<h2 id="the-editor-and-the-server">The editor and the server</h2>
+<figure><a class="zoom" href="../../images/2026-10-18-catching-up/reforged.png" data-caption="The Re-Forged showcase scene in the editor: lightning, particle effects, camera paths and sprite characters"><img loading="lazy" src="../../images/2026-10-18-catching-up/reforged.png" alt="The Re-Forged showcase scene in the editor: lightning, particle effects, camera paths and sprite characters"></a><figcaption>The Re-Forged showcase scene in the editor: lightning, particle effects, camera paths and sprite characters</figcaption></figure>
+<p>The editor is a remote session into a backend that owns the simulation. The browser renders
+locally and trades state snapshots with the server rather than streaming video. In September
+that hit its first real milestone: two browser tabs editing the same scene at once, with undo
+carrying across them and nothing lost when a tab refreshes mid-edit. The same simulation
+package runs on the server in the editor and locally in an exported game, so what you test is
+what ships.</p>
+<p>On top of that there&#39;s now most of what you&#39;d expect from a scene editor: a hierarchy and
+inspector, a four-pane quad view, lights and shadows, materials, post-processing, particle
+effects (campfires with flames, smoke and embers, wall torches, lightning), Rapier physics, and
+camera rails for fly-throughs. Scenes keep a version history you can preview and roll back, and
+the editor recovers unsaved edits after a crash.</p>
+<p>Every feature that lands also goes into one showcase scene, <strong>Re-Forged</strong>, which has a guided
+tour that walks through the engine feature by feature. It&#39;s the scene in the screenshot above,
+and it&#39;s how I check that new work actually reaches the screen and doesn&#39;t just pass its tests.</p>
+<h2 id="frieze-from-3d-models-to-pixel-sprites">Frieze: from 3D models to pixel sprites</h2>
+<figure><a class="zoom" href="../../images/2026-10-18-catching-up/sprite-generator.png" data-caption="The sprite generator baking an animated character from a 3D model"><img loading="lazy" src="../../images/2026-10-18-catching-up/sprite-generator.png" alt="The sprite generator baking an animated character from a 3D model"></a><figcaption>The sprite generator baking an animated character from a 3D model</figcaption></figure>
+<p>Every sprite in the game starts life as a real 3D model. <strong>Frieze</strong> imports the model, borrows
+animation clips from a shared library and retargets them to the model&#39;s rig, then captures it
+from several angles and bakes the result into pixel-art sprite sheets. It has its own palettes,
+a pixel editor for touch-ups, and batch re-baking when a source changes.</p>
+<figure><a class="zoom" href="../../images/2026-10-18-catching-up/frieze-review.png" data-caption="Frieze reviewing an imported prop, with the import report beside it"><img loading="lazy" src="../../images/2026-10-18-catching-up/frieze-review.png" alt="Frieze reviewing an imported prop, with the import report beside it"></a><figcaption>Frieze reviewing an imported prop, with the import report beside it</figcaption></figure>
+<p>The sprites also bake a normal map, so a flat sprite catches light from the 3D scene around it:
+a torch on its left lights its left side. The whole route, from importing a model to baking it,
+publishing it and placing it in a scene, is now one workflow with a readable report at each step.</p>
+<h2 id="walking-around-delve">Walking around: Delve</h2>
+<figure><a class="zoom" href="../../images/2026-10-18-catching-up/delve.png" data-caption="Delve: a third-person 2.5D camera following a sprite character"><img loading="lazy" src="../../images/2026-10-18-catching-up/delve.png" alt="Delve: a third-person 2.5D camera following a sprite character"></a><figcaption>Delve: a third-person 2.5D camera following a sprite character</figcaption></figure>
+<p><strong>Delve</strong> is the first mode where you actually walk around: a third-person camera at a 35° tilt
+following a sprite character, with the billboards turning to face the camera and switching
+animation frames as they move. The first stress test put fifty animated billboards in a scene
+and held a mean of 12.7 ms per frame on my desktop. That&#39;s a dev machine, not a phone, so it&#39;s a
+baseline, not a verdict.</p>
+<h2 id="the-gameplay-foundation">The gameplay foundation</h2>
+<p>None of this is gameplay yet, but most of what gameplay will stand on now exists:</p>
+<ul>
+<li><strong>Input:</strong> keyboard, mouse and gamepad, with rebinding.</li>
+<li><strong>UI:</strong> widgets and HUD panels with anchoring, focus and keyboard/gamepad navigation.</li>
+<li><strong>Scripting:</strong> script files edited in your own editor and watched from disk, with type
+checking, readable errors and shared scripts.</li>
+<li><strong>AI:</strong> behaviour trees with a shared blackboard, sensing and perception, navigation, and
+crowds that send a couple of hundred agents to one goal along a shared flow field.</li>
+<li><strong>Systems:</strong> physics queries and collision layers, an event bus, a game clock, sprite
+animation states, dialogue, localisation, entity pooling and a component model.</li>
+</ul>
+<h2 id="built-for-phones">Built for phones</h2>
+<figure><a class="zoom" href="../../images/2026-10-18-catching-up/budget-hud.png" data-caption="The budget readout comparing a running scene against mobile limits"><img loading="lazy" src="../../images/2026-10-18-catching-up/budget-hud.png" alt="The budget readout comparing a running scene against mobile limits"></a><figcaption>The budget readout comparing a running scene against mobile limits</figcaption></figure>
+<p>The game is aimed at mobile, so the editor measures every scene against a device budget:
+triangles, draw calls, texture memory, sprite sheets and entity counts, each checked against
+mobile, browser and desktop limits. The world is split into regions that load and unload
+around the camera, so distant areas give their memory back and come back intact when you
+return. A scene can also be exported as a static build that runs with no backend at all.</p>
+<h2 id="what-s-next-a-pause-to-rebuild">What&#39;s next: a pause to rebuild</h2>
+<p>Two decisions have changed the plan. The editor is moving into a desktop app built on
+Electron, and the platform is becoming plugin-based, so features plug into a core rather
+than being built into it. Together those mean a full rewrite. So development is on pause
+while I rework: new designs in Figma, and the platform redesigned from the plugin
+perspective from the ground up.</p>
+<p>The engine work is more or less done. What it needs now is more thought about how to make
+the rest of the game a reality on top of it. The biggest piece of that thinking is the living
+world. The dungeon won&#39;t be a complete map hidden under fog; ground that nobody has reached
+doesn&#39;t exist yet. Terrain is generated as players, and monsters, actually travel into it. A
+monster wandering off on its own extends the world along the path it walks, without revealing
+that ground to anyone. What each player has discovered stays private to them, while the
+terrain itself is shared by everyone.</p>
+<h2 id="three-stores-one-launch">Three stores, one launch</h2>
+<p>Beyond the editor, the game still needs a mobile version for the App Store and Google Play,
+and a Steam version for PC. All three will release at the same time. That&#39;s a substantial
+undertaking for a solo developer.</p>
+<h2 id="not-entirely-solo">Not entirely solo</h2>
+<p>My teenagers are studying engineering and will, I hope, help me design and build the game
+world. A few friends are taking on the music and ambience, playing the first vertical slice
+as they write for it. That slice is the next real milestone: maybe later this year, maybe
+early 2027, we&#39;ll have something to show for all the hard work. There&#39;s a lot to do until
+then, so stand by.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <span></span>
+    
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#the-editor-and-the-server">The editor and the server</a></li><li><a href="#frieze-from-3d-models-to-pixel-sprites">Frieze: from 3D models to pixel sprites</a></li><li><a href="#walking-around-delve">Walking around: Delve</a></li><li><a href="#the-gameplay-foundation">The gameplay foundation</a></li><li><a href="#built-for-phones">Built for phones</a></li><li><a href="#what-s-next-a-pause-to-rebuild">What&#39;s next: a pause to rebuild</a></li><li><a href="#three-stores-one-launch">Three stores, one launch</a></li><li><a href="#not-entirely-solo">Not entirely solo</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>

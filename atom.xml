@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Prometheus devlog</title>
-  <subtitle>Building Prometheus, a custom 2.5D engine and browser editor, on the way to Forgotten Memories, Endless Abyss.</subtitle>
+  <subtitle>Building Prometheus, a custom 2.5D engine and editor, on the way to Forgotten Memories, Endless Abyss.</subtitle>
   <link href="https://miketec-ra.github.io/prometheus-devlog/" rel="alternate" type="text/html"/>
   <link href="https://miketec-ra.github.io/prometheus-devlog/atom.xml" rel="self" type="application/atom+xml"/>
   <id>https://miketec-ra.github.io/prometheus-devlog/</id>
-  <updated>2026-10-18T07:17:00.231Z</updated>
+  <updated>2026-10-18T07:32:37.061Z</updated>
   <author><name>MikeTec-RA</name></author>
   <entry>
     <title>Catching up: two months of Prometheus</title>
-    <link href="https://miketec-ra.github.io/prometheus-devlog/#2026-10-18-catching-up" rel="alternate" type="text/html"/>
+    <link href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-catching-up/" rel="alternate" type="text/html"/>
     <id>tag:miketec-ra.github.io,2026:prometheus-devlog:2026-10-18-catching-up</id>
-    <published>2026-10-18T07:17:00.231Z</published>
-    <updated>2026-10-18T07:17:00.231Z</updated>
+    <published>2026-10-18T07:32:37.061Z</published>
+    <updated>2026-10-18T07:32:37.061Z</updated>
     <content type="html">&lt;p&gt;This devlog has been quiet, but the project hasn&amp;#39;t. Since September Prometheus has taken a
 little over 1,800 commits. This post catches up on all of it and ends with why development is
 pausing for a rebuild. From now on I&amp;#39;ll post as things happen instead of saving it all up.&lt;/p&gt;
