@@ -41,7 +41,13 @@ function parsePost(file) {
 const escapeXml = (s) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const cdata = (s) => `<![CDATA[${s.replace(/]]>/g, ']]]]><![CDATA[>')}]]>`;
-const rfc822 = (date) => new Date(`${date}T12:00:00Z`).toUTCString();
+// Noon UTC on the post's date, but never later than the build: an importer may hold back or
+// future-date an entry whose pubDate hasn't arrived yet.
+const buildTime = new Date();
+const rfc822 = (date) => {
+  const noon = new Date(`${date}T12:00:00Z`);
+  return (noon > buildTime ? buildTime : noon).toUTCString();
+};
 
 const posts = readdirSync('posts')
   .filter((f) => f.endsWith('.md'))
@@ -65,7 +71,7 @@ writeFileSync('feed.xml', `<?xml version="1.0" encoding="UTF-8"?>
     <description>${escapeXml(FEED_DESCRIPTION)}</description>
     <language>en</language>
     <atom:link href="${SITE_URL}feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>${posts.length ? rfc822(posts[0].date) : new Date().toUTCString()}</lastBuildDate>
+    <lastBuildDate>${buildTime.toUTCString()}</lastBuildDate>
 ${items}
   </channel>
 </rss>
