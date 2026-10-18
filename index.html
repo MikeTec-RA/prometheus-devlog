@@ -30,8 +30,8 @@
 <p class="date">2026-10-18</p>
 <h2><a href="#2026-10-18-catching-up">Catching up: two months of Prometheus</a></h2>
 <p>This devlog has been quiet, but the project hasn&#39;t. Since September Prometheus has taken a
-little over 1,800 commits. This post catches up on all of it, and from now on I&#39;ll post as
-things land instead of saving it all up.</p>
+little over 1,800 commits. This post catches up on all of it and ends with why development is
+pausing for a rebuild. From now on I&#39;ll post as things happen instead of saving it all up.</p>
 <p>Quick reminder of the goal: <strong>Prometheus</strong> is a custom 2.5D engine with a browser-based editor.
 The world is fully 3D; the characters and props in it are 2D pixel-art sprites. Everything is
 being built toward <em>Forgotten Memories, Endless Abyss</em>, an online MMO set in an endless dungeon
@@ -89,14 +89,29 @@ triangles, draw calls, texture memory, sprite sheets and entity counts, each che
 mobile, browser and desktop limits. The world is split into regions that load and unload
 around the camera, so distant areas give their memory back and come back intact when you
 return. A scene can also be exported as a static build that runs with no backend at all.</p>
-<h2>What&#39;s next</h2>
-<p>The big design piece on the horizon is the living world. The dungeon won&#39;t be a complete map
-hidden under fog; ground that nobody has reached doesn&#39;t exist yet. Terrain is generated as
-players, and monsters, actually travel into it. A monster wandering off on its own extends
-the world along the path it walks, without revealing that ground to anyone. What each player
-has discovered stays private to them, while the terrain itself is shared by everyone.</p>
-<p>Before that, the near-term work is finishing the engine prerequisites it depends on. I&#39;ll post
-as those land.</p>
+<h2>What&#39;s next: a pause to rebuild</h2>
+<p>Two decisions have changed the plan. The editor is moving into a desktop app built on
+Electron, and the platform is becoming plugin-based, so features plug into a core rather
+than being built into it. Together those mean a full rewrite. So development is on pause
+while I rework: new designs in Figma, and the platform redesigned from the plugin
+perspective from the ground up.</p>
+<p>The engine work is more or less done. What it needs now is more thought about how to make
+the rest of the game a reality on top of it. The biggest piece of that thinking is the living
+world. The dungeon won&#39;t be a complete map hidden under fog; ground that nobody has reached
+doesn&#39;t exist yet. Terrain is generated as players, and monsters, actually travel into it. A
+monster wandering off on its own extends the world along the path it walks, without revealing
+that ground to anyone. What each player has discovered stays private to them, while the
+terrain itself is shared by everyone.</p>
+<h2>Three stores, one launch</h2>
+<p>Beyond the editor, the game still needs a mobile version for the App Store and Google Play,
+and a Steam version for PC. All three will release at the same time. That&#39;s a substantial
+undertaking for a solo developer.</p>
+<h2>Not entirely solo</h2>
+<p>My teenagers are studying engineering and will, I hope, help me design and build the game
+world. A few friends are taking on the music and ambience, playing the first vertical slice
+as they write for it. That slice is the next real milestone: maybe later this year, maybe
+early 2027, we&#39;ll have something to show for all the hard work. There&#39;s a lot to do until
+then, so stand by.</p>
 
 </article>
 </main>
