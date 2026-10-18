@@ -6,12 +6,12 @@
     <description>Building Prometheus, a custom 2.5D engine and browser editor, on the way to Forgotten Memories, Endless Abyss.</description>
     <language>en</language>
     <atom:link href="https://miketec-ra.github.io/prometheus-devlog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sun, 18 Oct 2026 07:05:51 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 18 Oct 2026 07:17:00 GMT</lastBuildDate>
     <item>
       <title>Catching up: two months of Prometheus</title>
       <link>https://miketec-ra.github.io/prometheus-devlog/#2026-10-18-catching-up</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-18-catching-up</guid>
-      <pubDate>Sun, 18 Oct 2026 07:05:51 GMT</pubDate>
+      <pubDate>Sun, 18 Oct 2026 07:17:00 GMT</pubDate>
       <description><![CDATA[<p>This devlog has been quiet, but the project hasn&#39;t. Since September Prometheus has taken a
 little over 1,800 commits. This post catches up on all of it and ends with why development is
 pausing for a rebuild. From now on I&#39;ll post as things happen instead of saving it all up.</p>

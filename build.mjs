@@ -44,9 +44,9 @@ const cdata = (s) => `<![CDATA[${s.replace(/]]>/g, ']]]]><![CDATA[>')}]]>`;
 // Noon UTC on the post's date, but never later than the build: an importer may hold back or
 // future-date an entry whose pubDate hasn't arrived yet.
 const buildTime = new Date();
-const rfc822 = (date) => {
+const postTime = (date) => {
   const noon = new Date(`${date}T12:00:00Z`);
-  return (noon > buildTime ? buildTime : noon).toUTCString();
+  return noon > buildTime ? buildTime : noon;
 };
 
 const posts = readdirSync('posts')
@@ -58,23 +58,49 @@ const items = posts.map((p) => `    <item>
       <title>${escapeXml(p.title)}</title>
       <link>${p.link}</link>
       <guid isPermaLink="false">prometheus-devlog:${p.slug}</guid>
-      <pubDate>${rfc822(p.date)}</pubDate>
+      <pubDate>${postTime(p.date).toUTCString()}</pubDate>
       <description>${cdata(p.html)}</description>
       <content:encoded>${cdata(p.html)}</content:encoded>
     </item>`).join('\n');
 
-writeFileSync('feed.xml', `<?xml version="1.0" encoding="UTF-8"?>
+// The same RSS is published twice: feed.xml (served as application/xml) and feed.rss
+// (served as application/rss+xml), for importers that judge a feed by its content type.
+for (const file of ['feed.xml', 'feed.rss']) {
+  writeFileSync(file, `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>${escapeXml(FEED_TITLE)}</title>
     <link>${SITE_URL}</link>
     <description>${escapeXml(FEED_DESCRIPTION)}</description>
     <language>en</language>
-    <atom:link href="${SITE_URL}feed.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="${SITE_URL}${file}" rel="self" type="application/rss+xml"/>
     <lastBuildDate>${buildTime.toUTCString()}</lastBuildDate>
 ${items}
   </channel>
 </rss>
+`);
+}
+
+const entries = posts.map((p) => `  <entry>
+    <title>${escapeXml(p.title)}</title>
+    <link href="${p.link}" rel="alternate" type="text/html"/>
+    <id>tag:miketec-ra.github.io,2026:prometheus-devlog:${p.slug}</id>
+    <published>${postTime(p.date).toISOString()}</published>
+    <updated>${postTime(p.date).toISOString()}</updated>
+    <content type="html">${escapeXml(p.html)}</content>
+  </entry>`).join('\n');
+
+writeFileSync('atom.xml', `<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>${escapeXml(FEED_TITLE)}</title>
+  <subtitle>${escapeXml(FEED_DESCRIPTION)}</subtitle>
+  <link href="${SITE_URL}" rel="alternate" type="text/html"/>
+  <link href="${SITE_URL}atom.xml" rel="self" type="application/atom+xml"/>
+  <id>${SITE_URL}</id>
+  <updated>${buildTime.toISOString()}</updated>
+  <author><name>MikeTec-RA</name></author>
+${entries}
+</feed>
 `);
 
 const articles = posts.map((p) => `<article id="${p.slug}">
@@ -117,4 +143,4 @@ ${articles}
 </html>
 `);
 
-console.log(`Built ${posts.length} post(s): feed.xml, index.html`);
+console.log(`Built ${posts.length} post(s): feed.xml, feed.rss, atom.xml, index.html`);
