@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The server owns the world · Prometheus devlog</title>
+<meta name="description" content="The editor passed its first real milestone today. Here's the decision underneath it.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="The server owns the world">
+<meta property="og:description" content="The editor passed its first real milestone today. Here's the decision underneath it.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-12-the-server-owns-the-world/">
+<meta property="og:image" content="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-12-the-server-owns-the-world/early-showcase.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>The server owns the world</h1>
+    <p class="meta"><time datetime="2026-09-12">September 12, 2026</time> · 2 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#two-ways-to-put-a-game-in-a-browser">Two ways to put a game in a browser</a></li><li><a href="#one-simulation-two-homes">One simulation, two homes</a></li><li><a href="#the-milestone">The milestone</a></li><li><a href="#a-scene-for-every-feature">A scene for every feature</a></li></ol></details>
+  <div class="prose">
+<p>The editor passed its first real milestone today, so it&#39;s a good moment to explain the decision
+underneath it.</p>
+<h2 id="two-ways-to-put-a-game-in-a-browser">Two ways to put a game in a browser</h2>
+<p>The Prometheus editor runs in a web browser, but the scene lives on a server. There were two ways
+to build that.</p>
+<p><strong>Pixel streaming</strong> renders every frame on the server and streams video to the browser, the way
+cloud gaming does; the browser is a remote monitor. That costs a GPU video encoder per viewer,
+tens of megabits a second, text and thin lines softened by video compression, and input lag on
+every click.</p>
+<p><strong>State streaming</strong> keeps the renderer in the browser. The server runs the authoritative
+simulation (physics, behaviour, game rules) and sends compact updates about what changed; the
+browser draws them locally and sends edits back. The research I did put that at a few hundred
+times less bandwidth than video, with no server GPU per viewer and a UI that responds at local
+speed.</p>
+<p>Prometheus streams state.</p>
+<h2 id="one-simulation-two-homes">One simulation, two homes</h2>
+<p>The simulation is a standalone TypeScript package with no browser or server dependencies. In
+the editor it runs on the server, which is the authority. In a shipped game there&#39;s no editor
+server, so the same package runs on the player&#39;s device.</p>
+<p>Writing it once and hosting it twice is why the backend is TypeScript rather than something
+like Rust: the code that ships to players is the code I test in the editor.</p>
+<h2 id="the-milestone">The milestone</h2>
+<p>Today two fresh browser tabs edited the same scene on the server at once. One tab was refreshed
+mid-edit and lost nothing, and undo worked across both tabs. Then I pressed Play in one tab and
+watched the simulation from the other, through a full stop and restart of the backend.</p>
+<p>It doesn&#39;t look like much in a screenshot, but everything else stands on it: the editor is a
+window onto a world the server owns, and that world survives the window closing.</p>
+<h2 id="a-scene-for-every-feature">A scene for every feature</h2>
+<figure><a class="zoom" href="../../images/2026-09-12-the-server-owns-the-world/early-showcase.png" data-caption="The showcase scene in its first week: lights, shiny materials, particle fire and smoke, and a camera rail"><img loading="lazy" src="../../images/2026-09-12-the-server-owns-the-world/early-showcase.png" alt="The showcase scene in its first week: lights, shiny materials, particle fire and smoke, and a camera rail"></a><figcaption>The showcase scene in its first week: lights, shiny materials, particle fire and smoke, and a camera rail</figcaption></figure>
+<p>Every feature also goes into one scene, <strong>Re-Forged</strong>, so new work can be seen rather than read
+about. This is how it looked in its first week: a handful of lights, shiny materials, particle
+fire and smoke, and a camera rail for fly-throughs. It will grow with everything that lands.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <a class="older" href="../../posts/2026-09-04-the-game-behind-the-engine/"><span>← Older</span>The game behind the engine</a>
+    <a class="newer" href="../../posts/2026-09-15-frieze-pixel-art-from-3d/"><span>Newer →</span>Frieze: pixel art from 3D models</a>
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#two-ways-to-put-a-game-in-a-browser">Two ways to put a game in a browser</a></li><li><a href="#one-simulation-two-homes">One simulation, two homes</a></li><li><a href="#the-milestone">The milestone</a></li><li><a href="#a-scene-for-every-feature">A scene for every feature</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>

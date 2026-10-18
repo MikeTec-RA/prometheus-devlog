@@ -6,15 +6,14 @@
     <description>Building Prometheus, a custom 2.5D engine and editor, on the way to Forgotten Memories, Endless Abyss.</description>
     <language>en</language>
     <atom:link href="https://miketec-ra.github.io/prometheus-devlog/feed.rss" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sun, 18 Oct 2026 07:32:37 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 18 Oct 2026 07:52:09 GMT</lastBuildDate>
     <item>
       <title>Catching up: two months of Prometheus</title>
       <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-catching-up/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-18-catching-up</guid>
-      <pubDate>Sun, 18 Oct 2026 07:32:37 GMT</pubDate>
-      <description><![CDATA[<p>This devlog has been quiet, but the project hasn&#39;t. Since September Prometheus has taken a
-little over 1,800 commits. This post catches up on all of it and ends with why development is
-pausing for a rebuild. From now on I&#39;ll post as things happen instead of saving it all up.</p>
+      <pubDate>Sun, 18 Oct 2026 07:52:09 GMT</pubDate>
+      <description><![CDATA[<p>Two months and a little over 1,800 commits in, this is where Prometheus stands, with links to
+the posts that go deeper. It ends with why development is pausing for a rebuild.</p>
 <p>Quick reminder of the goal: <strong>Prometheus</strong> is a custom 2.5D engine with a browser-based editor.
 The world is fully 3D; the characters and props in it are 2D pixel-art sprites. Everything is
 being built toward <em>Forgotten Memories, Endless Abyss</em>, an online MMO set in an endless dungeon
@@ -27,7 +26,7 @@ locally and trades state snapshots with the server rather than streaming video. 
 that hit its first real milestone: two browser tabs editing the same scene at once, with undo
 carrying across them and nothing lost when a tab refreshes mid-edit. The same simulation
 package runs on the server in the editor and locally in an exported game, so what you test is
-what ships.</p>
+what ships. More in <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-12-the-server-owns-the-world/">The server owns the world</a>.</p>
 <p>On top of that there&#39;s now most of what you&#39;d expect from a scene editor: a hierarchy and
 inspector, a four-pane quad view, lights and shadows, materials, post-processing, particle
 effects (campfires with flames, smoke and embers, wall torches, lightning), Rapier physics, and
@@ -41,7 +40,8 @@ and it&#39;s how I check that new work actually reaches the screen and doesn&#39
 <p>Every sprite in the game starts life as a real 3D model. <strong>Frieze</strong> imports the model, borrows
 animation clips from a shared library and retargets them to the model&#39;s rig, then captures it
 from several angles and bakes the result into pixel-art sprite sheets. It has its own palettes,
-a pixel editor for touch-ups, and batch re-baking when a source changes.</p>
+a pixel editor for touch-ups, and batch re-baking when a source changes. More in
+<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-15-frieze-pixel-art-from-3d/">Frieze: pixel art from 3D models</a>.</p>
 <p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/frieze-review.png" alt="Frieze reviewing an imported prop, with the import report beside it"></p>
 <p>The sprites also bake a normal map, so a flat sprite catches light from the 3D scene around it:
 a torch on its left lights its left side. The whole route, from importing a model to baking it,
@@ -52,9 +52,10 @@ publishing it and placing it in a scene, is now one workflow with a readable rep
 following a sprite character, with the billboards turning to face the camera and switching
 animation frames as they move. The first stress test put fifty animated billboards in a scene
 and held a mean of 12.7 ms per frame on my desktop. That&#39;s a dev machine, not a phone, so it&#39;s a
-baseline, not a verdict.</p>
+baseline, not a verdict. More in <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-18-first-steps-in-delve/">First steps in Delve</a>.</p>
 <h2>The gameplay foundation</h2>
-<p>None of this is gameplay yet, but most of what gameplay will stand on now exists:</p>
+<p>None of this is gameplay yet, but most of what gameplay will stand on now exists (more in
+<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-06-teaching-sprites-to-think/">Teaching sprites to think</a>):</p>
 <ul>
 <li><strong>Input:</strong> keyboard, mouse and gamepad, with rebinding.</li>
 <li><strong>UI:</strong> widgets and HUD panels with anchoring, focus and keyboard/gamepad navigation.</li>
@@ -71,7 +72,9 @@ animation states, dialogue, localisation, entity pooling and a component model.<
 triangles, draw calls, texture memory, sprite sheets and entity counts, each checked against
 mobile, browser and desktop limits. The world is split into regions that load and unload
 around the camera, so distant areas give their memory back and come back intact when you
-return. A scene can also be exported as a static build that runs with no backend at all.</p>
+return. A scene can also be exported as a static build that runs with no backend at all. More,
+including the first numbers from real phones, in
+<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-09-will-it-run-on-a-phone/">Will it run on a phone?</a></p>
 <h2>What&#39;s next: a pause to rebuild</h2>
 <p>Two decisions have changed the plan. The editor is moving into a desktop app built on
 Electron, and the platform is becoming plugin-based, so features plug into a core rather
@@ -84,7 +87,8 @@ world. The dungeon won&#39;t be a complete map hidden under fog; ground that nob
 doesn&#39;t exist yet. Terrain is generated as players, and monsters, actually travel into it. A
 monster wandering off on its own extends the world along the path it walks, without revealing
 that ground to anyone. What each player has discovered stays private to them, while the
-terrain itself is shared by everyone.</p>
+terrain itself is shared by everyone. More in
+<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-22-a-world-that-isnt-there-yet/">A world that isn&#39;t there yet</a>.</p>
 <h2>Three stores, one launch</h2>
 <p>Beyond the editor, the game still needs a mobile version for the App Store and Google Play,
 and a Steam version for PC. All three will release at the same time. That&#39;s a substantial
@@ -96,9 +100,8 @@ as they write for it. That slice is the next real milestone: maybe later this ye
 early 2027, we&#39;ll have something to show for all the hard work. There&#39;s a lot to do until
 then, so stand by.</p>
 ]]></description>
-      <content:encoded><![CDATA[<p>This devlog has been quiet, but the project hasn&#39;t. Since September Prometheus has taken a
-little over 1,800 commits. This post catches up on all of it and ends with why development is
-pausing for a rebuild. From now on I&#39;ll post as things happen instead of saving it all up.</p>
+      <content:encoded><![CDATA[<p>Two months and a little over 1,800 commits in, this is where Prometheus stands, with links to
+the posts that go deeper. It ends with why development is pausing for a rebuild.</p>
 <p>Quick reminder of the goal: <strong>Prometheus</strong> is a custom 2.5D engine with a browser-based editor.
 The world is fully 3D; the characters and props in it are 2D pixel-art sprites. Everything is
 being built toward <em>Forgotten Memories, Endless Abyss</em>, an online MMO set in an endless dungeon
@@ -111,7 +114,7 @@ locally and trades state snapshots with the server rather than streaming video. 
 that hit its first real milestone: two browser tabs editing the same scene at once, with undo
 carrying across them and nothing lost when a tab refreshes mid-edit. The same simulation
 package runs on the server in the editor and locally in an exported game, so what you test is
-what ships.</p>
+what ships. More in <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-12-the-server-owns-the-world/">The server owns the world</a>.</p>
 <p>On top of that there&#39;s now most of what you&#39;d expect from a scene editor: a hierarchy and
 inspector, a four-pane quad view, lights and shadows, materials, post-processing, particle
 effects (campfires with flames, smoke and embers, wall torches, lightning), Rapier physics, and
@@ -125,7 +128,8 @@ and it&#39;s how I check that new work actually reaches the screen and doesn&#39
 <p>Every sprite in the game starts life as a real 3D model. <strong>Frieze</strong> imports the model, borrows
 animation clips from a shared library and retargets them to the model&#39;s rig, then captures it
 from several angles and bakes the result into pixel-art sprite sheets. It has its own palettes,
-a pixel editor for touch-ups, and batch re-baking when a source changes.</p>
+a pixel editor for touch-ups, and batch re-baking when a source changes. More in
+<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-15-frieze-pixel-art-from-3d/">Frieze: pixel art from 3D models</a>.</p>
 <p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/frieze-review.png" alt="Frieze reviewing an imported prop, with the import report beside it"></p>
 <p>The sprites also bake a normal map, so a flat sprite catches light from the 3D scene around it:
 a torch on its left lights its left side. The whole route, from importing a model to baking it,
@@ -136,9 +140,10 @@ publishing it and placing it in a scene, is now one workflow with a readable rep
 following a sprite character, with the billboards turning to face the camera and switching
 animation frames as they move. The first stress test put fifty animated billboards in a scene
 and held a mean of 12.7 ms per frame on my desktop. That&#39;s a dev machine, not a phone, so it&#39;s a
-baseline, not a verdict.</p>
+baseline, not a verdict. More in <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-18-first-steps-in-delve/">First steps in Delve</a>.</p>
 <h2>The gameplay foundation</h2>
-<p>None of this is gameplay yet, but most of what gameplay will stand on now exists:</p>
+<p>None of this is gameplay yet, but most of what gameplay will stand on now exists (more in
+<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-06-teaching-sprites-to-think/">Teaching sprites to think</a>):</p>
 <ul>
 <li><strong>Input:</strong> keyboard, mouse and gamepad, with rebinding.</li>
 <li><strong>UI:</strong> widgets and HUD panels with anchoring, focus and keyboard/gamepad navigation.</li>
@@ -155,7 +160,9 @@ animation states, dialogue, localisation, entity pooling and a component model.<
 triangles, draw calls, texture memory, sprite sheets and entity counts, each checked against
 mobile, browser and desktop limits. The world is split into regions that load and unload
 around the camera, so distant areas give their memory back and come back intact when you
-return. A scene can also be exported as a static build that runs with no backend at all.</p>
+return. A scene can also be exported as a static build that runs with no backend at all. More,
+including the first numbers from real phones, in
+<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-09-will-it-run-on-a-phone/">Will it run on a phone?</a></p>
 <h2>What&#39;s next: a pause to rebuild</h2>
 <p>Two decisions have changed the plan. The editor is moving into a desktop app built on
 Electron, and the platform is becoming plugin-based, so features plug into a core rather
@@ -168,7 +175,8 @@ world. The dungeon won&#39;t be a complete map hidden under fog; ground that nob
 doesn&#39;t exist yet. Terrain is generated as players, and monsters, actually travel into it. A
 monster wandering off on its own extends the world along the path it walks, without revealing
 that ground to anyone. What each player has discovered stays private to them, while the
-terrain itself is shared by everyone.</p>
+terrain itself is shared by everyone. More in
+<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-22-a-world-that-isnt-there-yet/">A world that isn&#39;t there yet</a>.</p>
 <h2>Three stores, one launch</h2>
 <p>Beyond the editor, the game still needs a mobile version for the App Store and Google Play,
 and a Steam version for PC. All three will release at the same time. That&#39;s a substantial
@@ -179,6 +187,508 @@ world. A few friends are taking on the music and ambience, playing the first ver
 as they write for it. That slice is the next real milestone: maybe later this year, maybe
 early 2027, we&#39;ll have something to show for all the hard work. There&#39;s a lot to do until
 then, so stand by.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Will it run on a phone?</title>
+      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-09-will-it-run-on-a-phone/</link>
+      <guid isPermaLink="false">prometheus-devlog:2026-10-09-will-it-run-on-a-phone</guid>
+      <pubDate>Fri, 09 Oct 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<p>The game is meant for phones first, so this week was about finding out how far the engine is
+from that, with real numbers instead of hopes.</p>
+<h2>A budget you can see</h2>
+<p>The editor now measures a scene against a device budget (triangles, draw calls, texture memory,
+sprite sheets and entity counts) with separate limits for mobile, browser and desktop. The first
+time I pointed it at the showcase scene, it said texture memory was 78% over the mobile budget.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-09-will-it-run-on-a-phone/budget-hud.png" alt="The budget readout on the showcase scene, flagging texture memory"></p>
+<p>That turned out to be the meter: it was counting shared textures more than once. Counted
+properly, the scene was under budget all along. Phones still shouldn&#39;t download desktop-sized
+textures, though, so a new asset pipeline publishes a separate version of each texture per
+device, with phone textures capped at 512 pixels. On the showcase scene that takes texture memory
+from 131.9 MiB to 83.9 MiB on mobile, well inside the 192 MB budget.</p>
+<p>Draw calls are the open problem. The showcase scene makes 178 of them, and the mobile limit is
+100.</p>
+<h2>Streaming the world in</h2>
+<p>The world is split into regions. As the camera moves, nearby regions stay loaded, the next ones
+wait warm, and distant ones give back their memory, then come back intact when you return.</p>
+<h2>Exporting a game</h2>
+<p>A scene can now be exported as a static build: plain files that run in a browser with no server
+behind them, with the simulation running on the device. That&#39;s the shape a shipped game will
+take.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-09-will-it-run-on-a-phone/static-export.png" alt="A static mobile export running on its own, with its own controls"></p>
+<h2>Real phones</h2>
+<p>Then the real test. A profiling page runs a fixed workload on the phone itself and records the
+results. I ran it on a Galaxy Z Fold7, folded and unfolded, and on an iPhone 14 Pro, against a
+hall of about 60 sprites.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-09-will-it-run-on-a-phone/phone-profiler.png" alt="The on-device profiler, set up on an iPhone 14 Pro"></p>
+<p>The median frame came in right on 60 fps on the Fold7 (16.6 to 16.7 ms) and a little slower on
+the iPhone (19 to 21 ms). The slowest frames ran past the 60 fps budget on both. Treat these as
+early samples rather than benchmarks, but the verdict is clear enough: close, not there yet, and
+now it&#39;s something I can measure instead of guess.</p>
+]]></description>
+      <content:encoded><![CDATA[<p>The game is meant for phones first, so this week was about finding out how far the engine is
+from that, with real numbers instead of hopes.</p>
+<h2>A budget you can see</h2>
+<p>The editor now measures a scene against a device budget (triangles, draw calls, texture memory,
+sprite sheets and entity counts) with separate limits for mobile, browser and desktop. The first
+time I pointed it at the showcase scene, it said texture memory was 78% over the mobile budget.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-09-will-it-run-on-a-phone/budget-hud.png" alt="The budget readout on the showcase scene, flagging texture memory"></p>
+<p>That turned out to be the meter: it was counting shared textures more than once. Counted
+properly, the scene was under budget all along. Phones still shouldn&#39;t download desktop-sized
+textures, though, so a new asset pipeline publishes a separate version of each texture per
+device, with phone textures capped at 512 pixels. On the showcase scene that takes texture memory
+from 131.9 MiB to 83.9 MiB on mobile, well inside the 192 MB budget.</p>
+<p>Draw calls are the open problem. The showcase scene makes 178 of them, and the mobile limit is
+100.</p>
+<h2>Streaming the world in</h2>
+<p>The world is split into regions. As the camera moves, nearby regions stay loaded, the next ones
+wait warm, and distant ones give back their memory, then come back intact when you return.</p>
+<h2>Exporting a game</h2>
+<p>A scene can now be exported as a static build: plain files that run in a browser with no server
+behind them, with the simulation running on the device. That&#39;s the shape a shipped game will
+take.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-09-will-it-run-on-a-phone/static-export.png" alt="A static mobile export running on its own, with its own controls"></p>
+<h2>Real phones</h2>
+<p>Then the real test. A profiling page runs a fixed workload on the phone itself and records the
+results. I ran it on a Galaxy Z Fold7, folded and unfolded, and on an iPhone 14 Pro, against a
+hall of about 60 sprites.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-09-will-it-run-on-a-phone/phone-profiler.png" alt="The on-device profiler, set up on an iPhone 14 Pro"></p>
+<p>The median frame came in right on 60 fps on the Fold7 (16.6 to 16.7 ms) and a little slower on
+the iPhone (19 to 21 ms). The slowest frames ran past the 60 fps budget on both. Treat these as
+early samples rather than benchmarks, but the verdict is clear enough: close, not there yet, and
+now it&#39;s something I can measure instead of guess.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Teaching sprites to think</title>
+      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-06-teaching-sprites-to-think/</link>
+      <guid isPermaLink="false">prometheus-devlog:2026-10-06-teaching-sprites-to-think</guid>
+      <pubDate>Tue, 06 Oct 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<p>The last few weeks went into the systems game logic will be written on. The last pieces of a
+first set landed today, so here&#39;s a tour.</p>
+<h2>Scripts are files</h2>
+<p>Game scripts are ordinary files, so I write them in VS Code instead of a text box in the editor.
+With file watching on, saving in VS Code reloads the script in the running editor. Scripts are
+type-checked, errors show up where I can see them, and a script that throws no longer drags the
+frame down with it.</p>
+<h2>Behaviour trees</h2>
+<p>Characters run behaviour trees: small graphs of decisions like &quot;if you can see the player,
+approach; otherwise wander&quot;. Trees share a blackboard, a set of named values characters can read
+and write, which is how two characters can hold a conversation or a group can coordinate.</p>
+<h2>Seeing and hearing</h2>
+<p>A character can have a view cone, a hearing range and a memory, and its behaviour tree reads
+them. In the editor I can show the cone and the hearing ring and tune them live.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-06-teaching-sprites-to-think/perception.png" alt="Perception on a sprite: the blue view cone, the hearing ring and their settings"></p>
+<h2>Getting around, together</h2>
+<p>Characters find routes across the navigation grid. Crowds go one better. When many characters
+head for the same goal, the engine builds one flow field, a grid of arrows pointing the way, and
+they all read it instead of each searching for its own route. In a test with 200 characters
+heading for one goal, that meant zero route searches per second and at most one field build.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-06-teaching-sprites-to-think/crowd.png" alt="Fifty characters on a shared flow field; each arrow points the way to the goal"></p>
+<h2>Talking</h2>
+<p>There&#39;s a dialogue system too: lines, choices and branches, with the camera able to move to
+whoever is speaking. The first test conversation in the showcase scene goes: <em>&quot;You found the
+stairs. Most people forget them.&quot;</em> Choose <em>&quot;I remember.&quot;</em> and the reply is <em>&quot;Then the abyss
+remembers you too.&quot;</em></p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-06-teaching-sprites-to-think/dialogue.png" alt="The dialogue reply floating above the speaker in the showcase scene"></p>
+<h2>And the rest</h2>
+<p>Gamepads and rebindable controls, UI widgets and HUD panels, an event bus, a game clock,
+localisation, collision layers, physics queries for AI, and entity pooling so a burst of spawns
+doesn&#39;t stall a frame. None of it is a game yet. It&#39;s the toolbox the game will be built with.</p>
+]]></description>
+      <content:encoded><![CDATA[<p>The last few weeks went into the systems game logic will be written on. The last pieces of a
+first set landed today, so here&#39;s a tour.</p>
+<h2>Scripts are files</h2>
+<p>Game scripts are ordinary files, so I write them in VS Code instead of a text box in the editor.
+With file watching on, saving in VS Code reloads the script in the running editor. Scripts are
+type-checked, errors show up where I can see them, and a script that throws no longer drags the
+frame down with it.</p>
+<h2>Behaviour trees</h2>
+<p>Characters run behaviour trees: small graphs of decisions like &quot;if you can see the player,
+approach; otherwise wander&quot;. Trees share a blackboard, a set of named values characters can read
+and write, which is how two characters can hold a conversation or a group can coordinate.</p>
+<h2>Seeing and hearing</h2>
+<p>A character can have a view cone, a hearing range and a memory, and its behaviour tree reads
+them. In the editor I can show the cone and the hearing ring and tune them live.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-06-teaching-sprites-to-think/perception.png" alt="Perception on a sprite: the blue view cone, the hearing ring and their settings"></p>
+<h2>Getting around, together</h2>
+<p>Characters find routes across the navigation grid. Crowds go one better. When many characters
+head for the same goal, the engine builds one flow field, a grid of arrows pointing the way, and
+they all read it instead of each searching for its own route. In a test with 200 characters
+heading for one goal, that meant zero route searches per second and at most one field build.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-06-teaching-sprites-to-think/crowd.png" alt="Fifty characters on a shared flow field; each arrow points the way to the goal"></p>
+<h2>Talking</h2>
+<p>There&#39;s a dialogue system too: lines, choices and branches, with the camera able to move to
+whoever is speaking. The first test conversation in the showcase scene goes: <em>&quot;You found the
+stairs. Most people forget them.&quot;</em> Choose <em>&quot;I remember.&quot;</em> and the reply is <em>&quot;Then the abyss
+remembers you too.&quot;</em></p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-06-teaching-sprites-to-think/dialogue.png" alt="The dialogue reply floating above the speaker in the showcase scene"></p>
+<h2>And the rest</h2>
+<p>Gamepads and rebindable controls, UI widgets and HUD panels, an event bus, a game clock,
+localisation, collision layers, physics queries for AI, and entity pooling so a burst of spawns
+doesn&#39;t stall a frame. None of it is a game yet. It&#39;s the toolbox the game will be built with.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>A world that isn't there yet</title>
+      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-22-a-world-that-isnt-there-yet/</link>
+      <guid isPermaLink="false">prometheus-devlog:2026-09-22-a-world-that-isnt-there-yet</guid>
+      <pubDate>Tue, 22 Sep 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<p>This week I pinned down one of the most important rules of the game world, and it changes what
+the engine has to do.</p>
+<p><strong>Ground that nobody has reached does not exist.</strong> It isn&#39;t hidden or fogged over; it hasn&#39;t been
+generated. The dungeon is endless, so it gets built as it&#39;s explored.</p>
+<h2>Monsters explore too</h2>
+<p>Monsters don&#39;t idle in rooms waiting for a player to show up. They wander, head home, follow
+routes, and keep doing it when no player is anywhere near. When a monster walks toward the edge
+of the known world, terrain is generated for its path, and only its path. It learns the ground
+it has actually walked, not a circle of everything around it, and none of that reveals anything
+to players.</p>
+<p>Terrain is shared: once it exists, it exists for everyone. Maps aren&#39;t. What each player has
+discovered is theirs alone by default.</p>
+<h2>The rules that hold it together</h2>
+<p>A few engine rules fall out of that:</p>
+<ul>
+<li><strong>Nothing walks on nothing.</strong> Before any actor, player or monster, moves into new ground, that
+ground is generated and committed, with its collision and navigation. Nobody crosses a blank
+region, a guessed bridge or a floor that doesn&#39;t exist yet.</li>
+<li><strong>First come, first fixed.</strong> Once ground exists, it stays. Otherwise a monster could head home
+to its den and find a lake there, because a player&#39;s arrival had regenerated the area. A player
+who turns up later finds the same trails, dens and residents the monster left.</li>
+<li><strong>Budgets.</strong> An endlessly wandering monster could otherwise generate an endless world with
+nobody in it. Generation distance, active populations and simulation time all have limits,
+and when one runs out a monster waits at the edge rather than inventing ground.</li>
+<li><strong>Reproducible from history.</strong> A seed alone can&#39;t rebuild a world shaped by what happened in
+it, so the engine keeps the seed, the generator version, the behaviour that shaped the world
+and everything that was committed.</li>
+<li><strong>Not flat.</strong> Hills, valleys, cliffs, gaps and water. One spot on the map can hold a bridge
+above a cave, so a single height per point isn&#39;t enough.</li>
+</ul>
+<h2>Where it starts</h2>
+<p>None of this is gameplay yet. These are engine requirements, and the first building block
+arrived the same day: navigation. The editor can now bake a grid that says where an agent of a
+given size fits, and find a route across it.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-22-a-world-that-isnt-there-yet/navigation-grid.png" alt="A baked navigation grid: green cells fit an agent, red cells are blocked, and the pink line is a route"></p>
+<p>Today that works on flat floors in scenes I&#39;ve built by hand. Terrain that generates itself as
+monsters walk into it is the long road from here.</p>
+]]></description>
+      <content:encoded><![CDATA[<p>This week I pinned down one of the most important rules of the game world, and it changes what
+the engine has to do.</p>
+<p><strong>Ground that nobody has reached does not exist.</strong> It isn&#39;t hidden or fogged over; it hasn&#39;t been
+generated. The dungeon is endless, so it gets built as it&#39;s explored.</p>
+<h2>Monsters explore too</h2>
+<p>Monsters don&#39;t idle in rooms waiting for a player to show up. They wander, head home, follow
+routes, and keep doing it when no player is anywhere near. When a monster walks toward the edge
+of the known world, terrain is generated for its path, and only its path. It learns the ground
+it has actually walked, not a circle of everything around it, and none of that reveals anything
+to players.</p>
+<p>Terrain is shared: once it exists, it exists for everyone. Maps aren&#39;t. What each player has
+discovered is theirs alone by default.</p>
+<h2>The rules that hold it together</h2>
+<p>A few engine rules fall out of that:</p>
+<ul>
+<li><strong>Nothing walks on nothing.</strong> Before any actor, player or monster, moves into new ground, that
+ground is generated and committed, with its collision and navigation. Nobody crosses a blank
+region, a guessed bridge or a floor that doesn&#39;t exist yet.</li>
+<li><strong>First come, first fixed.</strong> Once ground exists, it stays. Otherwise a monster could head home
+to its den and find a lake there, because a player&#39;s arrival had regenerated the area. A player
+who turns up later finds the same trails, dens and residents the monster left.</li>
+<li><strong>Budgets.</strong> An endlessly wandering monster could otherwise generate an endless world with
+nobody in it. Generation distance, active populations and simulation time all have limits,
+and when one runs out a monster waits at the edge rather than inventing ground.</li>
+<li><strong>Reproducible from history.</strong> A seed alone can&#39;t rebuild a world shaped by what happened in
+it, so the engine keeps the seed, the generator version, the behaviour that shaped the world
+and everything that was committed.</li>
+<li><strong>Not flat.</strong> Hills, valleys, cliffs, gaps and water. One spot on the map can hold a bridge
+above a cave, so a single height per point isn&#39;t enough.</li>
+</ul>
+<h2>Where it starts</h2>
+<p>None of this is gameplay yet. These are engine requirements, and the first building block
+arrived the same day: navigation. The editor can now bake a grid that says where an agent of a
+given size fits, and find a route across it.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-22-a-world-that-isnt-there-yet/navigation-grid.png" alt="A baked navigation grid: green cells fit an agent, red cells are blocked, and the pink line is a route"></p>
+<p>Today that works on flat floors in scenes I&#39;ve built by hand. Terrain that generates itself as
+monsters walk into it is the long road from here.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>First steps in Delve</title>
+      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-18-first-steps-in-delve/</link>
+      <guid isPermaLink="false">prometheus-devlog:2026-09-18-first-steps-in-delve</guid>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<p>Until this week, Prometheus was something you looked at. Now you can walk around in it.</p>
+<p><strong>Delve</strong> is the engine&#39;s first walking mode. A third-person camera tilted at 35° follows a
+sprite character, and every billboard in the scene turns to face the camera, picking the right
+direction and animation frame as it moves. It runs inside the editor, so I can step into a scene
+I&#39;m building, walk around it, and step back out to carry on editing.</p>
+<h2>Input that isn&#39;t tied to a keyboard</h2>
+<p>Delve brought the input system with it. Game code never asks &quot;is W pressed?&quot;. It asks for
+actions like <em>move</em> and <em>turn</em>, and whatever the player is holding supplies them. On a keyboard
+that&#39;s the usual keys. On a touchscreen a virtual stick appears bottom-left, with turn buttons
+on the right:</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-18-first-steps-in-delve/touch-controls.png" alt="Delve with touch controls: a virtual stick bottom-left, turn and exit buttons bottom-right"></p>
+<p>Hide the editor around it and what&#39;s left is what a player would see:</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-18-first-steps-in-delve/player-view.png" alt="The same character with the editor hidden: the player&#39;s view"></p>
+<h2>How heavy is a crowd of sprites?</h2>
+<p>Every billboard has to be turned, framed and positioned every frame, so I measured that early.
+Fifty animated billboards held a mean of 12.7 ms per frame on my desktop while I walked around
+them, about 79 frames a second. That&#39;s a development machine, not a phone, so it&#39;s a baseline to
+measure later work against rather than a verdict.</p>
+]]></description>
+      <content:encoded><![CDATA[<p>Until this week, Prometheus was something you looked at. Now you can walk around in it.</p>
+<p><strong>Delve</strong> is the engine&#39;s first walking mode. A third-person camera tilted at 35° follows a
+sprite character, and every billboard in the scene turns to face the camera, picking the right
+direction and animation frame as it moves. It runs inside the editor, so I can step into a scene
+I&#39;m building, walk around it, and step back out to carry on editing.</p>
+<h2>Input that isn&#39;t tied to a keyboard</h2>
+<p>Delve brought the input system with it. Game code never asks &quot;is W pressed?&quot;. It asks for
+actions like <em>move</em> and <em>turn</em>, and whatever the player is holding supplies them. On a keyboard
+that&#39;s the usual keys. On a touchscreen a virtual stick appears bottom-left, with turn buttons
+on the right:</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-18-first-steps-in-delve/touch-controls.png" alt="Delve with touch controls: a virtual stick bottom-left, turn and exit buttons bottom-right"></p>
+<p>Hide the editor around it and what&#39;s left is what a player would see:</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-18-first-steps-in-delve/player-view.png" alt="The same character with the editor hidden: the player&#39;s view"></p>
+<h2>How heavy is a crowd of sprites?</h2>
+<p>Every billboard has to be turned, framed and positioned every frame, so I measured that early.
+Fifty animated billboards held a mean of 12.7 ms per frame on my desktop while I walked around
+them, about 79 frames a second. That&#39;s a development machine, not a phone, so it&#39;s a baseline to
+measure later work against rather than a verdict.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Frieze: pixel art from 3D models</title>
+      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-15-frieze-pixel-art-from-3d/</link>
+      <guid isPermaLink="false">prometheus-devlog:2026-09-15-frieze-pixel-art-from-3d</guid>
+      <pubDate>Tue, 15 Sep 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<p>Every character and prop in Prometheus is a 2D pixel-art sprite standing in a 3D world. Drawing
+all of those by hand, from eight directions, for every animation, isn&#39;t something a solo
+developer can do. So the engine makes them. The tool is called <strong>Frieze</strong>.</p>
+<h2>Models in, sprite sheets out</h2>
+<p>Frieze takes a 3D model, poses it with animation clips, captures it from several angles and bakes
+each frame into pixel art at a fixed size, then packs the frames into a sprite sheet. Clips can
+come with the model or be borrowed from a shared library and retargeted to the model&#39;s skeleton,
+so one walk cycle can serve many characters.</p>
+<p>It also works from 2D art. A drawing can be given joints and animated with the same library
+clips. For testing that I used a free character turnaround from OpenGameArt:</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/turnaround.png" alt="A CC0 character turnaround by Technopeasant on OpenGameArt, used to test rigging 2D art"></p>
+<h2>Palettes</h2>
+<p>A sheet can be indexed, so each colour belongs to a palette slot. Change a slot and the character
+changes colour everywhere it appears, with no new bake. The green-trousered character here is
+the same artwork as the blue one, with four of its thirteen palette slots changed:</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/palette-swap.png" alt="Two characters from one bake, four palette slots apart"></p>
+<h2>Touching up by hand</h2>
+<p>Automatic isn&#39;t always right, so Frieze has a pixel editor built in, with onion skinning across
+frames. A bad frame can be fixed in place without leaving the tool or re-baking the sheet.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/pixel-editor.png" alt="The pixel editor inside Frieze, with its tools, palette and frame strip"></p>
+<h2>Sprites that catch the light</h2>
+<p>Each bake also produces a normal map, so a flat sprite reacts to the 3D lights around it: a
+campfire on its left lights its left side.</p>
+<p>That led to my favourite bug so far. Seen from behind at a low angle, a character&#39;s shoes glowed
+white-hot, as if lit from inside:</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/glowing-shoes-before.png" alt="Before: the shoes glow at a grazing angle"></p>
+<p>The cause was in the sprite material. A tweak that softens how light wraps around a sprite was
+also being applied to its reflections, and at grazing angles that amplified the reflection
+enormously, even on a completely rough surface. Limiting the softening to diffuse light fixed it:</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/glowing-shoes-after.png" alt="After: the same view, correctly shaded"></p>
+]]></description>
+      <content:encoded><![CDATA[<p>Every character and prop in Prometheus is a 2D pixel-art sprite standing in a 3D world. Drawing
+all of those by hand, from eight directions, for every animation, isn&#39;t something a solo
+developer can do. So the engine makes them. The tool is called <strong>Frieze</strong>.</p>
+<h2>Models in, sprite sheets out</h2>
+<p>Frieze takes a 3D model, poses it with animation clips, captures it from several angles and bakes
+each frame into pixel art at a fixed size, then packs the frames into a sprite sheet. Clips can
+come with the model or be borrowed from a shared library and retargeted to the model&#39;s skeleton,
+so one walk cycle can serve many characters.</p>
+<p>It also works from 2D art. A drawing can be given joints and animated with the same library
+clips. For testing that I used a free character turnaround from OpenGameArt:</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/turnaround.png" alt="A CC0 character turnaround by Technopeasant on OpenGameArt, used to test rigging 2D art"></p>
+<h2>Palettes</h2>
+<p>A sheet can be indexed, so each colour belongs to a palette slot. Change a slot and the character
+changes colour everywhere it appears, with no new bake. The green-trousered character here is
+the same artwork as the blue one, with four of its thirteen palette slots changed:</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/palette-swap.png" alt="Two characters from one bake, four palette slots apart"></p>
+<h2>Touching up by hand</h2>
+<p>Automatic isn&#39;t always right, so Frieze has a pixel editor built in, with onion skinning across
+frames. A bad frame can be fixed in place without leaving the tool or re-baking the sheet.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/pixel-editor.png" alt="The pixel editor inside Frieze, with its tools, palette and frame strip"></p>
+<h2>Sprites that catch the light</h2>
+<p>Each bake also produces a normal map, so a flat sprite reacts to the 3D lights around it: a
+campfire on its left lights its left side.</p>
+<p>That led to my favourite bug so far. Seen from behind at a low angle, a character&#39;s shoes glowed
+white-hot, as if lit from inside:</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/glowing-shoes-before.png" alt="Before: the shoes glow at a grazing angle"></p>
+<p>The cause was in the sprite material. A tweak that softens how light wraps around a sprite was
+also being applied to its reflections, and at grazing angles that amplified the reflection
+enormously, even on a completely rough surface. Limiting the softening to diffuse light fixed it:</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/glowing-shoes-after.png" alt="After: the same view, correctly shaded"></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>The server owns the world</title>
+      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-12-the-server-owns-the-world/</link>
+      <guid isPermaLink="false">prometheus-devlog:2026-09-12-the-server-owns-the-world</guid>
+      <pubDate>Sat, 12 Sep 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<p>The editor passed its first real milestone today, so it&#39;s a good moment to explain the decision
+underneath it.</p>
+<h2>Two ways to put a game in a browser</h2>
+<p>The Prometheus editor runs in a web browser, but the scene lives on a server. There were two ways
+to build that.</p>
+<p><strong>Pixel streaming</strong> renders every frame on the server and streams video to the browser, the way
+cloud gaming does; the browser is a remote monitor. That costs a GPU video encoder per viewer,
+tens of megabits a second, text and thin lines softened by video compression, and input lag on
+every click.</p>
+<p><strong>State streaming</strong> keeps the renderer in the browser. The server runs the authoritative
+simulation (physics, behaviour, game rules) and sends compact updates about what changed; the
+browser draws them locally and sends edits back. The research I did put that at a few hundred
+times less bandwidth than video, with no server GPU per viewer and a UI that responds at local
+speed.</p>
+<p>Prometheus streams state.</p>
+<h2>One simulation, two homes</h2>
+<p>The simulation is a standalone TypeScript package with no browser or server dependencies. In
+the editor it runs on the server, which is the authority. In a shipped game there&#39;s no editor
+server, so the same package runs on the player&#39;s device.</p>
+<p>Writing it once and hosting it twice is why the backend is TypeScript rather than something
+like Rust: the code that ships to players is the code I test in the editor.</p>
+<h2>The milestone</h2>
+<p>Today two fresh browser tabs edited the same scene on the server at once. One tab was refreshed
+mid-edit and lost nothing, and undo worked across both tabs. Then I pressed Play in one tab and
+watched the simulation from the other, through a full stop and restart of the backend.</p>
+<p>It doesn&#39;t look like much in a screenshot, but everything else stands on it: the editor is a
+window onto a world the server owns, and that world survives the window closing.</p>
+<h2>A scene for every feature</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-12-the-server-owns-the-world/early-showcase.png" alt="The showcase scene in its first week: lights, shiny materials, particle fire and smoke, and a camera rail"></p>
+<p>Every feature also goes into one scene, <strong>Re-Forged</strong>, so new work can be seen rather than read
+about. This is how it looked in its first week: a handful of lights, shiny materials, particle
+fire and smoke, and a camera rail for fly-throughs. It will grow with everything that lands.</p>
+]]></description>
+      <content:encoded><![CDATA[<p>The editor passed its first real milestone today, so it&#39;s a good moment to explain the decision
+underneath it.</p>
+<h2>Two ways to put a game in a browser</h2>
+<p>The Prometheus editor runs in a web browser, but the scene lives on a server. There were two ways
+to build that.</p>
+<p><strong>Pixel streaming</strong> renders every frame on the server and streams video to the browser, the way
+cloud gaming does; the browser is a remote monitor. That costs a GPU video encoder per viewer,
+tens of megabits a second, text and thin lines softened by video compression, and input lag on
+every click.</p>
+<p><strong>State streaming</strong> keeps the renderer in the browser. The server runs the authoritative
+simulation (physics, behaviour, game rules) and sends compact updates about what changed; the
+browser draws them locally and sends edits back. The research I did put that at a few hundred
+times less bandwidth than video, with no server GPU per viewer and a UI that responds at local
+speed.</p>
+<p>Prometheus streams state.</p>
+<h2>One simulation, two homes</h2>
+<p>The simulation is a standalone TypeScript package with no browser or server dependencies. In
+the editor it runs on the server, which is the authority. In a shipped game there&#39;s no editor
+server, so the same package runs on the player&#39;s device.</p>
+<p>Writing it once and hosting it twice is why the backend is TypeScript rather than something
+like Rust: the code that ships to players is the code I test in the editor.</p>
+<h2>The milestone</h2>
+<p>Today two fresh browser tabs edited the same scene on the server at once. One tab was refreshed
+mid-edit and lost nothing, and undo worked across both tabs. Then I pressed Play in one tab and
+watched the simulation from the other, through a full stop and restart of the backend.</p>
+<p>It doesn&#39;t look like much in a screenshot, but everything else stands on it: the editor is a
+window onto a world the server owns, and that world survives the window closing.</p>
+<h2>A scene for every feature</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-12-the-server-owns-the-world/early-showcase.png" alt="The showcase scene in its first week: lights, shiny materials, particle fire and smoke, and a camera rail"></p>
+<p>Every feature also goes into one scene, <strong>Re-Forged</strong>, so new work can be seen rather than read
+about. This is how it looked in its first week: a handful of lights, shiny materials, particle
+fire and smoke, and a camera rail for fly-throughs. It will grow with everything that lands.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>The game behind the engine</title>
+      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-04-the-game-behind-the-engine/</link>
+      <guid isPermaLink="false">prometheus-devlog:2026-09-04-the-game-behind-the-engine</guid>
+      <pubDate>Fri, 04 Sep 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<p>Before the engine posts start, here&#39;s what all of it is for.</p>
+<p><em>Forgotten Memories, Endless Abyss</em> is an online MMO built around one shared goal: dive as
+deep and as far as possible. Humanity has found a dungeon that seems to have no bottom. It&#39;s so
+vast that towns have sprung up just to keep adventurers supplied, and everyone is chasing the
+same questions. Does it end? Why does it exist? Is there a story beneath it all?</p>
+<h2>A dungeon that reads its players</h2>
+<p>The dungeon isn&#39;t just procedurally generated; it&#39;s behaviourally generated. It watches what
+its players do, in aggregate, and reshapes its landscapes, difficulty and monsters to match.
+Every layer sits somewhere between order and anarchy.</p>
+<ul>
+<li><strong>Order</strong> comes from cooperation, guild work and players policing each other. Monster
+pressure eases, towns grow, and blighted ground heals into livable land.</li>
+<li><strong>Anarchy</strong> comes from player-killing and hostility. Spawns get nastier, the terrain
+degrades toward a hellscape, and town defences can be overrun.</li>
+</ul>
+<p>Anarchy spreads like a sickness: one pocket, then many, then faster and faster. A layer that
+flips blocks fast travel through it and creeps back up toward the shallower layers, so griefing
+on a deep floor becomes everyone&#39;s emergency. Nothing is permanently solved. A paradise left
+alone can fall again.</p>
+<h2>You can&#39;t die, but you can forget</h2>
+<p>There&#39;s no permadeath. Every revival costs you something instead: fragments of memory.
+Abilities you&#39;ve earned can weaken with each revival until they&#39;re gone, becoming Forgotten
+Memories. You feel yourself slipping before anything is lost outright.</p>
+<p>The way to get them back is to go deeper. Clearing the dungeon and discovering new layers
+recovers what death took, so loss pushes you forward rather than back toward safety. That&#39;s the
+title: the endless abyss is the dungeon, and Forgotten Memories are what it costs you, and
+what it repays.</p>
+<h2>Holding the line</h2>
+<p>Roughly every ten layers a raid boss blocks the way. Beat it and travel to that depth unlocks
+for everyone. But bosses come back. As one nears its return, monsters surge until the layer
+breaks out in a stampede, and an ignored break loses that layer, then the ones above it, one by
+one. The frontier and the homeland are the same responsibility.</p>
+<p>Towns need supplying too. Players haul materials to keep them running, and an under-supplied
+town dries up and loses its services. Guilds form around defence, expansion, exploration or
+policing, and a big enough guild can hold a layer, for a while.</p>
+<p>There&#39;s more under the surface than this, and some of it is meant to be discovered by players
+rather than read in a devlog, so I&#39;ll leave it there.</p>
+<h2>Why build an engine for it</h2>
+<p>A world like this needs things an off-the-shelf engine doesn&#39;t hand you: a server that owns the
+simulation for everyone, the same simulation running on the player&#39;s device in a shipped game,
+and a pipeline that turns 3D models into the pixel-art sprites that live in its 3D dungeon. It
+also has to run well on phones.</p>
+<p>So I&#39;m building <strong>Prometheus</strong>, a custom 2.5D engine and editor on an all-open-source stack with
+no vendor royalties. The next posts are about that.</p>
+]]></description>
+      <content:encoded><![CDATA[<p>Before the engine posts start, here&#39;s what all of it is for.</p>
+<p><em>Forgotten Memories, Endless Abyss</em> is an online MMO built around one shared goal: dive as
+deep and as far as possible. Humanity has found a dungeon that seems to have no bottom. It&#39;s so
+vast that towns have sprung up just to keep adventurers supplied, and everyone is chasing the
+same questions. Does it end? Why does it exist? Is there a story beneath it all?</p>
+<h2>A dungeon that reads its players</h2>
+<p>The dungeon isn&#39;t just procedurally generated; it&#39;s behaviourally generated. It watches what
+its players do, in aggregate, and reshapes its landscapes, difficulty and monsters to match.
+Every layer sits somewhere between order and anarchy.</p>
+<ul>
+<li><strong>Order</strong> comes from cooperation, guild work and players policing each other. Monster
+pressure eases, towns grow, and blighted ground heals into livable land.</li>
+<li><strong>Anarchy</strong> comes from player-killing and hostility. Spawns get nastier, the terrain
+degrades toward a hellscape, and town defences can be overrun.</li>
+</ul>
+<p>Anarchy spreads like a sickness: one pocket, then many, then faster and faster. A layer that
+flips blocks fast travel through it and creeps back up toward the shallower layers, so griefing
+on a deep floor becomes everyone&#39;s emergency. Nothing is permanently solved. A paradise left
+alone can fall again.</p>
+<h2>You can&#39;t die, but you can forget</h2>
+<p>There&#39;s no permadeath. Every revival costs you something instead: fragments of memory.
+Abilities you&#39;ve earned can weaken with each revival until they&#39;re gone, becoming Forgotten
+Memories. You feel yourself slipping before anything is lost outright.</p>
+<p>The way to get them back is to go deeper. Clearing the dungeon and discovering new layers
+recovers what death took, so loss pushes you forward rather than back toward safety. That&#39;s the
+title: the endless abyss is the dungeon, and Forgotten Memories are what it costs you, and
+what it repays.</p>
+<h2>Holding the line</h2>
+<p>Roughly every ten layers a raid boss blocks the way. Beat it and travel to that depth unlocks
+for everyone. But bosses come back. As one nears its return, monsters surge until the layer
+breaks out in a stampede, and an ignored break loses that layer, then the ones above it, one by
+one. The frontier and the homeland are the same responsibility.</p>
+<p>Towns need supplying too. Players haul materials to keep them running, and an under-supplied
+town dries up and loses its services. Guilds form around defence, expansion, exploration or
+policing, and a big enough guild can hold a layer, for a while.</p>
+<p>There&#39;s more under the surface than this, and some of it is meant to be discovered by players
+rather than read in a devlog, so I&#39;ll leave it there.</p>
+<h2>Why build an engine for it</h2>
+<p>A world like this needs things an off-the-shelf engine doesn&#39;t hand you: a server that owns the
+simulation for everyone, the same simulation running on the player&#39;s device in a shipped game,
+and a pipeline that turns 3D models into the pixel-art sprites that live in its 3D dungeon. It
+also has to run well on phones.</p>
+<p>So I&#39;m building <strong>Prometheus</strong>, a custom 2.5D engine and editor on an all-open-source stack with
+no vendor royalties. The next posts are about that.</p>
 ]]></content:encoded>
     </item>
   </channel>

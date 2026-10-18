@@ -61,7 +61,7 @@ function readDoc(path) {
   const meta = Object.fromEntries(
     match[1].split('\n').filter(Boolean).map((line) => {
       const at = line.indexOf(':');
-      return [line.slice(0, at).trim(), line.slice(at + 1).trim()];
+      return [line.slice(0, at).trim(), line.slice(at + 1).trim().replace(/^"(.*)"$/, '$1')];
     }),
   );
   if (!meta.title) throw new Error(`${path}: front matter needs "title"`);
@@ -187,7 +187,7 @@ function write(path, html) {
 for (const dir of ['posts', 'roadmap', 'gallery', 'about']) rmSync(dir, { recursive: true, force: true });
 
 const postCard = (p, prefix, featured) => `<a class="card${featured ? ' featured' : ''}" href="${prefix}${p.path}">
-  ${p.cover ? `<img class="card-cover" src="${prefix}${p.cover}" alt="" loading="lazy">` : ''}
+  ${p.cover ? `<img class="card-cover" src="${prefix}${p.cover}" alt="" loading="lazy">` : `<div class="card-cover placeholder" aria-hidden="true">${ICONS.flame}</div>`}
   <div class="card-body">
     <p class="meta"><time datetime="${p.date}">${longDate(p.date)}</time> · ${p.minutes} min read</p>
     <h3>${escapeHtml(p.title)}</h3>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The game behind the engine · Prometheus devlog</title>
+<meta name="description" content="What Forgotten Memories, Endless Abyss is about, and why it needs an engine of its own.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="The game behind the engine">
+<meta property="og:description" content="What Forgotten Memories, Endless Abyss is about, and why it needs an engine of its own.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-04-the-game-behind-the-engine/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>The game behind the engine</h1>
+    <p class="meta"><time datetime="2026-09-04">September 4, 2026</time> · 2 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#a-dungeon-that-reads-its-players">A dungeon that reads its players</a></li><li><a href="#you-can-t-die-but-you-can-forget">You can&#39;t die, but you can forget</a></li><li><a href="#holding-the-line">Holding the line</a></li><li><a href="#why-build-an-engine-for-it">Why build an engine for it</a></li></ol></details>
+  <div class="prose">
+<p>Before the engine posts start, here&#39;s what all of it is for.</p>
+<p><em>Forgotten Memories, Endless Abyss</em> is an online MMO built around one shared goal: dive as
+deep and as far as possible. Humanity has found a dungeon that seems to have no bottom. It&#39;s so
+vast that towns have sprung up just to keep adventurers supplied, and everyone is chasing the
+same questions. Does it end? Why does it exist? Is there a story beneath it all?</p>
+<h2 id="a-dungeon-that-reads-its-players">A dungeon that reads its players</h2>
+<p>The dungeon isn&#39;t just procedurally generated; it&#39;s behaviourally generated. It watches what
+its players do, in aggregate, and reshapes its landscapes, difficulty and monsters to match.
+Every layer sits somewhere between order and anarchy.</p>
+<ul>
+<li><strong>Order</strong> comes from cooperation, guild work and players policing each other. Monster
+pressure eases, towns grow, and blighted ground heals into livable land.</li>
+<li><strong>Anarchy</strong> comes from player-killing and hostility. Spawns get nastier, the terrain
+degrades toward a hellscape, and town defences can be overrun.</li>
+</ul>
+<p>Anarchy spreads like a sickness: one pocket, then many, then faster and faster. A layer that
+flips blocks fast travel through it and creeps back up toward the shallower layers, so griefing
+on a deep floor becomes everyone&#39;s emergency. Nothing is permanently solved. A paradise left
+alone can fall again.</p>
+<h2 id="you-can-t-die-but-you-can-forget">You can&#39;t die, but you can forget</h2>
+<p>There&#39;s no permadeath. Every revival costs you something instead: fragments of memory.
+Abilities you&#39;ve earned can weaken with each revival until they&#39;re gone, becoming Forgotten
+Memories. You feel yourself slipping before anything is lost outright.</p>
+<p>The way to get them back is to go deeper. Clearing the dungeon and discovering new layers
+recovers what death took, so loss pushes you forward rather than back toward safety. That&#39;s the
+title: the endless abyss is the dungeon, and Forgotten Memories are what it costs you, and
+what it repays.</p>
+<h2 id="holding-the-line">Holding the line</h2>
+<p>Roughly every ten layers a raid boss blocks the way. Beat it and travel to that depth unlocks
+for everyone. But bosses come back. As one nears its return, monsters surge until the layer
+breaks out in a stampede, and an ignored break loses that layer, then the ones above it, one by
+one. The frontier and the homeland are the same responsibility.</p>
+<p>Towns need supplying too. Players haul materials to keep them running, and an under-supplied
+town dries up and loses its services. Guilds form around defence, expansion, exploration or
+policing, and a big enough guild can hold a layer, for a while.</p>
+<p>There&#39;s more under the surface than this, and some of it is meant to be discovered by players
+rather than read in a devlog, so I&#39;ll leave it there.</p>
+<h2 id="why-build-an-engine-for-it">Why build an engine for it</h2>
+<p>A world like this needs things an off-the-shelf engine doesn&#39;t hand you: a server that owns the
+simulation for everyone, the same simulation running on the player&#39;s device in a shipped game,
+and a pipeline that turns 3D models into the pixel-art sprites that live in its 3D dungeon. It
+also has to run well on phones.</p>
+<p>So I&#39;m building <strong>Prometheus</strong>, a custom 2.5D engine and editor on an all-open-source stack with
+no vendor royalties. The next posts are about that.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <span></span>
+    <a class="newer" href="../../posts/2026-09-12-the-server-owns-the-world/"><span>Newer →</span>The server owns the world</a>
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#a-dungeon-that-reads-its-players">A dungeon that reads its players</a></li><li><a href="#you-can-t-die-but-you-can-forget">You can&#39;t die, but you can forget</a></li><li><a href="#holding-the-line">Holding the line</a></li><li><a href="#why-build-an-engine-for-it">Why build an engine for it</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>

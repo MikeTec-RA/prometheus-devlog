@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frieze: pixel art from 3D models · Prometheus devlog</title>
+<meta name="description" content="How every sprite in the game gets made, and my favourite bug so far.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="Frieze: pixel art from 3D models">
+<meta property="og:description" content="How every sprite in the game gets made, and my favourite bug so far.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-15-frieze-pixel-art-from-3d/">
+<meta property="og:image" content="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/turnaround.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>Frieze: pixel art from 3D models</h1>
+    <p class="meta"><time datetime="2026-09-15">September 15, 2026</time> · 2 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#models-in-sprite-sheets-out">Models in, sprite sheets out</a></li><li><a href="#palettes">Palettes</a></li><li><a href="#touching-up-by-hand">Touching up by hand</a></li><li><a href="#sprites-that-catch-the-light">Sprites that catch the light</a></li></ol></details>
+  <div class="prose">
+<p>Every character and prop in Prometheus is a 2D pixel-art sprite standing in a 3D world. Drawing
+all of those by hand, from eight directions, for every animation, isn&#39;t something a solo
+developer can do. So the engine makes them. The tool is called <strong>Frieze</strong>.</p>
+<h2 id="models-in-sprite-sheets-out">Models in, sprite sheets out</h2>
+<p>Frieze takes a 3D model, poses it with animation clips, captures it from several angles and bakes
+each frame into pixel art at a fixed size, then packs the frames into a sprite sheet. Clips can
+come with the model or be borrowed from a shared library and retargeted to the model&#39;s skeleton,
+so one walk cycle can serve many characters.</p>
+<p>It also works from 2D art. A drawing can be given joints and animated with the same library
+clips. For testing that I used a free character turnaround from OpenGameArt:</p>
+<figure><a class="zoom" href="../../images/2026-09-15-frieze-pixel-art-from-3d/turnaround.png" data-caption="A CC0 character turnaround by Technopeasant on OpenGameArt, used to test rigging 2D art"><img loading="lazy" src="../../images/2026-09-15-frieze-pixel-art-from-3d/turnaround.png" alt="A CC0 character turnaround by Technopeasant on OpenGameArt, used to test rigging 2D art"></a><figcaption>A CC0 character turnaround by Technopeasant on OpenGameArt, used to test rigging 2D art</figcaption></figure>
+<h2 id="palettes">Palettes</h2>
+<p>A sheet can be indexed, so each colour belongs to a palette slot. Change a slot and the character
+changes colour everywhere it appears, with no new bake. The green-trousered character here is
+the same artwork as the blue one, with four of its thirteen palette slots changed:</p>
+<figure><a class="zoom" href="../../images/2026-09-15-frieze-pixel-art-from-3d/palette-swap.png" data-caption="Two characters from one bake, four palette slots apart"><img loading="lazy" src="../../images/2026-09-15-frieze-pixel-art-from-3d/palette-swap.png" alt="Two characters from one bake, four palette slots apart"></a><figcaption>Two characters from one bake, four palette slots apart</figcaption></figure>
+<h2 id="touching-up-by-hand">Touching up by hand</h2>
+<p>Automatic isn&#39;t always right, so Frieze has a pixel editor built in, with onion skinning across
+frames. A bad frame can be fixed in place without leaving the tool or re-baking the sheet.</p>
+<figure><a class="zoom" href="../../images/2026-09-15-frieze-pixel-art-from-3d/pixel-editor.png" data-caption="The pixel editor inside Frieze, with its tools, palette and frame strip"><img loading="lazy" src="../../images/2026-09-15-frieze-pixel-art-from-3d/pixel-editor.png" alt="The pixel editor inside Frieze, with its tools, palette and frame strip"></a><figcaption>The pixel editor inside Frieze, with its tools, palette and frame strip</figcaption></figure>
+<h2 id="sprites-that-catch-the-light">Sprites that catch the light</h2>
+<p>Each bake also produces a normal map, so a flat sprite reacts to the 3D lights around it: a
+campfire on its left lights its left side.</p>
+<p>That led to my favourite bug so far. Seen from behind at a low angle, a character&#39;s shoes glowed
+white-hot, as if lit from inside:</p>
+<figure><a class="zoom" href="../../images/2026-09-15-frieze-pixel-art-from-3d/glowing-shoes-before.png" data-caption="Before: the shoes glow at a grazing angle"><img loading="lazy" src="../../images/2026-09-15-frieze-pixel-art-from-3d/glowing-shoes-before.png" alt="Before: the shoes glow at a grazing angle"></a><figcaption>Before: the shoes glow at a grazing angle</figcaption></figure>
+<p>The cause was in the sprite material. A tweak that softens how light wraps around a sprite was
+also being applied to its reflections, and at grazing angles that amplified the reflection
+enormously, even on a completely rough surface. Limiting the softening to diffuse light fixed it:</p>
+<figure><a class="zoom" href="../../images/2026-09-15-frieze-pixel-art-from-3d/glowing-shoes-after.png" data-caption="After: the same view, correctly shaded"><img loading="lazy" src="../../images/2026-09-15-frieze-pixel-art-from-3d/glowing-shoes-after.png" alt="After: the same view, correctly shaded"></a><figcaption>After: the same view, correctly shaded</figcaption></figure>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <a class="older" href="../../posts/2026-09-12-the-server-owns-the-world/"><span>← Older</span>The server owns the world</a>
+    <a class="newer" href="../../posts/2026-09-18-first-steps-in-delve/"><span>Newer →</span>First steps in Delve</a>
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#models-in-sprite-sheets-out">Models in, sprite sheets out</a></li><li><a href="#palettes">Palettes</a></li><li><a href="#touching-up-by-hand">Touching up by hand</a></li><li><a href="#sprites-that-catch-the-light">Sprites that catch the light</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>

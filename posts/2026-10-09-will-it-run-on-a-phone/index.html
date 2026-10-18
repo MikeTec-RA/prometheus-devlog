@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Will it run on a phone? · Prometheus devlog</title>
+<meta name="description" content="Budgets, streaming, static exports and the first numbers from real phones.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="Will it run on a phone?">
+<meta property="og:description" content="Budgets, streaming, static exports and the first numbers from real phones.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-09-will-it-run-on-a-phone/">
+<meta property="og:image" content="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-09-will-it-run-on-a-phone/budget-hud.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>Will it run on a phone?</h1>
+    <p class="meta"><time datetime="2026-10-09">October 9, 2026</time> · 2 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#a-budget-you-can-see">A budget you can see</a></li><li><a href="#streaming-the-world-in">Streaming the world in</a></li><li><a href="#exporting-a-game">Exporting a game</a></li><li><a href="#real-phones">Real phones</a></li></ol></details>
+  <div class="prose">
+<p>The game is meant for phones first, so this week was about finding out how far the engine is
+from that, with real numbers instead of hopes.</p>
+<h2 id="a-budget-you-can-see">A budget you can see</h2>
+<p>The editor now measures a scene against a device budget (triangles, draw calls, texture memory,
+sprite sheets and entity counts) with separate limits for mobile, browser and desktop. The first
+time I pointed it at the showcase scene, it said texture memory was 78% over the mobile budget.</p>
+<figure><a class="zoom" href="../../images/2026-10-09-will-it-run-on-a-phone/budget-hud.png" data-caption="The budget readout on the showcase scene, flagging texture memory"><img loading="lazy" src="../../images/2026-10-09-will-it-run-on-a-phone/budget-hud.png" alt="The budget readout on the showcase scene, flagging texture memory"></a><figcaption>The budget readout on the showcase scene, flagging texture memory</figcaption></figure>
+<p>That turned out to be the meter: it was counting shared textures more than once. Counted
+properly, the scene was under budget all along. Phones still shouldn&#39;t download desktop-sized
+textures, though, so a new asset pipeline publishes a separate version of each texture per
+device, with phone textures capped at 512 pixels. On the showcase scene that takes texture memory
+from 131.9 MiB to 83.9 MiB on mobile, well inside the 192 MB budget.</p>
+<p>Draw calls are the open problem. The showcase scene makes 178 of them, and the mobile limit is
+100.</p>
+<h2 id="streaming-the-world-in">Streaming the world in</h2>
+<p>The world is split into regions. As the camera moves, nearby regions stay loaded, the next ones
+wait warm, and distant ones give back their memory, then come back intact when you return.</p>
+<h2 id="exporting-a-game">Exporting a game</h2>
+<p>A scene can now be exported as a static build: plain files that run in a browser with no server
+behind them, with the simulation running on the device. That&#39;s the shape a shipped game will
+take.</p>
+<figure><a class="zoom" href="../../images/2026-10-09-will-it-run-on-a-phone/static-export.png" data-caption="A static mobile export running on its own, with its own controls"><img loading="lazy" src="../../images/2026-10-09-will-it-run-on-a-phone/static-export.png" alt="A static mobile export running on its own, with its own controls"></a><figcaption>A static mobile export running on its own, with its own controls</figcaption></figure>
+<h2 id="real-phones">Real phones</h2>
+<p>Then the real test. A profiling page runs a fixed workload on the phone itself and records the
+results. I ran it on a Galaxy Z Fold7, folded and unfolded, and on an iPhone 14 Pro, against a
+hall of about 60 sprites.</p>
+<figure><a class="zoom" href="../../images/2026-10-09-will-it-run-on-a-phone/phone-profiler.png" data-caption="The on-device profiler, set up on an iPhone 14 Pro"><img loading="lazy" src="../../images/2026-10-09-will-it-run-on-a-phone/phone-profiler.png" alt="The on-device profiler, set up on an iPhone 14 Pro"></a><figcaption>The on-device profiler, set up on an iPhone 14 Pro</figcaption></figure>
+<p>The median frame came in right on 60 fps on the Fold7 (16.6 to 16.7 ms) and a little slower on
+the iPhone (19 to 21 ms). The slowest frames ran past the 60 fps budget on both. Treat these as
+early samples rather than benchmarks, but the verdict is clear enough: close, not there yet, and
+now it&#39;s something I can measure instead of guess.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <a class="older" href="../../posts/2026-10-06-teaching-sprites-to-think/"><span>← Older</span>Teaching sprites to think</a>
+    <a class="newer" href="../../posts/2026-10-18-catching-up/"><span>Newer →</span>Catching up: two months of Prometheus</a>
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#a-budget-you-can-see">A budget you can see</a></li><li><a href="#streaming-the-world-in">Streaming the world in</a></li><li><a href="#exporting-a-game">Exporting a game</a></li><li><a href="#real-phones">Real phones</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>

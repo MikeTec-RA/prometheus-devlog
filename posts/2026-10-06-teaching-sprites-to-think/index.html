@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teaching sprites to think · Prometheus devlog</title>
+<meta name="description" content="Scripts, behaviour trees, senses, crowds and dialogue: the toolbox game logic will be written with.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="Teaching sprites to think">
+<meta property="og:description" content="Scripts, behaviour trees, senses, crowds and dialogue: the toolbox game logic will be written with.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-06-teaching-sprites-to-think/">
+<meta property="og:image" content="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-06-teaching-sprites-to-think/perception.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>Teaching sprites to think</h1>
+    <p class="meta"><time datetime="2026-10-06">October 6, 2026</time> · 2 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#scripts-are-files">Scripts are files</a></li><li><a href="#behaviour-trees">Behaviour trees</a></li><li><a href="#seeing-and-hearing">Seeing and hearing</a></li><li><a href="#getting-around-together">Getting around, together</a></li><li><a href="#talking">Talking</a></li><li><a href="#and-the-rest">And the rest</a></li></ol></details>
+  <div class="prose">
+<p>The last few weeks went into the systems game logic will be written on. The last pieces of a
+first set landed today, so here&#39;s a tour.</p>
+<h2 id="scripts-are-files">Scripts are files</h2>
+<p>Game scripts are ordinary files, so I write them in VS Code instead of a text box in the editor.
+With file watching on, saving in VS Code reloads the script in the running editor. Scripts are
+type-checked, errors show up where I can see them, and a script that throws no longer drags the
+frame down with it.</p>
+<h2 id="behaviour-trees">Behaviour trees</h2>
+<p>Characters run behaviour trees: small graphs of decisions like &quot;if you can see the player,
+approach; otherwise wander&quot;. Trees share a blackboard, a set of named values characters can read
+and write, which is how two characters can hold a conversation or a group can coordinate.</p>
+<h2 id="seeing-and-hearing">Seeing and hearing</h2>
+<p>A character can have a view cone, a hearing range and a memory, and its behaviour tree reads
+them. In the editor I can show the cone and the hearing ring and tune them live.</p>
+<figure><a class="zoom" href="../../images/2026-10-06-teaching-sprites-to-think/perception.png" data-caption="Perception on a sprite: the blue view cone, the hearing ring and their settings"><img loading="lazy" src="../../images/2026-10-06-teaching-sprites-to-think/perception.png" alt="Perception on a sprite: the blue view cone, the hearing ring and their settings"></a><figcaption>Perception on a sprite: the blue view cone, the hearing ring and their settings</figcaption></figure>
+<h2 id="getting-around-together">Getting around, together</h2>
+<p>Characters find routes across the navigation grid. Crowds go one better. When many characters
+head for the same goal, the engine builds one flow field, a grid of arrows pointing the way, and
+they all read it instead of each searching for its own route. In a test with 200 characters
+heading for one goal, that meant zero route searches per second and at most one field build.</p>
+<figure><a class="zoom" href="../../images/2026-10-06-teaching-sprites-to-think/crowd.png" data-caption="Fifty characters on a shared flow field; each arrow points the way to the goal"><img loading="lazy" src="../../images/2026-10-06-teaching-sprites-to-think/crowd.png" alt="Fifty characters on a shared flow field; each arrow points the way to the goal"></a><figcaption>Fifty characters on a shared flow field; each arrow points the way to the goal</figcaption></figure>
+<h2 id="talking">Talking</h2>
+<p>There&#39;s a dialogue system too: lines, choices and branches, with the camera able to move to
+whoever is speaking. The first test conversation in the showcase scene goes: <em>&quot;You found the
+stairs. Most people forget them.&quot;</em> Choose <em>&quot;I remember.&quot;</em> and the reply is <em>&quot;Then the abyss
+remembers you too.&quot;</em></p>
+<figure><a class="zoom" href="../../images/2026-10-06-teaching-sprites-to-think/dialogue.png" data-caption="The dialogue reply floating above the speaker in the showcase scene"><img loading="lazy" src="../../images/2026-10-06-teaching-sprites-to-think/dialogue.png" alt="The dialogue reply floating above the speaker in the showcase scene"></a><figcaption>The dialogue reply floating above the speaker in the showcase scene</figcaption></figure>
+<h2 id="and-the-rest">And the rest</h2>
+<p>Gamepads and rebindable controls, UI widgets and HUD panels, an event bus, a game clock,
+localisation, collision layers, physics queries for AI, and entity pooling so a burst of spawns
+doesn&#39;t stall a frame. None of it is a game yet. It&#39;s the toolbox the game will be built with.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <a class="older" href="../../posts/2026-09-22-a-world-that-isnt-there-yet/"><span>← Older</span>A world that isn't there yet</a>
+    <a class="newer" href="../../posts/2026-10-09-will-it-run-on-a-phone/"><span>Newer →</span>Will it run on a phone?</a>
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#scripts-are-files">Scripts are files</a></li><li><a href="#behaviour-trees">Behaviour trees</a></li><li><a href="#seeing-and-hearing">Seeing and hearing</a></li><li><a href="#getting-around-together">Getting around, together</a></li><li><a href="#talking">Talking</a></li><li><a href="#and-the-rest">And the rest</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>
