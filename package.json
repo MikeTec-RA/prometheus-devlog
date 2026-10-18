@@ -1,0 +1,12 @@
+{
+  "name": "prometheus-devlog",
+  "private": true,
+  "type": "module",
+  "description": "The Prometheus devlog: Markdown posts built into an RSS feed that GameDev.net imports.",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "marked": "18.0.14"
+  }
+}

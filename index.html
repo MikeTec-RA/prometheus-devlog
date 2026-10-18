@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prometheus devlog</title>
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="feed.xml">
+<style>
+  :root { --bg: #fbfaf8; --fg: #1d1d1f; --muted: #6b6b70; --link: #b4441c; --rule: #e3e0da; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #151517; --fg: #e8e6e3; --muted: #9a9aa0; --link: #f08a5d; --rule: #2c2c30; }
+  }
+  body { background: var(--bg); color: var(--fg); font: 17px/1.6 system-ui, sans-serif; margin: 0; padding: 0 16px; }
+  main { max-width: 760px; margin: 48px auto; }
+  header p, .date { color: var(--muted); }
+  a { color: var(--link); }
+  h2 a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; height: auto; border-radius: 6px; }
+  hr { border: 0; border-top: 1px solid var(--rule); margin: 48px 0; }
+  code { font-size: 0.9em; }
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>Prometheus devlog</h1>
+<p>Building Prometheus, a custom 2.5D engine and browser editor, on the way to Forgotten Memories, Endless Abyss. <a href="feed.xml">RSS</a></p>
+</header>
+<article id="2026-10-18-catching-up">
+<p class="date">2026-10-18</p>
+<h2><a href="#2026-10-18-catching-up">Catching up: two months of Prometheus</a></h2>
+<p>This devlog has been quiet, but the project hasn&#39;t. Since September Prometheus has taken a
+little over 1,800 commits. This post catches up on all of it, and from now on I&#39;ll post as
+things land instead of saving it all up.</p>
+<p>Quick reminder of the goal: <strong>Prometheus</strong> is a custom 2.5D engine with a browser-based editor.
+The world is fully 3D; the characters and props in it are 2D pixel-art sprites. Everything is
+being built toward <em>Forgotten Memories, Endless Abyss</em>, an online MMO set in an endless dungeon
+that reshapes itself around how its players behave. The game itself is still a future milestone.
+Right now the work is the engine and the tools.</p>
+<h2>The editor and the server</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/reforged.png" alt="The Re-Forged showcase scene in the editor: lightning, particle effects, camera paths and sprite characters"></p>
+<p>The editor is a remote session into a backend that owns the simulation. The browser renders
+locally and trades state snapshots with the server rather than streaming video. In September
+that hit its first real milestone: two browser tabs editing the same scene at once, with undo
+carrying across them and nothing lost when a tab refreshes mid-edit. The same simulation
+package runs on the server in the editor and locally in an exported game, so what you test is
+what ships.</p>
+<p>On top of that there&#39;s now most of what you&#39;d expect from a scene editor: a hierarchy and
+inspector, a four-pane quad view, lights and shadows, materials, post-processing, particle
+effects (campfires with flames, smoke and embers, wall torches, lightning), Rapier physics, and
+camera rails for fly-throughs. Scenes keep a version history you can preview and roll back, and
+the editor recovers unsaved edits after a crash.</p>
+<p>Every feature that lands also goes into one showcase scene, <strong>Re-Forged</strong>, which has a guided
+tour that walks through the engine feature by feature. It&#39;s the scene in the screenshot above,
+and it&#39;s how I check that new work actually reaches the screen and doesn&#39;t just pass its tests.</p>
+<h2>Frieze: from 3D models to pixel sprites</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/sprite-generator.png" alt="The sprite generator baking an animated character from a 3D model"></p>
+<p>Every sprite in the game starts life as a real 3D model. <strong>Frieze</strong> imports the model, borrows
+animation clips from a shared library and retargets them to the model&#39;s rig, then captures it
+from several angles and bakes the result into pixel-art sprite sheets. It has its own palettes,
+a pixel editor for touch-ups, and batch re-baking when a source changes.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/frieze-review.png" alt="Frieze reviewing an imported prop, with the import report beside it"></p>
+<p>The sprites also bake a normal map, so a flat sprite catches light from the 3D scene around it:
+a torch on its left lights its left side. The whole route, from importing a model to baking it,
+publishing it and placing it in a scene, is now one workflow with a readable report at each step.</p>
+<h2>Walking around: Delve</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/delve.png" alt="Delve: a third-person 2.5D camera following a sprite character"></p>
+<p><strong>Delve</strong> is the first mode where you actually walk around: a third-person camera at a 35° tilt
+following a sprite character, with the billboards turning to face the camera and switching
+animation frames as they move. The first stress test put fifty animated billboards in a scene
+and held a mean of 12.7 ms per frame on my desktop. That&#39;s a dev machine, not a phone, so it&#39;s a
+baseline, not a verdict.</p>
+<h2>The gameplay foundation</h2>
+<p>None of this is gameplay yet, but most of what gameplay will stand on now exists:</p>
+<ul>
+<li><strong>Input:</strong> keyboard, mouse and gamepad, with rebinding.</li>
+<li><strong>UI:</strong> widgets and HUD panels with anchoring, focus and keyboard/gamepad navigation.</li>
+<li><strong>Scripting:</strong> script files edited in your own editor and watched from disk, with type
+checking, readable errors and shared scripts.</li>
+<li><strong>AI:</strong> behaviour trees with a shared blackboard, sensing and perception, navigation, and
+crowds that send a couple of hundred agents to one goal along a shared flow field.</li>
+<li><strong>Systems:</strong> physics queries and collision layers, an event bus, a game clock, sprite
+animation states, dialogue, localisation, entity pooling and a component model.</li>
+</ul>
+<h2>Built for phones</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/budget-hud.png" alt="The budget readout comparing a running scene against mobile limits"></p>
+<p>The game is aimed at mobile, so the editor measures every scene against a device budget:
+triangles, draw calls, texture memory, sprite sheets and entity counts, each checked against
+mobile, browser and desktop limits. The world is split into regions that load and unload
+around the camera, so distant areas give their memory back and come back intact when you
+return. A scene can also be exported as a static build that runs with no backend at all.</p>
+<h2>What&#39;s next</h2>
+<p>The big design piece on the horizon is the living world. The dungeon won&#39;t be a complete map
+hidden under fog; ground that nobody has reached doesn&#39;t exist yet. Terrain is generated as
+players, and monsters, actually travel into it. A monster wandering off on its own extends
+the world along the path it walks, without revealing that ground to anyone. What each player
+has discovered stays private to them, while the terrain itself is shared by everyone.</p>
+<p>Before that, the near-term work is finishing the engine prerequisites it depends on. I&#39;ll post
+as those land.</p>
+
+</article>
+</main>
+</body>
+</html>
