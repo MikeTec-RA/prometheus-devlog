@@ -23,7 +23,7 @@ Where Prometheus stands and what has to happen before launch. Dates are hopes, n
 
 ## Next: the first vertical slice
 
-- Hoped for late 2026 or early 2027
+- Hoped for late 2026 or early 2027, but it looks like mid/late 2027
 - My teenagers, who are studying engineering, helping to design and build the game world
 - Friends writing the music and ambience while they play the slice
 
