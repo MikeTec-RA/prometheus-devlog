@@ -6,12 +6,110 @@
     <description>Building Prometheus, a custom 2.5D engine and editor, on the way to Forgotten Memories, Endless Abyss.</description>
     <language>en</language>
     <atom:link href="https://miketec-ra.github.io/prometheus-devlog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sun, 18 Oct 2026 08:17:09 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2026 00:55:46 GMT</lastBuildDate>
+    <item>
+      <title>Design first: drawing the new editor</title>
+      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-20-design-first/</link>
+      <guid isPermaLink="false">prometheus-devlog:2026-10-20-design-first</guid>
+      <pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<p>The rebuild has started, and the first tool I picked up wasn&#39;t a code editor. The new Prometheus
+editor is being designed in Figma first, approved screen by screen, and only then built. The
+rule for the whole rebuild: the design comes first, changes go into the design, and then the
+code changes to match.</p>
+<h2>The shell</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-20-design-first/shell.png" alt="The new editor shell in the Forge theme. The labels in the margins mark which parts are plugin slots."></p>
+<p>This is the frame everything else plugs into. It&#39;s drawn as the desktop app, with a browser
+version kept alongside.</p>
+<ul>
+<li><strong>The title bar</strong> holds the menus, a scene switcher, the modes (Build, Play and 3D dev tools),
+command search, and the Play, Pause, Stop and Delve controls, right up in the title bar where
+they&#39;re always in reach.</li>
+<li><strong>The dock zones</strong> on the left, right and bottom take tabs, and the middle holds documents, so
+a scene and the tools I&#39;m using open side by side, like files in a code editor.</li>
+<li><strong>The status bar</strong> shows the engine connection, whether my changes are saved, notifications,
+frame stats and the device budget.</li>
+</ul>
+<p>A plugin can only add UI through a small set of slots, and every slot on every frame is drawn
+with its way in: a menu path, an icon, a command or a shortcut. If you can&#39;t find a feature, it
+might as well not exist.</p>
+<h2>Everyday editing</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-20-design-first/scene-editing.png" alt="Scene editing: hierarchy, viewport and inspector. The right-click menu has a &quot;From plugins&quot; section, and an undo toast confirms the move."></p>
+<p>The everyday loop is select, move, edit, undo, save. Plugins show up where you&#39;d look for
+them. Here a Lightning plugin adds &quot;Strike from this light&quot; to the right-click menu and its own
+section to the inspector, with a small badge saying which plugin it came from.</p>
+<h2>Turning a plugin off</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-20-design-first/plugin-off.png" alt="Turning off a plugin that owns data: its records are held, locked and kept by saves, never dropped."></p>
+<p>The plugin manager lists what&#39;s installed, what each plugin adds and where to find it, what it
+needs and what needs it. Core plugins are always on.</p>
+<p>The interesting part is turning one off. If the Lightning plugin owns three things in the scene,
+the editor doesn&#39;t delete them or pretend they&#39;re gone. It holds them, shows them locked and
+keeps saving them, so turning the plugin back on brings everything back. That&#39;s
+<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-10-the-save-that-deleted-things/">the save that deleted things</a>, designed out
+from the first sketch.</p>
+<h2>Round one, approved</h2>
+<p>Round one is six screens: the shell, scene editing, the plugin manager, settings with a page
+per plugin, the Jobs panel as the first real plugin, and the project&#39;s git tools living inside
+the editor. Each one is drawn in two themes, Forge and Blue, along with every state it can be
+in: loading, offline, a plugin failing at start-up, a version conflict while two people edit the
+same scene, a script with a compile error. I approved them today.</p>
+<p>Round two is next: Play mode, 3D dev tools mode, Frieze as a plugin, a first run for brand-new
+world builders, and previews of the game on a phone and on Steam from inside the editor.</p>
+<h2>On the calendar</h2>
+<p>To be honest about time: with a full rewrite in front of it, the first vertical slice now looks
+more like mid to late 2027 than the end of this year. The <a href="https://miketec-ra.github.io/prometheus-devlog/roadmap/">roadmap</a> has the details.</p>
+]]></description>
+      <content:encoded><![CDATA[<p>The rebuild has started, and the first tool I picked up wasn&#39;t a code editor. The new Prometheus
+editor is being designed in Figma first, approved screen by screen, and only then built. The
+rule for the whole rebuild: the design comes first, changes go into the design, and then the
+code changes to match.</p>
+<h2>The shell</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-20-design-first/shell.png" alt="The new editor shell in the Forge theme. The labels in the margins mark which parts are plugin slots."></p>
+<p>This is the frame everything else plugs into. It&#39;s drawn as the desktop app, with a browser
+version kept alongside.</p>
+<ul>
+<li><strong>The title bar</strong> holds the menus, a scene switcher, the modes (Build, Play and 3D dev tools),
+command search, and the Play, Pause, Stop and Delve controls, right up in the title bar where
+they&#39;re always in reach.</li>
+<li><strong>The dock zones</strong> on the left, right and bottom take tabs, and the middle holds documents, so
+a scene and the tools I&#39;m using open side by side, like files in a code editor.</li>
+<li><strong>The status bar</strong> shows the engine connection, whether my changes are saved, notifications,
+frame stats and the device budget.</li>
+</ul>
+<p>A plugin can only add UI through a small set of slots, and every slot on every frame is drawn
+with its way in: a menu path, an icon, a command or a shortcut. If you can&#39;t find a feature, it
+might as well not exist.</p>
+<h2>Everyday editing</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-20-design-first/scene-editing.png" alt="Scene editing: hierarchy, viewport and inspector. The right-click menu has a &quot;From plugins&quot; section, and an undo toast confirms the move."></p>
+<p>The everyday loop is select, move, edit, undo, save. Plugins show up where you&#39;d look for
+them. Here a Lightning plugin adds &quot;Strike from this light&quot; to the right-click menu and its own
+section to the inspector, with a small badge saying which plugin it came from.</p>
+<h2>Turning a plugin off</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-20-design-first/plugin-off.png" alt="Turning off a plugin that owns data: its records are held, locked and kept by saves, never dropped."></p>
+<p>The plugin manager lists what&#39;s installed, what each plugin adds and where to find it, what it
+needs and what needs it. Core plugins are always on.</p>
+<p>The interesting part is turning one off. If the Lightning plugin owns three things in the scene,
+the editor doesn&#39;t delete them or pretend they&#39;re gone. It holds them, shows them locked and
+keeps saving them, so turning the plugin back on brings everything back. That&#39;s
+<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-10-the-save-that-deleted-things/">the save that deleted things</a>, designed out
+from the first sketch.</p>
+<h2>Round one, approved</h2>
+<p>Round one is six screens: the shell, scene editing, the plugin manager, settings with a page
+per plugin, the Jobs panel as the first real plugin, and the project&#39;s git tools living inside
+the editor. Each one is drawn in two themes, Forge and Blue, along with every state it can be
+in: loading, offline, a plugin failing at start-up, a version conflict while two people edit the
+same scene, a script with a compile error. I approved them today.</p>
+<p>Round two is next: Play mode, 3D dev tools mode, Frieze as a plugin, a first run for brand-new
+world builders, and previews of the game on a phone and on Steam from inside the editor.</p>
+<h2>On the calendar</h2>
+<p>To be honest about time: with a full rewrite in front of it, the first vertical slice now looks
+more like mid to late 2027 than the end of this year. The <a href="https://miketec-ra.github.io/prometheus-devlog/roadmap/">roadmap</a> has the details.</p>
+]]></content:encoded>
+    </item>
     <item>
       <title>A plugin-shaped future</title>
       <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-plugins-and-the-rebuild/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-18-plugins-and-the-rebuild</guid>
-      <pubDate>Sun, 18 Oct 2026 08:17:09 GMT</pubDate>
+      <pubDate>Sun, 18 Oct 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>The <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-catching-up/">catching-up post</a> ended with development pausing for a
 rebuild. Here&#39;s the thinking behind it.</p>
 <h2>The problem</h2>
@@ -97,7 +195,7 @@ tool out of the core and into a plugin. After that the rest follow, one at a tim
       <title>Catching up: two months of Prometheus</title>
       <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-catching-up/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-18-catching-up</guid>
-      <pubDate>Sun, 18 Oct 2026 08:17:09 GMT</pubDate>
+      <pubDate>Sun, 18 Oct 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>Two months and a little over 1,800 commits in, this is where Prometheus stands, with links to
 the posts that go deeper. It ends with why development is pausing for a rebuild.</p>
 <p>Quick reminder of the goal: <strong>Prometheus</strong> is a custom 2.5D engine with a browser-based editor.
