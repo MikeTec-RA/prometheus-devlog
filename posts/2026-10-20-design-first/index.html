@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design first: drawing the new editor · Prometheus devlog</title>
+<meta name="description" content="The rebuilt editor is drawn in Figma and approved before any code is written. Round one is done.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="Design first: drawing the new editor">
+<meta property="og:description" content="The rebuilt editor is drawn in Figma and approved before any code is written. Round one is done.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-20-design-first/">
+<meta property="og:image" content="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-20-design-first/shell.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>Design first: drawing the new editor</h1>
+    <p class="meta"><time datetime="2026-10-20">October 20, 2026</time> · 3 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#the-shell">The shell</a></li><li><a href="#everyday-editing">Everyday editing</a></li><li><a href="#turning-a-plugin-off">Turning a plugin off</a></li><li><a href="#round-one-approved">Round one, approved</a></li><li><a href="#on-the-calendar">On the calendar</a></li></ol></details>
+  <div class="prose">
+<p>The rebuild has started, and the first tool I picked up wasn&#39;t a code editor. The new Prometheus
+editor is being designed in Figma first, approved screen by screen, and only then built. The
+rule for the whole rebuild: the design comes first, changes go into the design, and then the
+code changes to match.</p>
+<h2 id="the-shell">The shell</h2>
+<figure><a class="zoom" href="../../images/2026-10-20-design-first/shell.png" data-caption="The new editor shell in the Forge theme. The labels in the margins mark which parts are plugin slots."><img loading="lazy" src="../../images/2026-10-20-design-first/shell.png" alt="The new editor shell in the Forge theme. The labels in the margins mark which parts are plugin slots."></a><figcaption>The new editor shell in the Forge theme. The labels in the margins mark which parts are plugin slots.</figcaption></figure>
+<p>This is the frame everything else plugs into. It&#39;s drawn as the desktop app, with a browser
+version kept alongside.</p>
+<ul>
+<li><strong>The title bar</strong> holds the menus, a scene switcher, the modes (Build, Play and 3D dev tools),
+command search, and the Play, Pause, Stop and Delve controls, right up in the title bar where
+they&#39;re always in reach.</li>
+<li><strong>The dock zones</strong> on the left, right and bottom take tabs, and the middle holds documents, so
+a scene and the tools I&#39;m using open side by side, like files in a code editor.</li>
+<li><strong>The status bar</strong> shows the engine connection, whether my changes are saved, notifications,
+frame stats and the device budget.</li>
+</ul>
+<p>A plugin can only add UI through a small set of slots, and every slot on every frame is drawn
+with its way in: a menu path, an icon, a command or a shortcut. If you can&#39;t find a feature, it
+might as well not exist.</p>
+<h2 id="everyday-editing">Everyday editing</h2>
+<figure><a class="zoom" href="../../images/2026-10-20-design-first/scene-editing.png" data-caption="Scene editing: hierarchy, viewport and inspector. The right-click menu has a &quot;From plugins&quot; section, and an undo toast confirms the move."><img loading="lazy" src="../../images/2026-10-20-design-first/scene-editing.png" alt="Scene editing: hierarchy, viewport and inspector. The right-click menu has a &quot;From plugins&quot; section, and an undo toast confirms the move."></a><figcaption>Scene editing: hierarchy, viewport and inspector. The right-click menu has a &quot;From plugins&quot; section, and an undo toast confirms the move.</figcaption></figure>
+<p>The everyday loop is select, move, edit, undo, save. Plugins show up where you&#39;d look for
+them. Here a Lightning plugin adds &quot;Strike from this light&quot; to the right-click menu and its own
+section to the inspector, with a small badge saying which plugin it came from.</p>
+<h2 id="turning-a-plugin-off">Turning a plugin off</h2>
+<figure><a class="zoom" href="../../images/2026-10-20-design-first/plugin-off.png" data-caption="Turning off a plugin that owns data: its records are held, locked and kept by saves, never dropped."><img loading="lazy" src="../../images/2026-10-20-design-first/plugin-off.png" alt="Turning off a plugin that owns data: its records are held, locked and kept by saves, never dropped."></a><figcaption>Turning off a plugin that owns data: its records are held, locked and kept by saves, never dropped.</figcaption></figure>
+<p>The plugin manager lists what&#39;s installed, what each plugin adds and where to find it, what it
+needs and what needs it. Core plugins are always on.</p>
+<p>The interesting part is turning one off. If the Lightning plugin owns three things in the scene,
+the editor doesn&#39;t delete them or pretend they&#39;re gone. It holds them, shows them locked and
+keeps saving them, so turning the plugin back on brings everything back. That&#39;s
+<a href="../../posts/2026-09-10-the-save-that-deleted-things/">the save that deleted things</a>, designed out
+from the first sketch.</p>
+<h2 id="round-one-approved">Round one, approved</h2>
+<p>Round one is six screens: the shell, scene editing, the plugin manager, settings with a page
+per plugin, the Jobs panel as the first real plugin, and the project&#39;s git tools living inside
+the editor. Each one is drawn in two themes, Forge and Blue, along with every state it can be
+in: loading, offline, a plugin failing at start-up, a version conflict while two people edit the
+same scene, a script with a compile error. I approved them today.</p>
+<p>Round two is next: Play mode, 3D dev tools mode, Frieze as a plugin, a first run for brand-new
+world builders, and previews of the game on a phone and on Steam from inside the editor.</p>
+<h2 id="on-the-calendar">On the calendar</h2>
+<p>To be honest about time: with a full rewrite in front of it, the first vertical slice now looks
+more like mid to late 2027 than the end of this year. The <a href="../../roadmap/">roadmap</a> has the details.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <a class="older" href="../../posts/2026-10-18-plugins-and-the-rebuild/"><span>← Older</span>A plugin-shaped future</a>
+    
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#the-shell">The shell</a></li><li><a href="#everyday-editing">Everyday editing</a></li><li><a href="#turning-a-plugin-off">Turning a plugin off</a></li><li><a href="#round-one-approved">Round one, approved</a></li><li><a href="#on-the-calendar">On the calendar</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>
