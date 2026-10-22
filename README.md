@@ -32,6 +32,7 @@ generated. Don't edit them by hand; `npm run build` replaces them.
    title: Post title
    date: 2026-10-18
    summary: Optional. Used on the post card; the first paragraph is used otherwise.
+   cover: Optional. The card image; the post's first image is used otherwise.
    ---
 
    First paragraph...

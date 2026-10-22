@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The rebuild starts: a desktop app and its first plugin · Prometheus devlog</title>
+<meta name="description" content="A day after the designs were approved, the code started. The editor is a desktop app now, with a plugin host, a first plugin and the new title bar.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="The rebuild starts: a desktop app and its first plugin">
+<meta property="og:description" content="A day after the designs were approved, the code started. The editor is a desktop app now, with a plugin host, a first plugin and the new title bar.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-21-the-rebuild-starts/">
+<meta property="og:image" content="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-21-the-rebuild-starts/plugin-guard.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>The rebuild starts: a desktop app and its first plugin</h1>
+    <p class="meta"><time datetime="2026-10-21">October 21, 2026</time> · 2 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#a-desktop-app">A desktop app</a></li><li><a href="#the-new-title-bar">The new title bar</a></li><li><a href="#plugins-for-real">Plugins, for real</a></li><li><a href="#jobs-the-first-plugin">Jobs, the first plugin</a></li><li><a href="#every-review-found-something">Every review found something</a></li><li><a href="#next">Next</a></li></ol></details>
+  <div class="prose">
+<p>A day after round one of the designs was approved, the code started. Four pieces landed today.</p>
+<h2 id="a-desktop-app">A desktop app</h2>
+<p>The editor now runs as its own desktop app on Windows, built with Electron, with its own
+installer. The browser version keeps working alongside it.</p>
+<p>The interesting part was closing it. The editor saves your work a moment after each edit, so
+closing the window has to save the last edit first. The plan assumed that a page closing itself
+from a script would raise the same &quot;about to close&quot; event as clicking the X. It doesn&#39;t. In
+Electron the window simply goes, with no close event at all. So now every way out (the X,
+quitting, Windows shutting down) waits up to a second while the last draft is written, and the
+page saves its own work on the one event that still fires on its way out.</p>
+<h2 id="the-new-title-bar">The new title bar</h2>
+<figure><a class="zoom" href="../../images/2026-10-21-the-rebuild-starts/title-bar.png" data-caption="The title bar as designed in Figma on October 19, and as built on October 21"><img loading="lazy" src="../../images/2026-10-21-the-rebuild-starts/title-bar.png" alt="The title bar as designed in Figma on October 19, and as built on October 21"></a><figcaption>The title bar as designed in Figma on October 19, and as built on October 21</figcaption></figure>
+<p>The first slice of the new shell is in: the frame, the title bar with the menus and the
+transport in the middle, the Forge and Blue themes, and the dock layout underneath. It&#39;s checked
+against the Figma frames screenshot by screenshot. The scene switcher, the modes and command
+search come in the next slices.</p>
+<h2 id="plugins-for-real">Plugins, for real</h2>
+<figure><a class="zoom" href="../../images/2026-10-21-the-rebuild-starts/plugin-guard.png" data-caption="The plugin manager refusing to turn off a plugin with unsaved work"><img loading="lazy" src="../../images/2026-10-21-the-rebuild-starts/plugin-guard.png" alt="The plugin manager refusing to turn off a plugin with unsaved work"></a><figcaption>The plugin manager refusing to turn off a plugin with unsaved work</figcaption></figure>
+<p>The plugin host is in. Plugins can add commands, menu entries, windows and settings pages, and a
+Plugins manager lists them and turns them on and off. The test plugin above has an unsaved
+draft, so the manager won&#39;t turn it off until that draft is dealt with. That&#39;s the close guard
+from the designs, working.</p>
+<h2 id="jobs-the-first-plugin">Jobs, the first plugin</h2>
+<p>The Jobs window, which follows imports, sprite bakes and exports on the server, is now the first
+plugin that ships with the editor. Turn it off and its window, its menu entry and its status
+item all disappear. Turn it back on and it comes back exactly where it was.</p>
+<h2 id="every-review-found-something">Every review found something</h2>
+<p>Every piece is reviewed before it&#39;s merged, and every review found something real. My favourite:
+the editor used the Space bar for Play and Pause everywhere, so pressing Space on a focused
+button in any tool window started the simulation instead of pressing the button. Buttons get
+their Space bar back now.</p>
+<h2 id="next">Next</h2>
+<p>More of the shell (the activity bar, dock tabs and the command palette), then the rest of the
+tools move into plugins one at a time. Round three of the designs is drawn and waiting for review.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <a class="older" href="../../posts/2026-10-21-round-two-play-previews-and-frieze/"><span>← Older</span>Round two: play, previews and Frieze</a>
+    
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#a-desktop-app">A desktop app</a></li><li><a href="#the-new-title-bar">The new title bar</a></li><li><a href="#plugins-for-real">Plugins, for real</a></li><li><a href="#jobs-the-first-plugin">Jobs, the first plugin</a></li><li><a href="#every-review-found-something">Every review found something</a></li><li><a href="#next">Next</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>
