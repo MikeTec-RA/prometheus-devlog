@@ -5,8 +5,88 @@
   <link href="https://miketec-ra.github.io/prometheus-devlog/" rel="alternate" type="text/html"/>
   <link href="https://miketec-ra.github.io/prometheus-devlog/atom.xml" rel="self" type="application/atom+xml"/>
   <id>https://miketec-ra.github.io/prometheus-devlog/</id>
-  <updated>2026-10-21T00:55:46.727Z</updated>
+  <updated>2026-10-22T00:48:29.636Z</updated>
   <author><name>MikeTec-RA</name></author>
+  <entry>
+    <title>The rebuild starts: a desktop app and its first plugin</title>
+    <link href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-21-the-rebuild-starts/" rel="alternate" type="text/html"/>
+    <id>tag:miketec-ra.github.io,2026:prometheus-devlog:2026-10-21-the-rebuild-starts</id>
+    <published>2026-10-21T12:00:00.000Z</published>
+    <updated>2026-10-21T12:00:00.000Z</updated>
+    <content type="html">&lt;p&gt;A day after round one of the designs was approved, the code started. Four pieces landed today.&lt;/p&gt;
+&lt;h2&gt;A desktop app&lt;/h2&gt;
+&lt;p&gt;The editor now runs as its own desktop app on Windows, built with Electron, with its own
+installer. The browser version keeps working alongside it.&lt;/p&gt;
+&lt;p&gt;The interesting part was closing it. The editor saves your work a moment after each edit, so
+closing the window has to save the last edit first. The plan assumed that a page closing itself
+from a script would raise the same &amp;quot;about to close&amp;quot; event as clicking the X. It doesn&amp;#39;t. In
+Electron the window simply goes, with no close event at all. So now every way out (the X,
+quitting, Windows shutting down) waits up to a second while the last draft is written, and the
+page saves its own work on the one event that still fires on its way out.&lt;/p&gt;
+&lt;h2&gt;The new title bar&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://miketec-ra.github.io/prometheus-devlog/images/2026-10-21-the-rebuild-starts/title-bar.png&quot; alt=&quot;The title bar as designed in Figma on October 19, and as built on October 21&quot;&gt;&lt;/p&gt;
+&lt;p&gt;The first slice of the new shell is in: the frame, the title bar with the menus and the
+transport in the middle, the Forge and Blue themes, and the dock layout underneath. It&amp;#39;s checked
+against the Figma frames screenshot by screenshot. The scene switcher, the modes and command
+search come in the next slices.&lt;/p&gt;
+&lt;h2&gt;Plugins, for real&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://miketec-ra.github.io/prometheus-devlog/images/2026-10-21-the-rebuild-starts/plugin-guard.png&quot; alt=&quot;The plugin manager refusing to turn off a plugin with unsaved work&quot;&gt;&lt;/p&gt;
+&lt;p&gt;The plugin host is in. Plugins can add commands, menu entries, windows and settings pages, and a
+Plugins manager lists them and turns them on and off. The test plugin above has an unsaved
+draft, so the manager won&amp;#39;t turn it off until that draft is dealt with. That&amp;#39;s the close guard
+from the designs, working.&lt;/p&gt;
+&lt;h2&gt;Jobs, the first plugin&lt;/h2&gt;
+&lt;p&gt;The Jobs window, which follows imports, sprite bakes and exports on the server, is now the first
+plugin that ships with the editor. Turn it off and its window, its menu entry and its status
+item all disappear. Turn it back on and it comes back exactly where it was.&lt;/p&gt;
+&lt;h2&gt;Every review found something&lt;/h2&gt;
+&lt;p&gt;Every piece is reviewed before it&amp;#39;s merged, and every review found something real. My favourite:
+the editor used the Space bar for Play and Pause everywhere, so pressing Space on a focused
+button in any tool window started the simulation instead of pressing the button. Buttons get
+their Space bar back now.&lt;/p&gt;
+&lt;h2&gt;Next&lt;/h2&gt;
+&lt;p&gt;More of the shell (the activity bar, dock tabs and the command palette), then the rest of the
+tools move into plugins one at a time. Round three of the designs is drawn and waiting for review.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Round two: play, previews and Frieze</title>
+    <link href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-21-round-two-play-previews-and-frieze/" rel="alternate" type="text/html"/>
+    <id>tag:miketec-ra.github.io,2026:prometheus-devlog:2026-10-21-round-two-play-previews-and-frieze</id>
+    <published>2026-10-21T12:00:00.000Z</published>
+    <updated>2026-10-21T12:00:00.000Z</updated>
+    <content type="html">&lt;p&gt;Round two of the editor designs was approved today. Round one was the frame and the everyday
+tools. Round two is everything you do in the editor besides building.&lt;/p&gt;
+&lt;h2&gt;Play mode&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://miketec-ra.github.io/prometheus-devlog/images/2026-10-21-round-two-play-previews-and-frieze/play-mode.png&quot; alt=&quot;Play mode: the layout changes, the inspector reads out live state, and scripted sequences sit in a panel at the bottom&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Pressing Play switches to a Play layout instead of just setting the viewport running. The
+inspector becomes a live readout of the selected character: its position and velocity, which
+behaviour-tree node it&amp;#39;s running and what&amp;#39;s on its blackboard. Values update live, but edits
+wait until Stop, so nothing you poke at while playing quietly ends up saved. Dialogue and
+scripted sequences get their own panel, with Play, Cancel and Replay.&lt;/p&gt;
+&lt;h2&gt;Frieze as a plugin&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://miketec-ra.github.io/prometheus-devlog/images/2026-10-21-round-two-play-previews-and-frieze/frieze-plugin.png&quot; alt=&quot;Frieze at the Review step: an eight-direction sprite sheet with its animation states, palette and frame events&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Frieze, the sprite maker, moves out of a floating window and into a document tab of its own.
+Models and drawings sit on the left, the live preview and the whole sheet in the middle, and the
+sheet&amp;#39;s settings on the right: cell size, eight directions, palette, rig, animation states, and
+frame events such as which frames of the walk play a footstep. Batch re-bakes run as server jobs
+in the panel underneath.&lt;/p&gt;
+&lt;h2&gt;Seeing it on a phone&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://miketec-ra.github.io/prometheus-devlog/images/2026-10-21-round-two-play-previews-and-frieze/phone-preview.png&quot; alt=&quot;Previewing the game on an iPhone 14 Pro with its safe area and touch controls. This is a design mock-up, so the numbers are placeholders.&quot;&gt;&lt;/p&gt;
+&lt;p&gt;The game ships to phones and Steam, so the editor will preview it on them: an iPhone, a Galaxy
+Fold, a Steam Deck or a desktop screen, in portrait or landscape, with the safe area drawn in
+and the touch controls where a thumb would land. There&amp;#39;s even a fake language that makes every
+string 40% longer, to check the HUD text still fits before a real translation finds out the hard
+way. A banner says plainly that a preview is an estimate, not a measurement, and a real run on
+the device is one command away.&lt;/p&gt;
+&lt;h2&gt;And the rest&lt;/h2&gt;
+&lt;p&gt;Round two also covers a 3D dev tools mode for performance work, with a benchmark that flies the
+demo camera and a warning when a scene goes over a phone&amp;#39;s budget. And it has a first run for
+brand-new world builders: a short setup, a starter level, a tour, and a choice between a simpler
+World builder layout and the full editor. As the screen puts it: your helpers can each pick
+their own.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Design first: drawing the new editor</title>
     <link href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-20-design-first/" rel="alternate" type="text/html"/>

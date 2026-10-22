@@ -1,6 +1,7 @@
 // Builds the devlog site and its feeds from content/.
 //
-//   content/posts/YYYY-MM-DD-slug.md   one post each; front matter: title, date, optional summary
+//   content/posts/YYYY-MM-DD-slug.md   one post each; front matter: title, date, optional summary,
+//                                      optional cover (an image path; the first image otherwise)
 //   content/pages/roadmap.md           the Roadmap tab; front matter: title, status
 //   content/pages/about.md             the About tab; front matter: title
 //   images/<post slug>/*.png           screenshots, referenced as images/<post slug>/<file>.png
@@ -111,7 +112,7 @@ const posts = readdirSync('content/posts')
       html,
       headings,
       images,
-      cover: images[0]?.src,
+      cover: meta.cover || images[0]?.src,
       excerpt: meta.summary || stripTags(firstPara).replace(/\s+/g, ' ').trim(),
       minutes: Math.max(1, Math.round(body.split(/\s+/).length / 225)),
       path: `posts/${slug}/`,
