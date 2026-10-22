@@ -5,8 +5,41 @@
   <link href="https://miketec-ra.github.io/prometheus-devlog/" rel="alternate" type="text/html"/>
   <link href="https://miketec-ra.github.io/prometheus-devlog/atom.xml" rel="self" type="application/atom+xml"/>
   <id>https://miketec-ra.github.io/prometheus-devlog/</id>
-  <updated>2026-10-22T00:48:29.636Z</updated>
+  <updated>2026-10-22T16:54:16.881Z</updated>
   <author><name>MikeTec-RA</name></author>
+  <entry>
+    <title>The shell, the engine and a front door</title>
+    <link href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-22-the-shell-the-engine-and-a-front-door/" rel="alternate" type="text/html"/>
+    <id>tag:miketec-ra.github.io,2026:prometheus-devlog:2026-10-22-the-shell-the-engine-and-a-front-door</id>
+    <published>2026-10-22T12:00:00.000Z</published>
+    <updated>2026-10-22T12:00:00.000Z</updated>
+    <content type="html">&lt;p&gt;Yesterday the code for the rebuild started. Today three pieces of it came together, and the team got a new build of the git tool.&lt;/p&gt;
+&lt;h2&gt;The shell is built&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://miketec-ra.github.io/prometheus-devlog/images/2026-10-22-the-shell-the-engine-and-a-front-door/editor-shell.png&quot; alt=&quot;The editor shell at 1600 pixels wide: the title bar with the transport, the command search, the Hierarchy on the left and the Inspector on the right&quot;&gt;&lt;/p&gt;
+&lt;p&gt;The frame from the design round is now the real editor: a title bar with the menus, the scene switcher, the mode switch and the transport (play, pause, stop) in the middle, and a command palette on the right. Press the search box and you can run any command the editor or a plugin offers.&lt;/p&gt;
+&lt;p&gt;The bigger change is how panels dock. The Hierarchy sits in a zone on the left and the Inspector in a zone on the right. Tool windows can dock into a zone as tabs or float, and a bottom zone holds wide panels.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://miketec-ra.github.io/prometheus-devlog/images/2026-10-22-the-shell-the-engine-and-a-front-door/jobs-docked.png&quot; alt=&quot;Jobs docked into the bottom zone, under the viewport&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Jobs, the server-side job list, now lives there. When the window gets small the left zone folds into a flyout and the bottom zone shrinks, while the right zone holds on longest. If a panel would not fit anywhere, the editor tells you instead of quietly hiding it. A fresh install opens with the Hierarchy left and the Inspector right, and &lt;strong&gt;Reset layout&lt;/strong&gt; in Settings puts you back there in one click. Splitters work from the keyboard too.&lt;/p&gt;
+&lt;p&gt;Before any of this was called done, I ran the whole shell against my real scene in the browser, read-only. It passed, and it also found two real bugs: the editor could open on a theme that had been retired, and Space on a focused switch did nothing. Both were fixed the same night.&lt;/p&gt;
+&lt;h2&gt;The desktop editor runs its own engine&lt;/h2&gt;
+&lt;p&gt;The desktop editor used to need a backend started by hand. Now Settings has an Engine section: point it at the engine&amp;#39;s folder, press Start, and the editor checks that the folder is the right one, that nothing already answers, and that the database is up, and only then starts the engine as a child process.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://miketec-ra.github.io/prometheus-devlog/images/2026-10-22-the-shell-the-engine-and-a-front-door/engine-running.png&quot; alt=&quot;The Engine row in Settings showing the engine running, with Start and Stop&quot;&gt;&lt;/p&gt;
+&lt;p&gt;I ran it for real, against the real engine and database: about 6.6 seconds from pressing Start to &amp;quot;Running&amp;quot;, and about 3 seconds from Stop to &amp;quot;Stopped&amp;quot; with the engine confirming it had flushed its scenes. Quitting the editor takes the engine with it.&lt;/p&gt;
+&lt;p&gt;There is an option to keep the engine running after the editor quits, and it had a Windows quirk worth a paragraph. A program started from another inherits every inheritable handle its parent holds, not only the three it was meant to get. A kept engine was therefore quietly holding on to the editor&amp;#39;s own debugging socket after the editor had gone, so the next launch couldn&amp;#39;t use it. The fix is a tiny launcher that starts the engine and passes it only the handful of pipes it needs. After the editor dies, it no longer owns anything.&lt;/p&gt;
+&lt;h2&gt;Forge has a front door&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://miketec-ra.github.io/prometheus-devlog/images/2026-10-22-the-shell-the-engine-and-a-front-door/forge-sign-in.png&quot; alt=&quot;The new Forge sign-in card: Sign in with GitHub, or an email and password&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Forge, the git manager, used to trust one shared key, so anyone who reached it was effectively me. That was fine for one person and wrong for a team. Forge now has people.&lt;/p&gt;
+&lt;p&gt;You can sign in with an email and password, or with GitHub. A new account gets a one-time password that must be changed on first use. Wrong passwords and unknown emails get the same answer, and repeated failures are rate-limited. The card shows when a key is still the shipped default, and refuses to run until it is changed.&lt;/p&gt;
+&lt;p&gt;GitHub here means identity, not git access. When you sign in, Forge reads your GitHub id and your primary verified email, then throws the token away. It is never stored and never logged. That matches the rule I&amp;#39;m building toward for the team: a teammate should only ever see the repos their own GitHub account can reach, never mine through my token, and nothing of theirs should sit on my server. The sign-in half is done; the repo-visibility half is still ahead.&lt;/p&gt;
+&lt;p&gt;Desktop apps have no browser cookie, so DD-ReForged and the editor use a device flow. The app asks Forge for a short code and shows it, you open Forge in your browser, type the code and approve.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://miketec-ra.github.io/prometheus-devlog/images/2026-10-22-the-shell-the-engine-and-a-front-door/device-approval.png&quot; alt=&quot;The Approve a device page, naming the app that is asking&quot;&gt;&lt;/p&gt;
+&lt;p&gt;The code is never put in a link, so a phishing message can&amp;#39;t carry it. The page names the app and where the request came from, and the shared key cannot approve a device. Only a signed-in person can.&lt;/p&gt;
+&lt;h2&gt;DD-ReForged 0.3.2, for the team&lt;/h2&gt;
+&lt;p&gt;The review build for the team is 0.3.2, with a matching VS Code extension. It stops Settings saves from restarting the local agent unless a setting the agent actually reads has changed, makes a restart wait up to 30 seconds for a busy agent, and keeps a redacted log per profile. Building it found that the agent change had broken the packaged app in a way the tests hadn&amp;#39;t caught, so that was fixed and guarded before it went out.&lt;/p&gt;
+&lt;h2&gt;Next&lt;/h2&gt;
+&lt;p&gt;The repo-visibility rule for the team, then the desktop editor&amp;#39;s remaining slices.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>The rebuild starts: a desktop app and its first plugin</title>
     <link href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-21-the-rebuild-starts/" rel="alternate" type="text/html"/>
