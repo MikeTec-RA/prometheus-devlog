@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The shell, the engine and a front door · Prometheus devlog</title>
+<meta name="description" content="The editor's shell is built, the desktop editor starts and stops its own engine, and Forge now has a real sign-in with passwords, GitHub and a device flow.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="The shell, the engine and a front door">
+<meta property="og:description" content="The editor's shell is built, the desktop editor starts and stops its own engine, and Forge now has a real sign-in with passwords, GitHub and a device flow.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-22-the-shell-the-engine-and-a-front-door/">
+<meta property="og:image" content="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-22-the-shell-the-engine-and-a-front-door/editor-shell.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>The shell, the engine and a front door</h1>
+    <p class="meta"><time datetime="2026-10-22">October 22, 2026</time> · 4 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#the-shell-is-built">The shell is built</a></li><li><a href="#the-desktop-editor-runs-its-own-engine">The desktop editor runs its own engine</a></li><li><a href="#forge-has-a-front-door">Forge has a front door</a></li><li><a href="#dd-reforged-0-3-2-for-the-team">DD-ReForged 0.3.2, for the team</a></li><li><a href="#next">Next</a></li></ol></details>
+  <div class="prose">
+<p>Yesterday the code for the rebuild started. Today three pieces of it came together, and the team got a new build of the git tool.</p>
+<h2 id="the-shell-is-built">The shell is built</h2>
+<figure><a class="zoom" href="../../images/2026-10-22-the-shell-the-engine-and-a-front-door/editor-shell.png" data-caption="The editor shell at 1600 pixels wide: the title bar with the transport, the command search, the Hierarchy on the left and the Inspector on the right"><img loading="lazy" src="../../images/2026-10-22-the-shell-the-engine-and-a-front-door/editor-shell.png" alt="The editor shell at 1600 pixels wide: the title bar with the transport, the command search, the Hierarchy on the left and the Inspector on the right"></a><figcaption>The editor shell at 1600 pixels wide: the title bar with the transport, the command search, the Hierarchy on the left and the Inspector on the right</figcaption></figure>
+<p>The frame from the design round is now the real editor: a title bar with the menus, the scene switcher, the mode switch and the transport (play, pause, stop) in the middle, and a command palette on the right. Press the search box and you can run any command the editor or a plugin offers.</p>
+<p>The bigger change is how panels dock. The Hierarchy sits in a zone on the left and the Inspector in a zone on the right. Tool windows can dock into a zone as tabs or float, and a bottom zone holds wide panels.</p>
+<figure><a class="zoom" href="../../images/2026-10-22-the-shell-the-engine-and-a-front-door/jobs-docked.png" data-caption="Jobs docked into the bottom zone, under the viewport"><img loading="lazy" src="../../images/2026-10-22-the-shell-the-engine-and-a-front-door/jobs-docked.png" alt="Jobs docked into the bottom zone, under the viewport"></a><figcaption>Jobs docked into the bottom zone, under the viewport</figcaption></figure>
+<p>Jobs, the server-side job list, now lives there. When the window gets small the left zone folds into a flyout and the bottom zone shrinks, while the right zone holds on longest. If a panel would not fit anywhere, the editor tells you instead of quietly hiding it. A fresh install opens with the Hierarchy left and the Inspector right, and <strong>Reset layout</strong> in Settings puts you back there in one click. Splitters work from the keyboard too.</p>
+<p>Before any of this was called done, I ran the whole shell against my real scene in the browser, read-only. It passed, and it also found two real bugs: the editor could open on a theme that had been retired, and Space on a focused switch did nothing. Both were fixed the same night.</p>
+<h2 id="the-desktop-editor-runs-its-own-engine">The desktop editor runs its own engine</h2>
+<p>The desktop editor used to need a backend started by hand. Now Settings has an Engine section: point it at the engine&#39;s folder, press Start, and the editor checks that the folder is the right one, that nothing already answers, and that the database is up, and only then starts the engine as a child process.</p>
+<figure><a class="zoom" href="../../images/2026-10-22-the-shell-the-engine-and-a-front-door/engine-running.png" data-caption="The Engine row in Settings showing the engine running, with Start and Stop"><img loading="lazy" src="../../images/2026-10-22-the-shell-the-engine-and-a-front-door/engine-running.png" alt="The Engine row in Settings showing the engine running, with Start and Stop"></a><figcaption>The Engine row in Settings showing the engine running, with Start and Stop</figcaption></figure>
+<p>I ran it for real, against the real engine and database: about 6.6 seconds from pressing Start to &quot;Running&quot;, and about 3 seconds from Stop to &quot;Stopped&quot; with the engine confirming it had flushed its scenes. Quitting the editor takes the engine with it.</p>
+<p>There is an option to keep the engine running after the editor quits, and it had a Windows quirk worth a paragraph. A program started from another inherits every inheritable handle its parent holds, not only the three it was meant to get. A kept engine was therefore quietly holding on to the editor&#39;s own debugging socket after the editor had gone, so the next launch couldn&#39;t use it. The fix is a tiny launcher that starts the engine and passes it only the handful of pipes it needs. After the editor dies, it no longer owns anything.</p>
+<h2 id="forge-has-a-front-door">Forge has a front door</h2>
+<figure><a class="zoom" href="../../images/2026-10-22-the-shell-the-engine-and-a-front-door/forge-sign-in.png" data-caption="The new Forge sign-in card: Sign in with GitHub, or an email and password"><img loading="lazy" src="../../images/2026-10-22-the-shell-the-engine-and-a-front-door/forge-sign-in.png" alt="The new Forge sign-in card: Sign in with GitHub, or an email and password"></a><figcaption>The new Forge sign-in card: Sign in with GitHub, or an email and password</figcaption></figure>
+<p>Forge, the git manager, used to trust one shared key, so anyone who reached it was effectively me. That was fine for one person and wrong for a team. Forge now has people.</p>
+<p>You can sign in with an email and password, or with GitHub. A new account gets a one-time password that must be changed on first use. Wrong passwords and unknown emails get the same answer, and repeated failures are rate-limited. The card shows when a key is still the shipped default, and refuses to run until it is changed.</p>
+<p>GitHub here means identity, not git access. When you sign in, Forge reads your GitHub id and your primary verified email, then throws the token away. It is never stored and never logged. That matches the rule I&#39;m building toward for the team: a teammate should only ever see the repos their own GitHub account can reach, never mine through my token, and nothing of theirs should sit on my server. The sign-in half is done; the repo-visibility half is still ahead.</p>
+<p>Desktop apps have no browser cookie, so DD-ReForged and the editor use a device flow. The app asks Forge for a short code and shows it, you open Forge in your browser, type the code and approve.</p>
+<figure><a class="zoom" href="../../images/2026-10-22-the-shell-the-engine-and-a-front-door/device-approval.png" data-caption="The Approve a device page, naming the app that is asking"><img loading="lazy" src="../../images/2026-10-22-the-shell-the-engine-and-a-front-door/device-approval.png" alt="The Approve a device page, naming the app that is asking"></a><figcaption>The Approve a device page, naming the app that is asking</figcaption></figure>
+<p>The code is never put in a link, so a phishing message can&#39;t carry it. The page names the app and where the request came from, and the shared key cannot approve a device. Only a signed-in person can.</p>
+<h2 id="dd-reforged-0-3-2-for-the-team">DD-ReForged 0.3.2, for the team</h2>
+<p>The review build for the team is 0.3.2, with a matching VS Code extension. It stops Settings saves from restarting the local agent unless a setting the agent actually reads has changed, makes a restart wait up to 30 seconds for a busy agent, and keeps a redacted log per profile. Building it found that the agent change had broken the packaged app in a way the tests hadn&#39;t caught, so that was fixed and guarded before it went out.</p>
+<h2 id="next">Next</h2>
+<p>The repo-visibility rule for the team, then the desktop editor&#39;s remaining slices.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <a class="older" href="../../posts/2026-10-21-the-rebuild-starts/"><span>← Older</span>The rebuild starts: a desktop app and its first plugin</a>
+    
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#the-shell-is-built">The shell is built</a></li><li><a href="#the-desktop-editor-runs-its-own-engine">The desktop editor runs its own engine</a></li><li><a href="#forge-has-a-front-door">Forge has a front door</a></li><li><a href="#dd-reforged-0-3-2-for-the-team">DD-ReForged 0.3.2, for the team</a></li><li><a href="#next">Next</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>
