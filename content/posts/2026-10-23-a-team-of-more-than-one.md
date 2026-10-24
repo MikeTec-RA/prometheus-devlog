@@ -39,24 +39,19 @@ The rule I wrote about yesterday, that a teammate only ever sees repos their own
 
 ## DD-ReForged connects to GitHub itself
 
-![Wake showing a file from a commit as a side-by-side diff](images/2026-10-23-a-team-of-more-than-one/wake-file-diff.png)
-
 DD-ReForged on your own PC can now connect to GitHub through Git Credential Manager, the same sign-in git itself uses, or with a pasted token. That switches on the GitHub features that were already built but had no way to reach GitHub, including a pull request sweep that had been sitting there unreachable.
 
 The rest of the day's DD work:
 
-- Work, the company profile, shows nothing until the server confirms you're an employee, and the team build asks for the server address first.
-- Personal can join a Forge from an invite link, and its screens follow what your role on that Forge allows.
+- DD-ReForged can join a Forge from an invite link, and its screens follow what your role on that Forge allows.
 - VS Code shows who you're signed in to Forge as.
 - In Wake, clicking a file in a commit opens its diff in place, and the sidebar folds away into a drawer.
 
 Before building any of that, I had the whole tool audited against what it's supposed to do, checking the code itself and not just the cards. It came back with a measured list of what's left, roughly 80 to 110 hours on the DD side. It also found about 45 cards that are finished and only waiting for me to close them.
 
-Review build 0.3.5 went out tonight in two versions: mine and the team's. The first build failed its own smoke test because the new Work sign-in check stopped it at the door. The smoke test now understands that check, and both versions pass.
+Review build 0.3.5 went out tonight in two versions: mine and the team's. The first build failed its own smoke test because a new sign-in check stopped it at the door. The smoke test now understands that check, and both versions pass.
 
 ## A phone app, drawn first
-
-![Pull requests on the phone: Needs review, Mine and Open, with checks and approvals on each row](images/2026-10-23-a-team-of-more-than-one/mobile-pull-requests.png)
 
 DD-ReForged is getting a phone app for reviewing and merging pull requests and moving cards. Same rule as the editor: Figma before code. Nineteen screens are drawn in both themes, from sign-in to the inbox, a diff, the merge sheet and the boards, built from DD's own theme variables and components.
 
