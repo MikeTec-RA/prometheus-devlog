@@ -37,7 +37,7 @@
   <header class="post-head">
     <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
     <h1>A team of more than one</h1>
-    <p class="meta"><time datetime="2026-10-23">October 23, 2026</time> · 5 min read</p>
+    <p class="meta"><time datetime="2026-10-23">October 23, 2026</time> · 4 min read</p>
   </header>
   <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#forge-has-a-team">Forge has a team</a></li><li><a href="#the-engine-knows-who-you-are">The engine knows who you are</a></li><li><a href="#who-sees-which-repos">Who sees which repos</a></li><li><a href="#dd-reforged-connects-to-github-itself">DD-ReForged connects to GitHub itself</a></li><li><a href="#a-phone-app-drawn-first">A phone app, drawn first</a></li><li><a href="#next">Next</a></li></ol></details>
   <div class="prose">
@@ -58,19 +58,16 @@
 <h2 id="who-sees-which-repos">Who sees which repos</h2>
 <p>The rule I wrote about yesterday, that a teammate only ever sees repos their own GitHub account can reach, now has a plan. It went through a critique first, which found six problems worth fixing before any code, and then I answered its four open questions. Teammates won&#39;t be able to push, merge or open pull requests through my GitHub token in Forge. They do that from DD-ReForged with their own login. Repos are shown only to collaborators, even public ones, and GitHub content Forge doesn&#39;t track stays hidden. The build starts with a read-only check of the token before anything else.</p>
 <h2 id="dd-reforged-connects-to-github-itself">DD-ReForged connects to GitHub itself</h2>
-<figure><a class="zoom" href="../../images/2026-10-23-a-team-of-more-than-one/wake-file-diff.png" data-caption="Wake showing a file from a commit as a side-by-side diff"><img loading="lazy" src="../../images/2026-10-23-a-team-of-more-than-one/wake-file-diff.png" alt="Wake showing a file from a commit as a side-by-side diff"></a><figcaption>Wake showing a file from a commit as a side-by-side diff</figcaption></figure>
 <p>DD-ReForged on your own PC can now connect to GitHub through Git Credential Manager, the same sign-in git itself uses, or with a pasted token. That switches on the GitHub features that were already built but had no way to reach GitHub, including a pull request sweep that had been sitting there unreachable.</p>
 <p>The rest of the day&#39;s DD work:</p>
 <ul>
-<li>Work, the company profile, shows nothing until the server confirms you&#39;re an employee, and the team build asks for the server address first.</li>
-<li>Personal can join a Forge from an invite link, and its screens follow what your role on that Forge allows.</li>
+<li>DD-ReForged can join a Forge from an invite link, and its screens follow what your role on that Forge allows.</li>
 <li>VS Code shows who you&#39;re signed in to Forge as.</li>
 <li>In Wake, clicking a file in a commit opens its diff in place, and the sidebar folds away into a drawer.</li>
 </ul>
 <p>Before building any of that, I had the whole tool audited against what it&#39;s supposed to do, checking the code itself and not just the cards. It came back with a measured list of what&#39;s left, roughly 80 to 110 hours on the DD side. It also found about 45 cards that are finished and only waiting for me to close them.</p>
-<p>Review build 0.3.5 went out tonight in two versions: mine and the team&#39;s. The first build failed its own smoke test because the new Work sign-in check stopped it at the door. The smoke test now understands that check, and both versions pass.</p>
+<p>Review build 0.3.5 went out tonight in two versions: mine and the team&#39;s. The first build failed its own smoke test because a new sign-in check stopped it at the door. The smoke test now understands that check, and both versions pass.</p>
 <h2 id="a-phone-app-drawn-first">A phone app, drawn first</h2>
-<figure><a class="zoom" href="../../images/2026-10-23-a-team-of-more-than-one/mobile-pull-requests.png" data-caption="Pull requests on the phone: Needs review, Mine and Open, with checks and approvals on each row"><img loading="lazy" src="../../images/2026-10-23-a-team-of-more-than-one/mobile-pull-requests.png" alt="Pull requests on the phone: Needs review, Mine and Open, with checks and approvals on each row"></a><figcaption>Pull requests on the phone: Needs review, Mine and Open, with checks and approvals on each row</figcaption></figure>
 <p>DD-ReForged is getting a phone app for reviewing and merging pull requests and moving cards. Same rule as the editor: Figma before code. Nineteen screens are drawn in both themes, from sign-in to the inbox, a diff, the merge sheet and the boards, built from DD&#39;s own theme variables and components.</p>
 <p>The interesting part is Personal Forge. It runs on my PC at home, so the phone can only reach it on the home Wi-Fi until it&#39;s hosted somewhere. The app is upfront about that: it shows the last thing it read and says why.</p>
 <figure><a class="zoom" href="../../images/2026-10-23-a-team-of-more-than-one/mobile-away-from-home.png" data-caption="Away from home: the last read is kept, with a note that Personal Forge is on the home network"><img loading="lazy" src="../../images/2026-10-23-a-team-of-more-than-one/mobile-away-from-home.png" alt="Away from home: the last read is kept, with a note that Personal Forge is on the home network"></a><figcaption>Away from home: the last read is kept, with a note that Personal Forge is on the home network</figcaption></figure>
