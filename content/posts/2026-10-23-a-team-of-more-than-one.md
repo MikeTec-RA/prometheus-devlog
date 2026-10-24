@@ -39,6 +39,8 @@ Yesterday I said a teammate should only ever see the repos their own GitHub acco
 
 ## DD-ReForged connects to GitHub itself
 
+![DD-ReForged's Wake view, with a file from a commit open as a side-by-side diff](images/2026-10-23-a-team-of-more-than-one/wake-file-diff.png)
+
 DD-ReForged can now connect to GitHub on your own PC through Git Credential Manager, the same sign-in git already uses, or with a pasted token. That turns on GitHub features that were already built but had no way to reach GitHub, including a pull request sweep that had been sitting there unused.
 
 Also new in DD-ReForged:
