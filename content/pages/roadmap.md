@@ -22,6 +22,9 @@ Where Prometheus stands and what has to happen before launch. Dates are hopes, n
   October 21, round three drawn and waiting for review
 - Building from the approved designs, started October 21: the desktop app, the plugin host,
   Jobs as the first plugin, and the first slice of the new shell
+- Making the tools work for a team, not just me: sign-in, invites and roles on Forge, and the
+  engine recording who made each edit (in code since October 22, switched on once I finish
+  the setup steps)
 - Thinking through how the rest of the game gets built on the engine, starting with the
   living world: terrain that only exists once a player or a monster travels into it
 
