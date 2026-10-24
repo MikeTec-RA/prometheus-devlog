@@ -6,7 +6,7 @@
     <description>Building Prometheus, a custom 2.5D engine and editor, on the way to Forgotten Memories, Endless Abyss.</description>
     <language>en</language>
     <atom:link href="https://miketec-ra.github.io/prometheus-devlog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sat, 24 Oct 2026 04:47:19 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 24 Oct 2026 04:48:36 GMT</lastBuildDate>
     <item>
       <title>A team of more than one</title>
       <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-23-a-team-of-more-than-one/</link>
@@ -29,6 +29,7 @@
 <h2>Who sees which repos</h2>
 <p>Yesterday I said a teammate should only ever see the repos their own GitHub account can reach. That now has a plan, and I&#39;ve made the calls it needed. Teammates won&#39;t be able to push, merge or open pull requests through my GitHub token in Forge; they&#39;ll do that from DD-ReForged with their own login. Repos show up only for people who are collaborators on them, even public ones, and anything on GitHub that Forge doesn&#39;t track stays hidden. Building it starts with a read-only check of the token, before anything can write.</p>
 <h2>DD-ReForged connects to GitHub itself</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-23-a-team-of-more-than-one/wake-file-diff.png" alt="DD-ReForged&#39;s Wake view, with a file from a commit open as a side-by-side diff"></p>
 <p>DD-ReForged can now connect to GitHub on your own PC through Git Credential Manager, the same sign-in git already uses, or with a pasted token. That turns on GitHub features that were already built but had no way to reach GitHub, including a pull request sweep that had been sitting there unused.</p>
 <p>Also new in DD-ReForged:</p>
 <ul>
@@ -62,6 +63,7 @@
 <h2>Who sees which repos</h2>
 <p>Yesterday I said a teammate should only ever see the repos their own GitHub account can reach. That now has a plan, and I&#39;ve made the calls it needed. Teammates won&#39;t be able to push, merge or open pull requests through my GitHub token in Forge; they&#39;ll do that from DD-ReForged with their own login. Repos show up only for people who are collaborators on them, even public ones, and anything on GitHub that Forge doesn&#39;t track stays hidden. Building it starts with a read-only check of the token, before anything can write.</p>
 <h2>DD-ReForged connects to GitHub itself</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-23-a-team-of-more-than-one/wake-file-diff.png" alt="DD-ReForged&#39;s Wake view, with a file from a commit open as a side-by-side diff"></p>
 <p>DD-ReForged can now connect to GitHub on your own PC through Git Credential Manager, the same sign-in git already uses, or with a pasted token. That turns on GitHub features that were already built but had no way to reach GitHub, including a pull request sweep that had been sitting there unused.</p>
 <p>Also new in DD-ReForged:</p>
 <ul>
