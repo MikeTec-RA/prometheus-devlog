@@ -6,7 +6,97 @@
     <description>Building Prometheus, a custom 2.5D engine and editor, on the way to Forgotten Memories, Endless Abyss.</description>
     <language>en</language>
     <atom:link href="https://miketec-ra.github.io/prometheus-devlog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sat, 24 Oct 2026 04:48:36 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 25 Oct 2026 06:39:13 GMT</lastBuildDate>
+    <item>
+      <title>Forge in my pocket, and scenes that forget nothing</title>
+      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-25-forge-in-my-pocket/</link>
+      <guid isPermaLink="false">prometheus-devlog:2026-10-25-forge-in-my-pocket</guid>
+      <pubDate>Sun, 25 Oct 2026 06:39:13 GMT</pubDate>
+      <description><![CDATA[<p>Two days ago the phone app was nineteen drawings in Figma. Last night it signed in to my Forge, read a pull request, left a comment, approved it and merged it, all on an Android emulator. Along the way Forge learned to push updates as they happen, and I spent part of the day on something less flashy that matters more for the game: making sure a scene can&#39;t quietly lose data.</p>
+<h2>The phone app is real</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/phone-inbox.png" alt="The phone&#39;s inbox: a card assigned and a new review comment, with Reviews and Boards filters"></p>
+<p>The app is a small React project wrapped with Capacitor, so it shares DD-ReForged&#39;s colours and components with the desktop app instead of copying them. It does what the drawings said it would:</p>
+<ul>
+<li><strong>Sign in.</strong> Personal Forge signs in with a code, like the desktop apps. The phone shows a short code, you approve it on Forge, and you&#39;re in.</li>
+<li><strong>Inbox.</strong> Review requests, comments, approvals, merges and card changes, each one tapping through to what it&#39;s about.</li>
+<li><strong>Pull requests.</strong> The list, the details, the changed files and each diff, plus comment, approve and merge.</li>
+<li><strong>Branches.</strong> The remote branches, and merging one branch into another on the server.</li>
+<li><strong>Boards.</strong> View a board, move a card, comment on it. Docs are read-only for now.</li>
+<li><strong>Settings.</strong> Accounts, an app lock, and the avatar editor.</li>
+</ul>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/phone-device-code.png" alt="Approve this phone: a short code to type into Forge, with Copy and Open GitHub"></p>
+<p>The first Android build ran on a headless emulator. Then I ran the whole thing end to end against a scratch Forge: sign in, read the inbox, open a board, move a card, comment, open a pull request, read the diff, approve and merge. Forge&#39;s own records agreed with what the phone said had happened.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/phone-merge.png" alt="Merging from the phone: the merge sheet over an approved pull request, with &quot;The branches merge cleanly&quot;"></p>
+<p>Personal Forge lives on my PC at home, so the phone talks to it over the home network. I decided plain http is fine there for now. Forge only listens on the network if you turn that on, and it can also be reached through Tailscale when I&#39;m away. Proper HTTPS on the home network is a later job.</p>
+<h2>Forge talks back</h2>
+<p>Until now everything that showed Forge&#39;s data had to keep asking whether anything had changed. Forge now has a live event stream instead. When a review gets a comment or a card moves, Forge sends a small hint saying what changed, never the content itself. Each person only gets hints about things they&#39;re allowed to see.</p>
+<p>Forge&#39;s web pages refresh themselves from it, and DD-ReForged on the desktop refreshes and shows a notification. Each person also has their own notification list now, with read and unread, and that&#39;s what feeds the phone&#39;s inbox.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/forge-web-phone.png" alt="Forge&#39;s Bench board at phone width"></p>
+<p>Forge&#39;s web pages work on a phone now too: the menu, the boards and the reviews all fit at 360 pixels wide. Forge also fetches every repo it knows about on its own, every 15 minutes, and there&#39;s an <strong>Open in DD-ReForged</strong> button for jumping from a review in the browser straight into the desktop app.</p>
+<h2>Who sees which repos, done</h2>
+<p>The rule from the last two posts is finished. A teammate on my Forge only sees the repos their own GitHub account can reach, and the boards, cards and docs that belong to those repos. I also went after the sneaky ways a hidden repo could still give itself away: a name in a list, a parent folder, a path, or even the wording of an error. A member now learns nothing about something hidden from any of those. Before turning it on, I checked that my GitHub token could only read, not write.</p>
+<h2>DD-ReForged keeps going</h2>
+<ul>
+<li><strong>Reviews go both ways.</strong> Reviews on my PC and on Forge now sync in both directions. DD-ReForged brings in Forge&#39;s reviews and keeps them current, and sends back new reviews, threads and decisions made locally.</li>
+<li><strong>VS Code.</strong> It now sees Forge through the desktop app&#39;s sign-in. It also has a <strong>Sync down now</strong> command and shows the sync state in the status bar.</li>
+<li><strong>Safer secrets.</strong> The Forge API key moved out of a plain file into the operating system&#39;s encrypted store, backups included.</li>
+<li><strong>Self-healing.</strong> If the background agent crashes, it restarts by itself once the old process is completely gone. A restart I ask for doesn&#39;t count against the crash limit.</li>
+<li><strong>The tray</strong> shows which GitHub account you&#39;re signed in as, with its avatar.</li>
+<li><strong>Linux.</strong> I checked the install on Linux for the first time, with both the .deb and the AppImage in a throwaway Linux setup. It caught a real bug: the app made its profile folder with the wrong permissions and then refused to start. That&#39;s fixed.</li>
+</ul>
+<p>I also chased down the flaky tests that failed only when the machine was busy, and fixed each one at its cause instead of just giving it more time. My favourite find: one of Forge&#39;s web tests had been quietly sending 77 real requests to my actual Forge server every time it ran. The tests can&#39;t reach a real server any more.</p>
+<p>Builds 0.3.6, 0.3.7 and 0.3.8 each went onto my own PC in place, with a backup first.</p>
+<h2>Scenes that forget nothing</h2>
+<p>This is the one that matters most for the game. The rebuild turns big parts of the engine into plugins, and plugins can be turned off. That raised an ugly question. If a scene uses lights from a plugin that isn&#39;t loaded, and you open the scene and save it, what happens to the lights?</p>
+<p>Until now, the honest answer was that they could vanish. The loader skipped anything it didn&#39;t recognise, and saving wrote back only what it had loaded. Nothing was being lost yet, because nothing could be unloaded yet. But it would have been the first thing to bite once plugins arrived, so I fixed it before building any of them.</p>
+<p>Now, when the engine finds something in a scene it can&#39;t load, it holds on to it exactly as written, keeping its id and its place in the order, and saves it back untouched. Held items show up in the editor, read-only, so you can see they&#39;re there. Deleting one asks you to confirm. Lights, emitters, physics settings and avatars all keep their authored values, even if their part of the engine fails to start. An avatar whose model is missing is held instead of dropped. The server carries along anything it doesn&#39;t recognise too, and a deletion made while offline still reaches the server and doesn&#39;t come back.</p>
+<p>To prove it, I built a round-trip test harness: load a scene, save it, load it again, and check that the document comes out the same. That harness found more than one way data could slip through, and each one is fixed.</p>
+<h2>Next</h2>
+<p>A few more gaps in scene saving to close before any plugin is allowed to unload. After that, back to the engine itself: either the plugin platform or the export targets.</p>
+]]></description>
+      <content:encoded><![CDATA[<p>Two days ago the phone app was nineteen drawings in Figma. Last night it signed in to my Forge, read a pull request, left a comment, approved it and merged it, all on an Android emulator. Along the way Forge learned to push updates as they happen, and I spent part of the day on something less flashy that matters more for the game: making sure a scene can&#39;t quietly lose data.</p>
+<h2>The phone app is real</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/phone-inbox.png" alt="The phone&#39;s inbox: a card assigned and a new review comment, with Reviews and Boards filters"></p>
+<p>The app is a small React project wrapped with Capacitor, so it shares DD-ReForged&#39;s colours and components with the desktop app instead of copying them. It does what the drawings said it would:</p>
+<ul>
+<li><strong>Sign in.</strong> Personal Forge signs in with a code, like the desktop apps. The phone shows a short code, you approve it on Forge, and you&#39;re in.</li>
+<li><strong>Inbox.</strong> Review requests, comments, approvals, merges and card changes, each one tapping through to what it&#39;s about.</li>
+<li><strong>Pull requests.</strong> The list, the details, the changed files and each diff, plus comment, approve and merge.</li>
+<li><strong>Branches.</strong> The remote branches, and merging one branch into another on the server.</li>
+<li><strong>Boards.</strong> View a board, move a card, comment on it. Docs are read-only for now.</li>
+<li><strong>Settings.</strong> Accounts, an app lock, and the avatar editor.</li>
+</ul>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/phone-device-code.png" alt="Approve this phone: a short code to type into Forge, with Copy and Open GitHub"></p>
+<p>The first Android build ran on a headless emulator. Then I ran the whole thing end to end against a scratch Forge: sign in, read the inbox, open a board, move a card, comment, open a pull request, read the diff, approve and merge. Forge&#39;s own records agreed with what the phone said had happened.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/phone-merge.png" alt="Merging from the phone: the merge sheet over an approved pull request, with &quot;The branches merge cleanly&quot;"></p>
+<p>Personal Forge lives on my PC at home, so the phone talks to it over the home network. I decided plain http is fine there for now. Forge only listens on the network if you turn that on, and it can also be reached through Tailscale when I&#39;m away. Proper HTTPS on the home network is a later job.</p>
+<h2>Forge talks back</h2>
+<p>Until now everything that showed Forge&#39;s data had to keep asking whether anything had changed. Forge now has a live event stream instead. When a review gets a comment or a card moves, Forge sends a small hint saying what changed, never the content itself. Each person only gets hints about things they&#39;re allowed to see.</p>
+<p>Forge&#39;s web pages refresh themselves from it, and DD-ReForged on the desktop refreshes and shows a notification. Each person also has their own notification list now, with read and unread, and that&#39;s what feeds the phone&#39;s inbox.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/forge-web-phone.png" alt="Forge&#39;s Bench board at phone width"></p>
+<p>Forge&#39;s web pages work on a phone now too: the menu, the boards and the reviews all fit at 360 pixels wide. Forge also fetches every repo it knows about on its own, every 15 minutes, and there&#39;s an <strong>Open in DD-ReForged</strong> button for jumping from a review in the browser straight into the desktop app.</p>
+<h2>Who sees which repos, done</h2>
+<p>The rule from the last two posts is finished. A teammate on my Forge only sees the repos their own GitHub account can reach, and the boards, cards and docs that belong to those repos. I also went after the sneaky ways a hidden repo could still give itself away: a name in a list, a parent folder, a path, or even the wording of an error. A member now learns nothing about something hidden from any of those. Before turning it on, I checked that my GitHub token could only read, not write.</p>
+<h2>DD-ReForged keeps going</h2>
+<ul>
+<li><strong>Reviews go both ways.</strong> Reviews on my PC and on Forge now sync in both directions. DD-ReForged brings in Forge&#39;s reviews and keeps them current, and sends back new reviews, threads and decisions made locally.</li>
+<li><strong>VS Code.</strong> It now sees Forge through the desktop app&#39;s sign-in. It also has a <strong>Sync down now</strong> command and shows the sync state in the status bar.</li>
+<li><strong>Safer secrets.</strong> The Forge API key moved out of a plain file into the operating system&#39;s encrypted store, backups included.</li>
+<li><strong>Self-healing.</strong> If the background agent crashes, it restarts by itself once the old process is completely gone. A restart I ask for doesn&#39;t count against the crash limit.</li>
+<li><strong>The tray</strong> shows which GitHub account you&#39;re signed in as, with its avatar.</li>
+<li><strong>Linux.</strong> I checked the install on Linux for the first time, with both the .deb and the AppImage in a throwaway Linux setup. It caught a real bug: the app made its profile folder with the wrong permissions and then refused to start. That&#39;s fixed.</li>
+</ul>
+<p>I also chased down the flaky tests that failed only when the machine was busy, and fixed each one at its cause instead of just giving it more time. My favourite find: one of Forge&#39;s web tests had been quietly sending 77 real requests to my actual Forge server every time it ran. The tests can&#39;t reach a real server any more.</p>
+<p>Builds 0.3.6, 0.3.7 and 0.3.8 each went onto my own PC in place, with a backup first.</p>
+<h2>Scenes that forget nothing</h2>
+<p>This is the one that matters most for the game. The rebuild turns big parts of the engine into plugins, and plugins can be turned off. That raised an ugly question. If a scene uses lights from a plugin that isn&#39;t loaded, and you open the scene and save it, what happens to the lights?</p>
+<p>Until now, the honest answer was that they could vanish. The loader skipped anything it didn&#39;t recognise, and saving wrote back only what it had loaded. Nothing was being lost yet, because nothing could be unloaded yet. But it would have been the first thing to bite once plugins arrived, so I fixed it before building any of them.</p>
+<p>Now, when the engine finds something in a scene it can&#39;t load, it holds on to it exactly as written, keeping its id and its place in the order, and saves it back untouched. Held items show up in the editor, read-only, so you can see they&#39;re there. Deleting one asks you to confirm. Lights, emitters, physics settings and avatars all keep their authored values, even if their part of the engine fails to start. An avatar whose model is missing is held instead of dropped. The server carries along anything it doesn&#39;t recognise too, and a deletion made while offline still reaches the server and doesn&#39;t come back.</p>
+<p>To prove it, I built a round-trip test harness: load a scene, save it, load it again, and check that the document comes out the same. That harness found more than one way data could slip through, and each one is fixed.</p>
+<h2>Next</h2>
+<p>A few more gaps in scene saving to close before any plugin is allowed to unload. After that, back to the engine itself: either the plugin platform or the export targets.</p>
+]]></content:encoded>
+    </item>
     <item>
       <title>A team of more than one</title>
       <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-23-a-team-of-more-than-one/</link>
