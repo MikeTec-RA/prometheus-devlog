@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forge in my pocket, and scenes that forget nothing · Prometheus devlog</title>
+<meta name="description" content="The DD-ReForged phone app went from drawings to a working Android build, Forge got live updates and finished hiding repos people can't reach, and the engine learned to keep scene data it doesn't understand.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="Forge in my pocket, and scenes that forget nothing">
+<meta property="og:description" content="The DD-ReForged phone app went from drawings to a working Android build, Forge got live updates and finished hiding repos people can't reach, and the engine learned to keep scene data it doesn't understand.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-25-forge-in-my-pocket/">
+<meta property="og:image" content="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/phone-inbox.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>Forge in my pocket, and scenes that forget nothing</h1>
+    <p class="meta"><time datetime="2026-10-25">October 25, 2026</time> · 5 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#the-phone-app-is-real">The phone app is real</a></li><li><a href="#forge-talks-back">Forge talks back</a></li><li><a href="#who-sees-which-repos-done">Who sees which repos, done</a></li><li><a href="#dd-reforged-keeps-going">DD-ReForged keeps going</a></li><li><a href="#scenes-that-forget-nothing">Scenes that forget nothing</a></li><li><a href="#next">Next</a></li></ol></details>
+  <div class="prose">
+<p>Two days ago the phone app was nineteen drawings in Figma. Last night it signed in to my Forge, read a pull request, left a comment, approved it and merged it, all on an Android emulator. Along the way Forge learned to push updates as they happen, and I spent part of the day on something less flashy that matters more for the game: making sure a scene can&#39;t quietly lose data.</p>
+<h2 id="the-phone-app-is-real">The phone app is real</h2>
+<figure><a class="zoom" href="../../images/2026-10-25-forge-in-my-pocket/phone-inbox.png" data-caption="The phone&#39;s inbox: a card assigned and a new review comment, with Reviews and Boards filters"><img loading="lazy" src="../../images/2026-10-25-forge-in-my-pocket/phone-inbox.png" alt="The phone&#39;s inbox: a card assigned and a new review comment, with Reviews and Boards filters"></a><figcaption>The phone&#39;s inbox: a card assigned and a new review comment, with Reviews and Boards filters</figcaption></figure>
+<p>The app is a small React project wrapped with Capacitor, so it shares DD-ReForged&#39;s colours and components with the desktop app instead of copying them. It does what the drawings said it would:</p>
+<ul>
+<li><strong>Sign in.</strong> Personal Forge signs in with a code, like the desktop apps. The phone shows a short code, you approve it on Forge, and you&#39;re in.</li>
+<li><strong>Inbox.</strong> Review requests, comments, approvals, merges and card changes, each one tapping through to what it&#39;s about.</li>
+<li><strong>Pull requests.</strong> The list, the details, the changed files and each diff, plus comment, approve and merge.</li>
+<li><strong>Branches.</strong> The remote branches, and merging one branch into another on the server.</li>
+<li><strong>Boards.</strong> View a board, move a card, comment on it. Docs are read-only for now.</li>
+<li><strong>Settings.</strong> Accounts, an app lock, and the avatar editor.</li>
+</ul>
+<figure><a class="zoom" href="../../images/2026-10-25-forge-in-my-pocket/phone-device-code.png" data-caption="Approve this phone: a short code to type into Forge, with Copy and Open GitHub"><img loading="lazy" src="../../images/2026-10-25-forge-in-my-pocket/phone-device-code.png" alt="Approve this phone: a short code to type into Forge, with Copy and Open GitHub"></a><figcaption>Approve this phone: a short code to type into Forge, with Copy and Open GitHub</figcaption></figure>
+<p>The first Android build ran on a headless emulator. Then I ran the whole thing end to end against a scratch Forge: sign in, read the inbox, open a board, move a card, comment, open a pull request, read the diff, approve and merge. Forge&#39;s own records agreed with what the phone said had happened.</p>
+<figure><a class="zoom" href="../../images/2026-10-25-forge-in-my-pocket/phone-merge.png" data-caption="Merging from the phone: the merge sheet over an approved pull request, with &quot;The branches merge cleanly&quot;"><img loading="lazy" src="../../images/2026-10-25-forge-in-my-pocket/phone-merge.png" alt="Merging from the phone: the merge sheet over an approved pull request, with &quot;The branches merge cleanly&quot;"></a><figcaption>Merging from the phone: the merge sheet over an approved pull request, with &quot;The branches merge cleanly&quot;</figcaption></figure>
+<p>Personal Forge lives on my PC at home, so the phone talks to it over the home network. I decided plain http is fine there for now. Forge only listens on the network if you turn that on, and it can also be reached through Tailscale when I&#39;m away. Proper HTTPS on the home network is a later job.</p>
+<h2 id="forge-talks-back">Forge talks back</h2>
+<p>Until now everything that showed Forge&#39;s data had to keep asking whether anything had changed. Forge now has a live event stream instead. When a review gets a comment or a card moves, Forge sends a small hint saying what changed, never the content itself. Each person only gets hints about things they&#39;re allowed to see.</p>
+<p>Forge&#39;s web pages refresh themselves from it, and DD-ReForged on the desktop refreshes and shows a notification. Each person also has their own notification list now, with read and unread, and that&#39;s what feeds the phone&#39;s inbox.</p>
+<figure><a class="zoom" href="../../images/2026-10-25-forge-in-my-pocket/forge-web-phone.png" data-caption="Forge&#39;s Bench board at phone width"><img loading="lazy" src="../../images/2026-10-25-forge-in-my-pocket/forge-web-phone.png" alt="Forge&#39;s Bench board at phone width"></a><figcaption>Forge&#39;s Bench board at phone width</figcaption></figure>
+<p>Forge&#39;s web pages work on a phone now too: the menu, the boards and the reviews all fit at 360 pixels wide. Forge also fetches every repo it knows about on its own, every 15 minutes, and there&#39;s an <strong>Open in DD-ReForged</strong> button for jumping from a review in the browser straight into the desktop app.</p>
+<h2 id="who-sees-which-repos-done">Who sees which repos, done</h2>
+<p>The rule from the last two posts is finished. A teammate on my Forge only sees the repos their own GitHub account can reach, and the boards, cards and docs that belong to those repos. I also went after the sneaky ways a hidden repo could still give itself away: a name in a list, a parent folder, a path, or even the wording of an error. A member now learns nothing about something hidden from any of those. Before turning it on, I checked that my GitHub token could only read, not write.</p>
+<h2 id="dd-reforged-keeps-going">DD-ReForged keeps going</h2>
+<ul>
+<li><strong>Reviews go both ways.</strong> Reviews on my PC and on Forge now sync in both directions. DD-ReForged brings in Forge&#39;s reviews and keeps them current, and sends back new reviews, threads and decisions made locally.</li>
+<li><strong>VS Code.</strong> It now sees Forge through the desktop app&#39;s sign-in. It also has a <strong>Sync down now</strong> command and shows the sync state in the status bar.</li>
+<li><strong>Safer secrets.</strong> The Forge API key moved out of a plain file into the operating system&#39;s encrypted store, backups included.</li>
+<li><strong>Self-healing.</strong> If the background agent crashes, it restarts by itself once the old process is completely gone. A restart I ask for doesn&#39;t count against the crash limit.</li>
+<li><strong>The tray</strong> shows which GitHub account you&#39;re signed in as, with its avatar.</li>
+<li><strong>Linux.</strong> I checked the install on Linux for the first time, with both the .deb and the AppImage in a throwaway Linux setup. It caught a real bug: the app made its profile folder with the wrong permissions and then refused to start. That&#39;s fixed.</li>
+</ul>
+<p>I also chased down the flaky tests that failed only when the machine was busy, and fixed each one at its cause instead of just giving it more time. My favourite find: one of Forge&#39;s web tests had been quietly sending 77 real requests to my actual Forge server every time it ran. The tests can&#39;t reach a real server any more.</p>
+<p>Builds 0.3.6, 0.3.7 and 0.3.8 each went onto my own PC in place, with a backup first.</p>
+<h2 id="scenes-that-forget-nothing">Scenes that forget nothing</h2>
+<p>This is the one that matters most for the game. The rebuild turns big parts of the engine into plugins, and plugins can be turned off. That raised an ugly question. If a scene uses lights from a plugin that isn&#39;t loaded, and you open the scene and save it, what happens to the lights?</p>
+<p>Until now, the honest answer was that they could vanish. The loader skipped anything it didn&#39;t recognise, and saving wrote back only what it had loaded. Nothing was being lost yet, because nothing could be unloaded yet. But it would have been the first thing to bite once plugins arrived, so I fixed it before building any of them.</p>
+<p>Now, when the engine finds something in a scene it can&#39;t load, it holds on to it exactly as written, keeping its id and its place in the order, and saves it back untouched. Held items show up in the editor, read-only, so you can see they&#39;re there. Deleting one asks you to confirm. Lights, emitters, physics settings and avatars all keep their authored values, even if their part of the engine fails to start. An avatar whose model is missing is held instead of dropped. The server carries along anything it doesn&#39;t recognise too, and a deletion made while offline still reaches the server and doesn&#39;t come back.</p>
+<p>To prove it, I built a round-trip test harness: load a scene, save it, load it again, and check that the document comes out the same. That harness found more than one way data could slip through, and each one is fixed.</p>
+<h2 id="next">Next</h2>
+<p>A few more gaps in scene saving to close before any plugin is allowed to unload. After that, back to the engine itself: either the plugin platform or the export targets.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <a class="older" href="../../posts/2026-10-23-a-team-of-more-than-one/"><span>← Older</span>A team of more than one</a>
+    
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#the-phone-app-is-real">The phone app is real</a></li><li><a href="#forge-talks-back">Forge talks back</a></li><li><a href="#who-sees-which-repos-done">Who sees which repos, done</a></li><li><a href="#dd-reforged-keeps-going">DD-ReForged keeps going</a></li><li><a href="#scenes-that-forget-nothing">Scenes that forget nothing</a></li><li><a href="#next">Next</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>
