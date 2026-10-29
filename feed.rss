@@ -6,12 +6,80 @@
     <description>Building Prometheus, a custom 2.5D engine and editor, on the way to Forgotten Memories, Endless Abyss.</description>
     <language>en</language>
     <atom:link href="https://miketec-ra.github.io/prometheus-devlog/feed.rss" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sun, 25 Oct 2026 06:39:13 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 29 Oct 2026 17:29:45 GMT</lastBuildDate>
+    <item>
+      <title>A real phone, and scene saving done</title>
+      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-29-a-real-phone/</link>
+      <guid isPermaLink="false">prometheus-devlog:2026-10-29-a-real-phone</guid>
+      <pubDate>Thu, 29 Oct 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<p>Last time the phone app had only ever run on an emulator, and scene saving had a few gaps left. This week the app went onto my own phone, the gaps are closed, and DD-ReForged is built as far as I can take it on my own.</p>
+<h2>On a real phone</h2>
+<p>My phone is a Galaxy Z Fold 7, so I got two screens to test on: the big inner one and the tall, narrow cover screen. I installed the app over Wi-Fi straight from my PC, then pointed it at Personal Forge on my home network.</p>
+<p>The very first sign-in failed, and it was a good failure to find. To sign in, Forge gives the phone a short code and the address of a page to approve it on. Forge hadn&#39;t been told its own home-network address, so it handed the phone <code>localhost</code>, which on a phone means the phone itself. The app was right to refuse to open that, but then it gave up without showing the code, so I had no way to approve it from the PC either. Now, if the app can&#39;t safely open the approval page, it still shows the code and tells you to approve it on your PC. I also gave Forge its proper home-network address.</p>
+<p>After that, everything I tried worked: the inbox, the repos, the branches, the boards and a card&#39;s discussion. Two more things turned up:</p>
+<ul>
+<li><strong>Settings → Notifications</strong> had nothing on Forge&#39;s side to talk to. Forge now keeps notification preferences for each person, and the phone reads them from there.</li>
+<li><strong>The cover screen.</strong> On the narrow screen, the &quot;Edit server&quot; button grew two rows tall whenever the connection test result appeared next to it. The result now sits on its own row under the buttons, the way the design always had it.</li>
+</ul>
+<p>Forge&#39;s branch list also has a time limit now, so a slow repo can&#39;t leave the phone waiting forever.</p>
+<p>The fixed build went onto the phone as an update, so I didn&#39;t have to sign in again. One mystery is still open: for about five minutes one afternoon, the phone couldn&#39;t reach my PC at all, then it recovered on its own. I&#39;ve noted it and I&#39;m keeping an eye out.</p>
+<h2>Scene saving, finished</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-29-a-real-phone/held-in-hierarchy.png" alt="The Hierarchy with a banner saying some records couldn&#39;t be restored, and a Held group holding two items"></p>
+<p>In the last post, the engine learned to hold on to anything in a scene it can&#39;t load and save it back untouched. This week I finished the part you can see. When a scene has held items, the editor shows a banner and gives them their own <strong>Held</strong> group in the Hierarchy. Each one is marked as either missing (its plugin isn&#39;t in this build) or unavailable (its plugin is there but couldn&#39;t load it).</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-29-a-real-phone/held-inspector.png" alt="The Inspector showing a held item read-only: it is kept and saved exactly as it was written"></p>
+<p>Selecting one shows exactly what was saved, read-only. You can delete it, but only after a confirm that spells out what you&#39;re losing.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-29-a-real-phone/held-delete.png" alt="The delete confirmation for a held item"></p>
+<p>None of this ever shows up for players; the markers only exist in the editor.</p>
+<p>To prove it all works, I ran the full loop against a real backend and editor: open a scene with held items, save it, load a later save back from the database rather than the browser&#39;s copy, delete one with the confirm, and reload. All 20 checks passed.</p>
+<p>That run turned up one more mismatch. The editor and the game disagreed about physics that had been switched off: in one case the editor still built a physics body the game wouldn&#39;t, and in another it was the other way round. They now agree. The editor&#39;s list of avatars and the server&#39;s catalogue also now always give the same entry for the same name.</p>
+<p>With that, scene saving is done, and it&#39;s safe for a plugin to be switched off without taking anyone&#39;s work with it.</p>
+<h2>DD-ReForged: built as far as I can take it</h2>
+<p>I went through DD-ReForged again against everything I want it to do, and every piece I can build is built. What&#39;s left is on my side: a code-signing certificate so Windows stops warning about the installer, a real Linux desktop to check the tray on, and handing the team build to the people who&#39;ll use it.</p>
+<p>Builds 0.3.9 and 0.3.10 went onto my PC in place, with backups first. Two smaller fixes made it in:</p>
+<ul>
+<li>If a save fails because of a database error partway through, DD-ReForged now says so plainly and logs it, instead of failing with a vague message.</li>
+<li>If you open Forge&#39;s approve-a-device page while you&#39;re signed out, signing in now brings you back to that page instead of dropping you on the home page.</li>
+</ul>
+<h2>Next</h2>
+<p>The engine, for real this time. Scenes are safe now, so the next step is either the plugin platform itself or the export targets for phone and Steam builds.</p>
+]]></description>
+      <content:encoded><![CDATA[<p>Last time the phone app had only ever run on an emulator, and scene saving had a few gaps left. This week the app went onto my own phone, the gaps are closed, and DD-ReForged is built as far as I can take it on my own.</p>
+<h2>On a real phone</h2>
+<p>My phone is a Galaxy Z Fold 7, so I got two screens to test on: the big inner one and the tall, narrow cover screen. I installed the app over Wi-Fi straight from my PC, then pointed it at Personal Forge on my home network.</p>
+<p>The very first sign-in failed, and it was a good failure to find. To sign in, Forge gives the phone a short code and the address of a page to approve it on. Forge hadn&#39;t been told its own home-network address, so it handed the phone <code>localhost</code>, which on a phone means the phone itself. The app was right to refuse to open that, but then it gave up without showing the code, so I had no way to approve it from the PC either. Now, if the app can&#39;t safely open the approval page, it still shows the code and tells you to approve it on your PC. I also gave Forge its proper home-network address.</p>
+<p>After that, everything I tried worked: the inbox, the repos, the branches, the boards and a card&#39;s discussion. Two more things turned up:</p>
+<ul>
+<li><strong>Settings → Notifications</strong> had nothing on Forge&#39;s side to talk to. Forge now keeps notification preferences for each person, and the phone reads them from there.</li>
+<li><strong>The cover screen.</strong> On the narrow screen, the &quot;Edit server&quot; button grew two rows tall whenever the connection test result appeared next to it. The result now sits on its own row under the buttons, the way the design always had it.</li>
+</ul>
+<p>Forge&#39;s branch list also has a time limit now, so a slow repo can&#39;t leave the phone waiting forever.</p>
+<p>The fixed build went onto the phone as an update, so I didn&#39;t have to sign in again. One mystery is still open: for about five minutes one afternoon, the phone couldn&#39;t reach my PC at all, then it recovered on its own. I&#39;ve noted it and I&#39;m keeping an eye out.</p>
+<h2>Scene saving, finished</h2>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-29-a-real-phone/held-in-hierarchy.png" alt="The Hierarchy with a banner saying some records couldn&#39;t be restored, and a Held group holding two items"></p>
+<p>In the last post, the engine learned to hold on to anything in a scene it can&#39;t load and save it back untouched. This week I finished the part you can see. When a scene has held items, the editor shows a banner and gives them their own <strong>Held</strong> group in the Hierarchy. Each one is marked as either missing (its plugin isn&#39;t in this build) or unavailable (its plugin is there but couldn&#39;t load it).</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-29-a-real-phone/held-inspector.png" alt="The Inspector showing a held item read-only: it is kept and saved exactly as it was written"></p>
+<p>Selecting one shows exactly what was saved, read-only. You can delete it, but only after a confirm that spells out what you&#39;re losing.</p>
+<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-29-a-real-phone/held-delete.png" alt="The delete confirmation for a held item"></p>
+<p>None of this ever shows up for players; the markers only exist in the editor.</p>
+<p>To prove it all works, I ran the full loop against a real backend and editor: open a scene with held items, save it, load a later save back from the database rather than the browser&#39;s copy, delete one with the confirm, and reload. All 20 checks passed.</p>
+<p>That run turned up one more mismatch. The editor and the game disagreed about physics that had been switched off: in one case the editor still built a physics body the game wouldn&#39;t, and in another it was the other way round. They now agree. The editor&#39;s list of avatars and the server&#39;s catalogue also now always give the same entry for the same name.</p>
+<p>With that, scene saving is done, and it&#39;s safe for a plugin to be switched off without taking anyone&#39;s work with it.</p>
+<h2>DD-ReForged: built as far as I can take it</h2>
+<p>I went through DD-ReForged again against everything I want it to do, and every piece I can build is built. What&#39;s left is on my side: a code-signing certificate so Windows stops warning about the installer, a real Linux desktop to check the tray on, and handing the team build to the people who&#39;ll use it.</p>
+<p>Builds 0.3.9 and 0.3.10 went onto my PC in place, with backups first. Two smaller fixes made it in:</p>
+<ul>
+<li>If a save fails because of a database error partway through, DD-ReForged now says so plainly and logs it, instead of failing with a vague message.</li>
+<li>If you open Forge&#39;s approve-a-device page while you&#39;re signed out, signing in now brings you back to that page instead of dropping you on the home page.</li>
+</ul>
+<h2>Next</h2>
+<p>The engine, for real this time. Scenes are safe now, so the next step is either the plugin platform itself or the export targets for phone and Steam builds.</p>
+]]></content:encoded>
+    </item>
     <item>
       <title>Forge in my pocket, and scenes that forget nothing</title>
       <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-25-forge-in-my-pocket/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-25-forge-in-my-pocket</guid>
-      <pubDate>Sun, 25 Oct 2026 06:39:13 GMT</pubDate>
+      <pubDate>Sun, 25 Oct 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>Two days ago the phone app was nineteen drawings in Figma. Last night it signed in to my Forge, read a pull request, left a comment, approved it and merged it, all on an Android emulator. Along the way Forge learned to push updates as they happen, and I spent part of the day on something less flashy that matters more for the game: making sure a scene can&#39;t quietly lose data.</p>
 <h2>The phone app is real</h2>
 <p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/phone-inbox.png" alt="The phone&#39;s inbox: a card assigned and a new review comment, with Reviews and Boards filters"></p>

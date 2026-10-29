@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A real phone, and scene saving done · Prometheus devlog</title>
+<meta name="description" content="The DD-ReForged phone app left the emulator for my own phone and found three bugs on the way, scene saving is finished with held items you can see but not lose, and DD-ReForged is as done as I can make it.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="A real phone, and scene saving done">
+<meta property="og:description" content="The DD-ReForged phone app left the emulator for my own phone and found three bugs on the way, scene saving is finished with held items you can see but not lose, and DD-ReForged is as done as I can make it.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-29-a-real-phone/">
+<meta property="og:image" content="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-29-a-real-phone/held-in-hierarchy.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>A real phone, and scene saving done</h1>
+    <p class="meta"><time datetime="2026-10-29">October 29, 2026</time> · 4 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#on-a-real-phone">On a real phone</a></li><li><a href="#scene-saving-finished">Scene saving, finished</a></li><li><a href="#dd-reforged-built-as-far-as-i-can-take-it">DD-ReForged: built as far as I can take it</a></li><li><a href="#next">Next</a></li></ol></details>
+  <div class="prose">
+<p>Last time the phone app had only ever run on an emulator, and scene saving had a few gaps left. This week the app went onto my own phone, the gaps are closed, and DD-ReForged is built as far as I can take it on my own.</p>
+<h2 id="on-a-real-phone">On a real phone</h2>
+<p>My phone is a Galaxy Z Fold 7, so I got two screens to test on: the big inner one and the tall, narrow cover screen. I installed the app over Wi-Fi straight from my PC, then pointed it at Personal Forge on my home network.</p>
+<p>The very first sign-in failed, and it was a good failure to find. To sign in, Forge gives the phone a short code and the address of a page to approve it on. Forge hadn&#39;t been told its own home-network address, so it handed the phone <code>localhost</code>, which on a phone means the phone itself. The app was right to refuse to open that, but then it gave up without showing the code, so I had no way to approve it from the PC either. Now, if the app can&#39;t safely open the approval page, it still shows the code and tells you to approve it on your PC. I also gave Forge its proper home-network address.</p>
+<p>After that, everything I tried worked: the inbox, the repos, the branches, the boards and a card&#39;s discussion. Two more things turned up:</p>
+<ul>
+<li><strong>Settings → Notifications</strong> had nothing on Forge&#39;s side to talk to. Forge now keeps notification preferences for each person, and the phone reads them from there.</li>
+<li><strong>The cover screen.</strong> On the narrow screen, the &quot;Edit server&quot; button grew two rows tall whenever the connection test result appeared next to it. The result now sits on its own row under the buttons, the way the design always had it.</li>
+</ul>
+<p>Forge&#39;s branch list also has a time limit now, so a slow repo can&#39;t leave the phone waiting forever.</p>
+<p>The fixed build went onto the phone as an update, so I didn&#39;t have to sign in again. One mystery is still open: for about five minutes one afternoon, the phone couldn&#39;t reach my PC at all, then it recovered on its own. I&#39;ve noted it and I&#39;m keeping an eye out.</p>
+<h2 id="scene-saving-finished">Scene saving, finished</h2>
+<figure><a class="zoom" href="../../images/2026-10-29-a-real-phone/held-in-hierarchy.png" data-caption="The Hierarchy with a banner saying some records couldn&#39;t be restored, and a Held group holding two items"><img loading="lazy" src="../../images/2026-10-29-a-real-phone/held-in-hierarchy.png" alt="The Hierarchy with a banner saying some records couldn&#39;t be restored, and a Held group holding two items"></a><figcaption>The Hierarchy with a banner saying some records couldn&#39;t be restored, and a Held group holding two items</figcaption></figure>
+<p>In the last post, the engine learned to hold on to anything in a scene it can&#39;t load and save it back untouched. This week I finished the part you can see. When a scene has held items, the editor shows a banner and gives them their own <strong>Held</strong> group in the Hierarchy. Each one is marked as either missing (its plugin isn&#39;t in this build) or unavailable (its plugin is there but couldn&#39;t load it).</p>
+<figure><a class="zoom" href="../../images/2026-10-29-a-real-phone/held-inspector.png" data-caption="The Inspector showing a held item read-only: it is kept and saved exactly as it was written"><img loading="lazy" src="../../images/2026-10-29-a-real-phone/held-inspector.png" alt="The Inspector showing a held item read-only: it is kept and saved exactly as it was written"></a><figcaption>The Inspector showing a held item read-only: it is kept and saved exactly as it was written</figcaption></figure>
+<p>Selecting one shows exactly what was saved, read-only. You can delete it, but only after a confirm that spells out what you&#39;re losing.</p>
+<figure><a class="zoom" href="../../images/2026-10-29-a-real-phone/held-delete.png" data-caption="The delete confirmation for a held item"><img loading="lazy" src="../../images/2026-10-29-a-real-phone/held-delete.png" alt="The delete confirmation for a held item"></a><figcaption>The delete confirmation for a held item</figcaption></figure>
+<p>None of this ever shows up for players; the markers only exist in the editor.</p>
+<p>To prove it all works, I ran the full loop against a real backend and editor: open a scene with held items, save it, load a later save back from the database rather than the browser&#39;s copy, delete one with the confirm, and reload. All 20 checks passed.</p>
+<p>That run turned up one more mismatch. The editor and the game disagreed about physics that had been switched off: in one case the editor still built a physics body the game wouldn&#39;t, and in another it was the other way round. They now agree. The editor&#39;s list of avatars and the server&#39;s catalogue also now always give the same entry for the same name.</p>
+<p>With that, scene saving is done, and it&#39;s safe for a plugin to be switched off without taking anyone&#39;s work with it.</p>
+<h2 id="dd-reforged-built-as-far-as-i-can-take-it">DD-ReForged: built as far as I can take it</h2>
+<p>I went through DD-ReForged again against everything I want it to do, and every piece I can build is built. What&#39;s left is on my side: a code-signing certificate so Windows stops warning about the installer, a real Linux desktop to check the tray on, and handing the team build to the people who&#39;ll use it.</p>
+<p>Builds 0.3.9 and 0.3.10 went onto my PC in place, with backups first. Two smaller fixes made it in:</p>
+<ul>
+<li>If a save fails because of a database error partway through, DD-ReForged now says so plainly and logs it, instead of failing with a vague message.</li>
+<li>If you open Forge&#39;s approve-a-device page while you&#39;re signed out, signing in now brings you back to that page instead of dropping you on the home page.</li>
+</ul>
+<h2 id="next">Next</h2>
+<p>The engine, for real this time. Scenes are safe now, so the next step is either the plugin platform itself or the export targets for phone and Steam builds.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <a class="older" href="../../posts/2026-10-25-forge-in-my-pocket/"><span>← Older</span>Forge in my pocket, and scenes that forget nothing</a>
+    
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#on-a-real-phone">On a real phone</a></li><li><a href="#scene-saving-finished">Scene saving, finished</a></li><li><a href="#dd-reforged-built-as-far-as-i-can-take-it">DD-ReForged: built as far as I can take it</a></li><li><a href="#next">Next</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>
