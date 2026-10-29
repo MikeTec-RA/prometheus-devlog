@@ -26,7 +26,7 @@ Where Prometheus stands and what has to happen before launch. Dates are hopes, n
   engine recording who made each edit (in code since October 22, switched on once I finish
   the setup steps)
 - Making scene saves safe before plugins can be turned off: anything the engine can't load is
-  kept and saved back untouched (mostly done October 24)
+  kept, shown read-only in the editor, and saved back untouched (done October 27)
 - Thinking through how the rest of the game gets built on the engine, starting with the
   living world: terrain that only exists once a player or a monster travels into it
 
