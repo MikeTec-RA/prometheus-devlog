@@ -1,11 +1,11 @@
 ---
 title: "Seal: licences for the tools"
-date: 2026-11-07
+date: 2026-11-01
 summary: The engine will be free once my game is built with it, and DD-ReForged now has real licences, with a free version that never locks. Forge issues the keys, the apps check in once a day, and the paid features are enforced on the server where they can't be patched out.
 cover: images/2026-11-07-seal-licences/desktop-licence.png
 ---
 
-A little over a week ago I tackled something I'd been putting off: licensing. I've put a lot of time into DD-ReForged and the tools around Prometheus, and I want to protect that before other people start using them. It went from plan to running on my own devices in a single day, and I wanted to think about how to tell you before writing it up.
+A few days ago I tackled something I'd been putting off: licensing. I've put a lot of time into DD-ReForged and the tools around Prometheus, and I want to protect that before other people start using them. It went from plan to running on my own devices in a single day, and I wanted to think about how to tell you before writing it up.
 
 ## The plan
 
@@ -34,7 +34,7 @@ I appreciate you all for your support.
 
 In keeping with the fire names, the licensing part of Forge is called **Seal**.
 
-![DD-ReForged's Licence tab: Pro active, the features it unlocks, and the three devices using it (from the design, before the app's new layout)](images/2026-11-07-seal-licences/desktop-licence.png)
+![DD-ReForged's Licence tab: Pro active, the features it unlocks, and the three devices using it (from the design)](images/2026-11-07-seal-licences/desktop-licence.png)
 
 - **A licence is a signed statement.** Forge signs something like "this account has Pro, these features, up to 3 devices, updates until next October". Every app carries Forge's public key, so it can check the signature without going online. Nobody can turn Free into Pro without Forge's private key, and that never leaves the server.
 - **A key is how you claim it.** You sign in, open Settings → Licence, and enter a key like `DDRF-XXXX-XXXX-XXXX-XXXX` once.
@@ -46,7 +46,7 @@ In keeping with the fire names, the licensing part of Forge is called **Seal**.
 
 When a feature isn't in your licence, it doesn't vanish. It shows as locked, says which tier unlocks it, and everything else keeps working.
 
-![A locked feature: connecting to a Forge server is a Pro feature, with Unlock with Pro (from the design, before the app's new layout)](images/2026-11-07-seal-licences/desktop-locked.png)
+![A locked feature: connecting to a Forge server is a Pro feature, with Unlock with Pro (from the design)](images/2026-11-07-seal-licences/desktop-locked.png)
 
 As usual, I drew all of these screens in Figma before building them: activating a key, the licence page, locked features, a failed check-in, the end of the offline grace, the device limit, and Forge's page for issuing and revoking keys.
 
@@ -78,4 +78,4 @@ I also settled the ground rules for the engine's plugin platform:
 
 ## Next
 
-Hand out the first beta keys once the last checks pass, and keep building the plugin platform, which is the next big step for the engine. My [latest post](posts/2026-11-07-the-night-i-deleted-my-own-forge/) has what's happened since.
+Hand out the first beta keys once the last checks pass, and keep building the plugin platform, which is the next big step for the engine.

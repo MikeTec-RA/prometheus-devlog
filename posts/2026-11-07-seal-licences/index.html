@@ -37,11 +37,11 @@
   <header class="post-head">
     <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
     <h1>Seal: licences for the tools</h1>
-    <p class="meta"><time datetime="2026-11-07">November 7, 2026</time> · 6 min read</p>
+    <p class="meta"><time datetime="2026-11-01">November 1, 2026</time> · 6 min read</p>
   </header>
   <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#the-plan">The plan</a></li><li><a href="#why-licences-at-all">Why licences at all</a></li><li><a href="#how-it-works">How it works</a></li><li><a href="#being-honest-about-protection">Being honest about protection</a></li><li><a href="#working-end-to-end">Working end to end</a></li><li><a href="#getting-it-to-testers">Getting it to testers</a></li><li><a href="#plugins">Plugins</a></li><li><a href="#next">Next</a></li></ol></details>
   <div class="prose">
-<p>A little over a week ago I tackled something I&#39;d been putting off: licensing. I&#39;ve put a lot of time into DD-ReForged and the tools around Prometheus, and I want to protect that before other people start using them. It went from plan to running on my own devices in a single day, and I wanted to think about how to tell you before writing it up.</p>
+<p>A few days ago I tackled something I&#39;d been putting off: licensing. I&#39;ve put a lot of time into DD-ReForged and the tools around Prometheus, and I want to protect that before other people start using them. It went from plan to running on my own devices in a single day, and I wanted to think about how to tell you before writing it up.</p>
 <h2 id="the-plan">The plan</h2>
 <ul>
 <li><strong>The engine will be free</strong> once I&#39;m done building my game with it. The custom parts I build for the game, not so much. But there will be a way, with documentation, to build your own plugins and extend the engine to your heart&#39;s content.</li>
@@ -59,7 +59,7 @@
 <p>I appreciate you all for your support.</p>
 <h2 id="how-it-works">How it works</h2>
 <p>In keeping with the fire names, the licensing part of Forge is called <strong>Seal</strong>.</p>
-<figure><a class="zoom" href="../../images/2026-11-07-seal-licences/desktop-licence.png" data-caption="DD-ReForged&#39;s Licence tab: Pro active, the features it unlocks, and the three devices using it (from the design, before the app&#39;s new layout)"><img loading="lazy" src="../../images/2026-11-07-seal-licences/desktop-licence.png" alt="DD-ReForged&#39;s Licence tab: Pro active, the features it unlocks, and the three devices using it (from the design, before the app&#39;s new layout)"></a><figcaption>DD-ReForged&#39;s Licence tab: Pro active, the features it unlocks, and the three devices using it (from the design, before the app&#39;s new layout)</figcaption></figure>
+<figure><a class="zoom" href="../../images/2026-11-07-seal-licences/desktop-licence.png" data-caption="DD-ReForged&#39;s Licence tab: Pro active, the features it unlocks, and the three devices using it (from the design)"><img loading="lazy" src="../../images/2026-11-07-seal-licences/desktop-licence.png" alt="DD-ReForged&#39;s Licence tab: Pro active, the features it unlocks, and the three devices using it (from the design)"></a><figcaption>DD-ReForged&#39;s Licence tab: Pro active, the features it unlocks, and the three devices using it (from the design)</figcaption></figure>
 <ul>
 <li><strong>A licence is a signed statement.</strong> Forge signs something like &quot;this account has Pro, these features, up to 3 devices, updates until next October&quot;. Every app carries Forge&#39;s public key, so it can check the signature without going online. Nobody can turn Free into Pro without Forge&#39;s private key, and that never leaves the server.</li>
 <li><strong>A key is how you claim it.</strong> You sign in, open Settings → Licence, and enter a key like <code>DDRF-XXXX-XXXX-XXXX-XXXX</code> once.</li>
@@ -69,7 +69,7 @@
 </ul>
 <figure><a class="zoom" href="../../images/2026-11-07-seal-licences/phone-licence.png" data-caption="The phone&#39;s licence page: Pro, the features, and the devices (from the design)"><img loading="lazy" src="../../images/2026-11-07-seal-licences/phone-licence.png" alt="The phone&#39;s licence page: Pro, the features, and the devices (from the design)"></a><figcaption>The phone&#39;s licence page: Pro, the features, and the devices (from the design)</figcaption></figure>
 <p>When a feature isn&#39;t in your licence, it doesn&#39;t vanish. It shows as locked, says which tier unlocks it, and everything else keeps working.</p>
-<figure><a class="zoom" href="../../images/2026-11-07-seal-licences/desktop-locked.png" data-caption="A locked feature: connecting to a Forge server is a Pro feature, with Unlock with Pro (from the design, before the app&#39;s new layout)"><img loading="lazy" src="../../images/2026-11-07-seal-licences/desktop-locked.png" alt="A locked feature: connecting to a Forge server is a Pro feature, with Unlock with Pro (from the design, before the app&#39;s new layout)"></a><figcaption>A locked feature: connecting to a Forge server is a Pro feature, with Unlock with Pro (from the design, before the app&#39;s new layout)</figcaption></figure>
+<figure><a class="zoom" href="../../images/2026-11-07-seal-licences/desktop-locked.png" data-caption="A locked feature: connecting to a Forge server is a Pro feature, with Unlock with Pro (from the design)"><img loading="lazy" src="../../images/2026-11-07-seal-licences/desktop-locked.png" alt="A locked feature: connecting to a Forge server is a Pro feature, with Unlock with Pro (from the design)"></a><figcaption>A locked feature: connecting to a Forge server is a Pro feature, with Unlock with Pro (from the design)</figcaption></figure>
 <p>As usual, I drew all of these screens in Figma before building them: activating a key, the licence page, locked features, a failed check-in, the end of the offline grace, the device limit, and Forge&#39;s page for issuing and revoking keys.</p>
 <h2 id="being-honest-about-protection">Being honest about protection</h2>
 <p>Anything checked only inside an app can be cracked by someone determined enough. Desktop apps and Android apps can both be unpacked and patched. So I put the real protection where it can&#39;t be patched out: on the server. The paid features that matter run on Forge, and Forge checks the licence before it does anything. A patched app that skips its own check just gets turned away.</p>
@@ -88,7 +88,7 @@
 <li>Every plugin carries a licence, and the ones that ship with the engine get a free one.</li>
 </ul>
 <h2 id="next">Next</h2>
-<p>Hand out the first beta keys once the last checks pass, and keep building the plugin platform, which is the next big step for the engine. My <a href="../../posts/2026-11-07-the-night-i-deleted-my-own-forge/">latest post</a> has what&#39;s happened since.</p>
+<p>Hand out the first beta keys once the last checks pass, and keep building the plugin platform, which is the next big step for the engine.</p>
 
   </div>
   <nav class="post-nav" aria-label="More posts">
