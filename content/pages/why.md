@@ -41,7 +41,7 @@ It's not out yet. I use all of it myself every day as the test bed, friends and 
 
 Basically nothing. I'm sick of paying an arm and a leg for software. DD-ReForged has a free version that never locks, at the low, low cost of registering for a free licence, and no, I won't sell your stuff. Registering is how I find out how many real users I've got. Pro will come with a year of updates, and you keep the app. The details are in [the licensing post](posts/2026-11-07-seal-licences/).
 
-Enough cups of coffee and I won't need to buy my own anymore.
+Buy me enough cups of coffee and I won't need to buy my own anymore. Did I mention I love to build cool tools? The coffee just keeps the forge lit.
 
 ## Where it goes from here
 

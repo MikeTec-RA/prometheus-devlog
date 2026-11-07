@@ -6,12 +6,12 @@
     <description>Building Prometheus, a custom 2.5D engine and editor, on the way to Forgotten Memories, Endless Abyss.</description>
     <language>en</language>
     <atom:link href="https://miketec-ra.github.io/prometheus-devlog/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sat, 07 Nov 2026 08:27:56 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 07 Nov 2026 09:13:31 GMT</lastBuildDate>
     <item>
       <title>The night I deleted my own Forge</title>
       <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-11-07-the-night-i-deleted-my-own-forge/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-11-07-the-night-i-deleted-my-own-forge</guid>
-      <pubDate>Sat, 07 Nov 2026 08:27:56 GMT</pubDate>
+      <pubDate>Sat, 07 Nov 2026 09:13:31 GMT</pubDate>
       <description><![CDATA[<p>A little after midnight on Halloween, a routine change to one of my git worktrees deleted most of Forge. Spooky timing. It ended up shaping everything I&#39;ve done since.</p>
 <h2>798 files, gone</h2>
 <p>I keep a lot of worktrees, and they share their dependency folders through Windows junctions, which are links that look like normal folders. Narrowing what one worktree checks out made git follow one of those junctions straight into my main checkout. It took out 798 tracked Forge files, Forge&#39;s dependencies, its settings file and the folder holding its keys.</p>
@@ -120,7 +120,7 @@
 <p>No, I won&#39;t sell your stuff. Registering is how I find out how many real users I&#39;ve got, and whether enough support comes my way to keep delivering what I can, when I can. I have a family and a full-time job. I&#39;m a web developer by day and a game developer at night and on weekends, and this is a passion project for me. I love to build stuff, and if I can make a few dollars from Pro, great.</p>
 <p>I use all of it myself, every day. I&#39;m the test bed, and the battle testing is done by friends and beta testers. If you want a custom solution for your team, we can talk enterprise, and see what custom features you&#39;d want me to build to help the ecosystem grow and get more robust.</p>
 <p>And to be honest, I&#39;m sick of paying an arm and a leg for software. This stuff will basically be free. Pro comes with a year of updates, and you keep the app. Enterprise? Well, that&#39;s not a thing... yet. Maybe in my wildest dreams. This is just for funzies, and some cool tools to use for development.</p>
-<p>Did I mention it will be almost free? Enough cups of coffee and I won&#39;t need to buy my own anymore.</p>
+<p>Did I mention it will be almost free? Buy me enough cups of coffee and I won&#39;t need to buy my own anymore.</p>
 <p>I appreciate you all for your support.</p>
 <h2>How it works</h2>
 <p>In keeping with the fire names, the licensing part of Forge is called <strong>Seal</strong>.</p>
@@ -169,7 +169,7 @@
 <p>No, I won&#39;t sell your stuff. Registering is how I find out how many real users I&#39;ve got, and whether enough support comes my way to keep delivering what I can, when I can. I have a family and a full-time job. I&#39;m a web developer by day and a game developer at night and on weekends, and this is a passion project for me. I love to build stuff, and if I can make a few dollars from Pro, great.</p>
 <p>I use all of it myself, every day. I&#39;m the test bed, and the battle testing is done by friends and beta testers. If you want a custom solution for your team, we can talk enterprise, and see what custom features you&#39;d want me to build to help the ecosystem grow and get more robust.</p>
 <p>And to be honest, I&#39;m sick of paying an arm and a leg for software. This stuff will basically be free. Pro comes with a year of updates, and you keep the app. Enterprise? Well, that&#39;s not a thing... yet. Maybe in my wildest dreams. This is just for funzies, and some cool tools to use for development.</p>
-<p>Did I mention it will be almost free? Enough cups of coffee and I won&#39;t need to buy my own anymore.</p>
+<p>Did I mention it will be almost free? Buy me enough cups of coffee and I won&#39;t need to buy my own anymore.</p>
 <p>I appreciate you all for your support.</p>
 <h2>How it works</h2>
 <p>In keeping with the fire names, the licensing part of Forge is called <strong>Seal</strong>.</p>

@@ -26,7 +26,7 @@ I use all of it myself, every day. I'm the test bed, and the battle testing is d
 
 And to be honest, I'm sick of paying an arm and a leg for software. This stuff will basically be free. Pro comes with a year of updates, and you keep the app. Enterprise? Well, that's not a thing... yet. Maybe in my wildest dreams. This is just for funzies, and some cool tools to use for development.
 
-Did I mention it will be almost free? Enough cups of coffee and I won't need to buy my own anymore.
+Did I mention it will be almost free? Buy me enough cups of coffee and I won't need to buy my own anymore.
 
 I appreciate you all for your support.
 
