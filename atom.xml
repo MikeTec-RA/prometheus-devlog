@@ -5,14 +5,14 @@
   <link href="https://miketec-ra.github.io/prometheus-devlog/" rel="alternate" type="text/html"/>
   <link href="https://miketec-ra.github.io/prometheus-devlog/atom.xml" rel="self" type="application/atom+xml"/>
   <id>https://miketec-ra.github.io/prometheus-devlog/</id>
-  <updated>2026-11-07T08:17:29.951Z</updated>
+  <updated>2026-11-07T08:27:56.631Z</updated>
   <author><name>MikeTec-RA</name></author>
   <entry>
     <title>The night I deleted my own Forge</title>
     <link href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-11-07-the-night-i-deleted-my-own-forge/" rel="alternate" type="text/html"/>
     <id>tag:miketec-ra.github.io,2026:prometheus-devlog:2026-11-07-the-night-i-deleted-my-own-forge</id>
-    <published>2026-11-07T08:17:29.951Z</published>
-    <updated>2026-11-07T08:17:29.951Z</updated>
+    <published>2026-11-07T08:27:56.631Z</published>
+    <updated>2026-11-07T08:27:56.631Z</updated>
     <content type="html">&lt;p&gt;A little after midnight on Halloween, a routine change to one of my git worktrees deleted most of Forge. Spooky timing. It ended up shaping everything I&amp;#39;ve done since.&lt;/p&gt;
 &lt;h2&gt;798 files, gone&lt;/h2&gt;
 &lt;p&gt;I keep a lot of worktrees, and they share their dependency folders through Windows junctions, which are links that look like normal folders. Narrowing what one worktree checks out made git follow one of those junctions straight into my main checkout. It took out 798 tracked Forge files, Forge&amp;#39;s dependencies, its settings file and the folder holding its keys.&lt;/p&gt;

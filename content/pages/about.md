@@ -22,6 +22,9 @@ tools:
 - **Frieze**, which turns 3D models into stylized sprite sheets
 - **Forge**, a companion workspace for version control, code review, issue tracking and the
   project's documentation
+- **DD-ReForged**, a local-first git tool for the desktop, VS Code and the phone
+
+[Why I'm building all this](why/) has the reasoning.
 
 The stack is open source throughout: Three.js and React in the editor, Rapier for physics,
 and a Node backend with MySQL.

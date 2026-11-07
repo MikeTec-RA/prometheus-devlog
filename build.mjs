@@ -4,9 +4,10 @@
 //                                      optional cover (an image path; the first image otherwise)
 //   content/pages/roadmap.md           the Roadmap tab; front matter: title, status
 //   content/pages/about.md             the About tab; front matter: title
+//   content/pages/why.md               the Why tab; front matter: title
 //   images/<post slug>/*.png           screenshots, referenced as images/<post slug>/<file>.png
 //
-// Output: index.html, posts/<slug>/index.html, roadmap/, gallery/, about/, 404.html, and
+// Output: index.html, posts/<slug>/index.html, why/, roadmap/, gallery/, about/, 404.html, and
 // feed.xml / feed.rss / atom.xml for GameDev.net and feed readers. Everything in the output
 // folders is regenerated; edit content/ and assets/, never the output.
 import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
@@ -22,6 +23,7 @@ const HOME_LEDE =
   'A custom 2.5D engine and editor, built for <em>Forgotten Memories, Endless Abyss</em>: an online MMO set in an endless dungeon that reshapes itself around its players.';
 const TABS = [
   { key: 'devlog', label: 'Devlog', path: '' },
+  { key: 'why', label: 'Why', path: 'why/' },
   { key: 'roadmap', label: 'Roadmap', path: 'roadmap/' },
   { key: 'gallery', label: 'Gallery', path: 'gallery/' },
   { key: 'about', label: 'About', path: 'about/' },
@@ -122,6 +124,7 @@ const posts = readdirSync('content/posts')
 
 const roadmap = readDoc('content/pages/roadmap.md');
 const about = readDoc('content/pages/about.md');
+const why = readDoc('content/pages/why.md');
 
 // ---- page shell ---------------------------------------------------------------------------
 
@@ -185,7 +188,7 @@ function write(path, html) {
 
 // ---- pages --------------------------------------------------------------------------------
 
-for (const dir of ['posts', 'roadmap', 'gallery', 'about']) rmSync(dir, { recursive: true, force: true });
+for (const dir of ['posts', 'why', 'roadmap', 'gallery', 'about']) rmSync(dir, { recursive: true, force: true });
 
 const postCard = (p, prefix, featured) => `<a class="card${featured ? ' featured' : ''}" href="${prefix}${p.path}">
   ${p.cover ? `<img class="card-cover" src="${prefix}${p.cover}" alt="" loading="lazy">` : `<div class="card-cover placeholder" aria-hidden="true">${ICONS.flame}</div>`}
@@ -305,6 +308,20 @@ ${gallery.map((g) => `<figure>
   <a class="zoom" href="../${g.src}" data-caption="${g.alt}"><img src="../${g.src}" alt="${g.alt}" loading="lazy"></a>
   <figcaption>${g.alt}<a href="../${g.post.path}">${escapeHtml(g.post.title)}</a></figcaption>
 </figure>`).join('\n')}
+</div>
+</div>`,
+}));
+
+write('why/index.html', page({
+  prefix: '../',
+  tab: 'why',
+  title: why.meta.title,
+  description: 'Why I am building Prometheus and my own git tools: local first, mine to keep, and basically free.',
+  url: 'why/',
+  main: `<div class="wrap narrow">
+<section class="page-head"><h1>${escapeHtml(why.meta.title)}</h1></section>
+<div class="prose">
+${rebase(marked.parse(why.body), '../')}
 </div>
 </div>`,
 }));

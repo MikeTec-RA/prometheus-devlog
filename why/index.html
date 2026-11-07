@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why I'm building all this · Prometheus devlog</title>
+<meta name="description" content="Why I am building Prometheus and my own git tools: local first, mine to keep, and basically free.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="Why I'm building all this">
+<meta property="og:description" content="Why I am building Prometheus and my own git tools: local first, mine to keep, and basically free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/why/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../atom.xml">
+<link rel="stylesheet" href="../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../">Devlog</a><a href="../why/" aria-current="page">Why</a><a href="../roadmap/">Roadmap</a><a href="../gallery/">Gallery</a><a href="../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="wrap narrow">
+<section class="page-head"><h1>Why I'm building all this</h1></section>
+<div class="prose">
+<h2>The mission</h2>
+<p>Make the game I&#39;ve wanted to make since college, and build tools I actually want to use on the way there. Tools that work on my own machine, that stay mine once I have them, and that don&#39;t charge me rent for the privilege. Then hand them to anyone else who&#39;s tired of the same things I am.</p>
+<p>I&#39;m a web developer by day and a game developer at night and on weekends. I have a family and a full-time job, and this is my passion project. I love to build stuff.</p>
+<h2>Why my own engine</h2>
+<p><a href="../posts/2026-09-04-the-game-behind-the-engine/"><em>Forgotten Memories, Endless Abyss</em></a> needs things an off-the-shelf engine doesn&#39;t hand you: a server that owns the simulation for everyone, the same simulation running on the player&#39;s device in a shipped game, and a pipeline that turns 3D models into pixel-art sprites that live in a 3D dungeon. It also has to run well on phones.</p>
+<p>So I&#39;m building <strong>Prometheus</strong>, on an all-open-source stack with no vendor royalties. The engine will be free once I&#39;m done building my game with it. The custom parts I build for the game, not so much, but there will be a way, with documentation, to build your own plugins and extend the engine to your heart&#39;s content.</p>
+<h2>Why my own git tools</h2>
+<p>Git tooling sucks right now. It&#39;s all over the place, and it&#39;s filled with AI nobody asked for.</p>
+<p>The best one I ever used went traitor. For years it had a desktop app that worked so well, with reviews that ran locally, in the app, offline. Then they took that away and forced everyone onto their website, which is garbage compared to what the desktop app was. Now it&#39;s web only, and token this and token that.</p>
+<p>I have nothing against using AI. I use it. But let me use the harness I already pay for and already chose. Don&#39;t make me pay you and them too, and for what? Stupid reviews and excessive PR comments from a bot?</p>
+<p>I liked my local review tooling the way it was. They took it away, so I&#39;ve spent months building a wholesale replacement, and I&#39;m going to release it for the world to use.</p>
+<h2>What I&#39;m building instead</h2>
+<p><strong>DD-ReForged</strong> is the git tool I wanted to keep having:</p>
+<ul>
+<li><strong>Local first.</strong> Reviews and boards live on your own PC and work offline. A server is an option, not the price of entry.</li>
+<li><strong>Where you work.</strong> A desktop app and a VS Code extension, plus a phone app for when you&#39;re away from your desk.</li>
+<li><strong>Hard to hurt yourself with.</strong> Every git write can be undone, because <a href="../posts/2026-11-07-the-night-i-deleted-my-own-forge/">I&#39;ve learned that one the hard way</a>.</li>
+<li><strong>AI on your terms.</strong> There&#39;s no AI bill built into it. If you want an assistant involved, connect the one you already use, and it works through the same safety rules you do.</li>
+</ul>
+<p><strong>Forge</strong> is the optional server side, for when you want code review, boards and docs shared with other people.</p>
+<p>It&#39;s not out yet. I use all of it myself every day as the test bed, friends and beta testers do the battle testing, and the first testers are next.</p>
+<h2>What it will cost</h2>
+<p>Basically nothing. I&#39;m sick of paying an arm and a leg for software. DD-ReForged has a free version that never locks, at the low, low cost of registering for a free licence, and no, I won&#39;t sell your stuff. Registering is how I find out how many real users I&#39;ve got. Pro will come with a year of updates, and you keep the app. The details are in <a href="../posts/2026-11-07-seal-licences/">the licensing post</a>.</p>
+<p>Enough cups of coffee and I won&#39;t need to buy my own anymore.</p>
+<h2>Where it goes from here</h2>
+<p>This will be a helpful, fully supported tool, and there&#39;s more to come as people ask for it. If you need a new integration, or a way to run some other part of your workflow in local mode, tell me. That&#39;s how the list gets made.</p>
+<p>And if you want a custom setup for your team, we can talk about that too.</p>
+
+</div>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../feed.xml">RSS</a> · <a href="../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>
