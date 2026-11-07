@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The night I deleted my own Forge · Prometheus devlog</title>
+<meta name="description" content="A routine worktree change wiped 798 Forge files and a signing key I couldn't get back. So DD-ReForged got a full git toolkit where every write can be undone, and I've called a hold on game content until the tools are finished.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="The night I deleted my own Forge">
+<meta property="og:description" content="A routine worktree change wiped 798 Forge files and a signing key I couldn't get back. So DD-ReForged got a full git toolkit where every write can be undone, and I've called a hold on game content until the tools are finished.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://miketec-ra.github.io/prometheus-devlog/posts/2026-11-07-the-night-i-deleted-my-own-forge/">
+<meta property="og:image" content="https://miketec-ra.github.io/prometheus-devlog/images/2026-11-07-the-night-i-deleted-my-own-forge/phone-branch-graph.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>The night I deleted my own Forge</h1>
+    <p class="meta"><time datetime="2026-11-07">November 7, 2026</time> · 5 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#798-files-gone">798 files, gone</a></li><li><a href="#every-git-write-can-be-undone">Every git write can be undone</a></li><li><a href="#a-new-look-and-boards-that-travel">A new look, and boards that travel</a></li><li><a href="#the-phone">The phone</a></li><li><a href="#forge-grows-up">Forge grows up</a></li><li><a href="#back-in-the-editor">Back in the editor</a></li><li><a href="#tools-first">Tools first</a></li><li><a href="#next">Next</a></li></ol></details>
+  <div class="prose">
+<p>A little after midnight on Halloween, a routine change to one of my git worktrees deleted most of Forge. Spooky timing. It ended up shaping everything I&#39;ve done since.</p>
+<h2 id="798-files-gone">798 files, gone</h2>
+<p>I keep a lot of worktrees, and they share their dependency folders through Windows junctions, which are links that look like normal folders. Narrowing what one worktree checks out made git follow one of those junctions straight into my main checkout. It took out 798 tracked Forge files, Forge&#39;s dependencies, its settings file and the folder holding its keys.</p>
+<p>Git brought the tracked files back in seconds. Everything else was harder:</p>
+<ul>
+<li>I rebuilt the settings file with new keys.</li>
+<li>Forge&#39;s sign-in key was gone, so every device had to sign in again.</li>
+<li>The key that signs DD-ReForged&#39;s licences couldn&#39;t be recovered at all. I made a new one, and the desktop app, the phone app and the editor now trust it alongside the old one.</li>
+</ul>
+<p>Nothing I&#39;d written was lost, but it was closer than I like. Now a weekly backup copies my untracked secrets, both databases and a verified bundle of every branch and tag, and a quick git-only backup runs before every merge.</p>
+<h2 id="every-git-write-can-be-undone">Every git write can be undone</h2>
+<p>A few hours later I was planning the fix. If my own git tool can&#39;t protect me from a night like that, it isn&#39;t done. DD-ReForged 0.3.16 and 0.3.17 grew a full git toolkit, built around one rule: anything that changes a repo has to be recoverable.</p>
+<ul>
+<li><strong>Every write is recorded.</strong> Each one saves a journal line and a snapshot of the refs first.</li>
+<li><strong>Recovery centre.</strong> Browse the reflogs, saved refs and the journal, and undo a ref move. Pruning makes you type a word first.</li>
+<li><strong>Lost and found.</strong> Dangling commits and dropped stashes can come back.</li>
+<li><strong>Destructive commands got softer.</strong> <code>clean</code> moves files to quarantine instead of deleting them, and <code>reset --hard</code> and discarding changes both save a copy first.</li>
+<li><strong>Backup centre.</strong> Verified bundles and mirrors, kept outside any repo.</li>
+<li><strong>The junction guard.</strong> Removing or repairing a worktree now refuses to reach through a link. That&#39;s the exact mistake from Halloween, with tests against real git for a junction at a tracked folder and a junction below a junction.</li>
+</ul>
+<p>There&#39;s also plenty of everyday git: history search with blame and line history, a commit composer, local-only merges, tags, remotes, a panel for stuck operations and conflicts, and a safe force push. An MCP server lets an AI coding assistant work through the same rules, with the protected-branch override off by default. I&#39;ve pushed the Prometheus repo through DD-ReForged itself, too.</p>
+<p>Repairing my own repo was the real test. It has 22 orphaned pack files, and an early version of the repair would have let any tool&#39;s garbage collection delete 446 objects that exist nowhere else. I caught that before it ran. Trying hard to break things before merging also found ways that Send to Forge could lose data, three rounds of them. Passing tests alone would have shipped all of it.</p>
+<p>Then I walked every workflow in the desktop app with real clicks against a throwaway Forge. No work was lost, but it found bugs worth fixing, including a leftover lock file that stopped the app from opening and a Create tag button that wrote to Forge&#39;s copy while the screen said local.</p>
+<h2 id="a-new-look-and-boards-that-travel">A new look, and boards that travel</h2>
+<p>0.3.17 also rearranged the app. Every page now fits in one bar, or a left rail if you&#39;d rather, and Wake and the boards get the whole window. Wake opens from its last known graph and only reads what&#39;s new, and the branch list stays fast past 1,000 branches. I know because the Prometheus repo had 1,013 of them, until I cleared out 1,004 merged ones.</p>
+<p>Boards and cards now work across your own PC and Forge. Cards can hold attachments, images and safe HTML, and a deleted card or board on Forge sticks around for 30 days in case you want it back. A notifications bell and tabs above the toolbar are merged and waiting for the next build.</p>
+<h2 id="the-phone">The phone</h2>
+<figure><a class="zoom" href="../../images/2026-11-07-the-night-i-deleted-my-own-forge/phone-branch-graph.png" data-caption="The phone&#39;s branch viewer: commit history as a continuous graph, with a Graph and List switch (from the design)"><img loading="lazy" src="../../images/2026-11-07-the-night-i-deleted-my-own-forge/phone-branch-graph.png" alt="The phone&#39;s branch viewer: commit history as a continuous graph, with a Graph and List switch (from the design)"></a><figcaption>The phone&#39;s branch viewer: commit history as a continuous graph, with a Graph and List switch (from the design)</figcaption></figure>
+<p>The phone got a branch viewer with a continuous commit graph, plus commit details and making or deleting a branch on origin. It also got line comments, long-press to move a card, formatted Markdown and importing a photo into your avatar. App lock now uses the device&#39;s own lock and blanks the preview in your recent apps.</p>
+<p>I have to be honest here: the newest of this hasn&#39;t reached my Fold yet, and app lock has only been tried on an emulator with a PIN. Fingerprint, face and folding are still to test.</p>
+<h2 id="forge-grows-up">Forge grows up</h2>
+<figure><a class="zoom" href="../../images/2026-11-07-the-night-i-deleted-my-own-forge/forge-audit.png" data-caption="Forge&#39;s audit log: who did what, when and how, with filters and exports"><img loading="lazy" src="../../images/2026-11-07-the-night-i-deleted-my-own-forge/forge-audit.png" alt="Forge&#39;s audit log: who did what, when and how, with filters and exports"></a><figcaption>Forge&#39;s audit log: who did what, when and how, with filters and exports</figcaption></figure>
+<p>Forge now keeps an audit log of who did what, when and how, and you can check your own under <strong>My activity</strong>. Almost every Forge page now works on a phone as well.</p>
+<p>It&#39;s also getting ready to leave my PC. I&#39;ve had a hosted Forge running in a Podman pod with MySQL, Caddy and Tailscale, reachable only on my private network. I haven&#39;t moved over yet. That comes after the testers&#39; pieces are in place: invites that carry a licence, a list of who may sign up, a page for tracking testers, and a Downloads page that only serves builds to people with a licence.</p>
+<h2 id="back-in-the-editor">Back in the editor</h2>
+<figure><a class="zoom" href="../../images/2026-11-07-the-night-i-deleted-my-own-forge/editor-sign-in.png" data-caption="The editor&#39;s new sign-in screen, with GitHub or a Forge password"><img loading="lazy" src="../../images/2026-11-07-the-night-i-deleted-my-own-forge/editor-sign-in.png" alt="The editor&#39;s new sign-in screen, with GitHub or a Forge password"></a><figcaption>The editor&#39;s new sign-in screen, with GitHub or a Forge password</figcaption></figure>
+<p>The plugin platform moved forward as well. Plugins now say where their panels go, add status items, send notifications and get a say before the app quits. They also declare their permissions, and the editor limits their menus, commands and panels to match.</p>
+<p>The editor has a real sign-in screen and a new desktop installer, 0.4.0. Forge can also sign in players from a shipped game now, the first small piece of the game itself touching these tools.</p>
+<p>Scene saving got more careful too. A whole-scene save keeps records it wasn&#39;t sent, a slow asset listing no longer blocks Load and Save, offline deletes survive a reload, and a half-saved script no longer gets imported.</p>
+<h2 id="tools-first">Tools first</h2>
+<p>I also made a call that day: no new game content until the tools and every app work properly. I don&#39;t want to build a game world on tools I can&#39;t trust. The full test suite is past 27,000 tests now, and the game comes next once these pass.</p>
+<h2 id="next">Next</h2>
+<p>Build 0.3.18 and get the newest app onto my phone. Then the last checks before the first testers: a run as a brand new Windows user, the newer MySQL version, and a real build going through the Downloads page.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <a class="older" href="../../posts/2026-10-29-a-real-phone/"><span>← Older</span>A real phone, and scene saving done</a>
+    
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#798-files-gone">798 files, gone</a></li><li><a href="#every-git-write-can-be-undone">Every git write can be undone</a></li><li><a href="#a-new-look-and-boards-that-travel">A new look, and boards that travel</a></li><li><a href="#the-phone">The phone</a></li><li><a href="#forge-grows-up">Forge grows up</a></li><li><a href="#back-in-the-editor">Back in the editor</a></li><li><a href="#tools-first">Tools first</a></li><li><a href="#next">Next</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>
