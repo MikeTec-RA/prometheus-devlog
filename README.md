@@ -1,6 +1,6 @@
-# Prometheus devlog
+# PrometheanWorks devlog
 
-Source for the Prometheus devlog site and its feeds. Markdown in `content/` becomes a small
+Source for the PrometheanWorks devlog site and its feeds. Markdown in `content/` becomes a small
 static site (Devlog, Why, Roadmap, Gallery and About tabs) plus RSS and Atom feeds. GitHub Pages
 serves it, and GameDev.net can import new posts from the feed.
 

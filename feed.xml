@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Prometheus devlog</title>
+    <title>PrometheanWorks devlog</title>
     <link>https://blog.prometheanworks.dev/</link>
     <description>Building Prometheus, a custom 2.5D engine and editor, on the way to Forgotten Memories, Endless Abyss.</description>
     <language>en</language>
     <atom:link href="https://blog.prometheanworks.dev/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Mon, 09 Nov 2026 23:09:21 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 09 Nov 2026 23:22:41 GMT</lastBuildDate>
     <item>
       <title>Watchfire, and a better Wake</title>
       <link>https://blog.prometheanworks.dev/posts/2026-11-09-watchfire-and-a-better-wake/</link>

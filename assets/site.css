@@ -1,4 +1,4 @@
-/* Prometheus devlog. Colours are tokens; dark mode follows the system unless the visitor picks
+/* PrometheanWorks devlog. Colours are tokens; dark mode follows the system unless the visitor picks
    one with the nav toggle (data-theme on <html>). */
 :root {
   --bg: #faf8f5;

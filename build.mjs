@@ -14,7 +14,7 @@ import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'nod
 import { marked } from 'marked';
 
 const SITE_URL = 'https://blog.prometheanworks.dev/';
-const SITE_TITLE = 'Prometheus devlog';
+const SITE_TITLE = 'PrometheanWorks devlog';
 const SITE_DESCRIPTION =
   'Building Prometheus, a custom 2.5D engine and editor, on the way to Forgotten Memories, Endless Abyss.';
 const AUTHOR = 'MikeTec-RA';
@@ -161,7 +161,7 @@ ${image ? `<meta property="og:image" content="${new URL(image, SITE_URL)}">\n<me
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-nav">
   <div class="nav-inner">
-    <a class="brand" href="${prefix}">${ICONS.flame}<span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <a class="brand" href="${prefix}">${ICONS.flame}<span>PrometheanWorks</span><span class="brand-sub">devlog</span></a>
     <nav class="tabs" aria-label="Sections">${tabs}</nav>
     <div class="nav-actions">
       <a class="icon-btn" href="${prefix}feed.xml" title="RSS feed" aria-label="RSS feed">${ICONS.rss}</a>
@@ -298,7 +298,7 @@ write('gallery/index.html', page({
   prefix: '../',
   tab: 'gallery',
   title: 'Gallery',
-  description: 'Screenshots from the Prometheus devlog.',
+  description: 'Screenshots from the PrometheanWorks devlog.',
   image: gallery[0]?.src,
   url: 'gallery/',
   main: `<div class="wrap wide">
