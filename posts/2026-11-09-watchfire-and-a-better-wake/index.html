@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Watchfire, and a better Wake · Prometheus devlog</title>
+<meta name="description" content="DD-ReForged now opens on Watchfire, one page for everything that needs you, and Wake learned to show every worktree's changes and read a whole stack of commits as one.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="Watchfire, and a better Wake">
+<meta property="og:description" content="DD-ReForged now opens on Watchfire, one page for everything that needs you, and Wake learned to show every worktree's changes and read a whole stack of commits as one.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.prometheanworks.dev/posts/2026-11-09-watchfire-and-a-better-wake/">
+<meta property="og:image" content="https://blog.prometheanworks.dev/images/2026-11-09-watchfire-and-a-better-wake/wake-worktree-wip.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../why/">Why</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>Watchfire, and a better Wake</h1>
+    <p class="meta"><time datetime="2026-11-09">November 9, 2026</time> · 2 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#watchfire">Watchfire</a></li><li><a href="#wake-sees-your-worktrees">Wake sees your worktrees</a></li><li><a href="#reading-a-stack-as-one-change">Reading a stack as one change</a></li><li><a href="#the-rest-of-the-polish">The rest of the polish</a></li><li><a href="#next">Next</a></li></ol></details>
+  <div class="prose">
+<p>Yesterday was about getting Forge onto the internet. Today is about the app I spend all day in. DD-ReForged went from 0.3.18 to 0.3.22 in a couple of days, and it&#39;s on my PC, in VS Code and on my phone.</p>
+<h2 id="watchfire">Watchfire</h2>
+<p>When you lead a team, the first question every morning is what&#39;s burning. So DD-ReForged now opens on <strong>Watchfire</strong>, a single page for everything that needs you, across every repo.</p>
+<ul>
+<li><strong>Pull requests sorted by what they need:</strong> resolve conflicts, changes requested, ready to merge, waiting for review, drafts and snoozed.</li>
+<li><strong>Work in progress</strong> across every repo, with staged and unstaged counts for each worktree.</li>
+<li><strong>Personal and Team</strong> views, so you can switch between what&#39;s yours and what&#39;s everyone&#39;s.</li>
+<li><strong>GitHub issues</strong> and repo groups, plus snoozing something for a day, a week or until a date you pick.</li>
+</ul>
+<p>Each repo shows up as it loads, and a slow or broken one gets its own line instead of holding up the rest. The numbers now say what they&#39;re actually counting, too. I&#39;d been glancing at a badge without being sure what it meant, and that&#39;s no good on the page you open first.</p>
+<h2 id="wake-sees-your-worktrees">Wake sees your worktrees</h2>
+<figure><a class="zoom" href="../../images/2026-11-09-watchfire-and-a-better-wake/wake-worktree-wip.png" data-caption="Wake&#39;s commit graph with a work-in-progress row for the main checkout and one for a worktree, with an Open worktree button"><img loading="lazy" src="../../images/2026-11-09-watchfire-and-a-better-wake/wake-worktree-wip.png" alt="Wake&#39;s commit graph with a work-in-progress row for the main checkout and one for a worktree, with an Open worktree button"></a><figcaption>Wake&#39;s commit graph with a work-in-progress row for the main checkout and one for a worktree, with an Open worktree button</figcaption></figure>
+<p>I live in worktrees, and Wake only ever showed the changes in the one I had open. Now every worktree gets its own work-in-progress row, sitting right above the commit it&#39;s based on, with a button to open it.</p>
+<h2 id="reading-a-stack-as-one-change">Reading a stack as one change</h2>
+<p>This is my favourite of the bunch. Ctrl-click a few commits, or pick <strong>Review stack</strong> from a commit or branch, and Wake shows all their file changes together. An unbroken run of commits gets one true combined diff. If you skip some in the middle, you get a per-file list instead, clearly labelled as not a combined diff, because I&#39;d rather it said so than pretended.</p>
+<h2 id="the-rest-of-the-polish">The rest of the polish</h2>
+<ul>
+<li><strong>Diffs</strong> have syntax colours and can use your VS Code theme, in reviews and in Wake.</li>
+<li><strong>The graph</strong> now has lines that turn into their lane with one rounded corner, so it&#39;s easier to follow.</li>
+<li><strong>Wake&#39;s toolbar</strong> is three tidy groups and a View menu.</li>
+<li><strong>Right-click menus</strong> on files: open in VS Code or your own editor, reveal the folder, open your diff tool, see history or blame, copy paths, and restore from a commit.</li>
+<li><strong>Repo tabs</strong> can be closed in bulk and given a display name.</li>
+<li><strong>Reviews</strong> are clean capsule rows, with the description and files previewed beside the list.</li>
+</ul>
+<h2 id="next">Next</h2>
+<p>The accounts work from yesterday&#39;s post comes first, then the new layout across the rest of the screens, now that I&#39;ve approved the design.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <a class="older" href="../../posts/2026-11-08-forge-gets-a-real-address/"><span>← Older</span>Forge gets a real address</a>
+    
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#watchfire">Watchfire</a></li><li><a href="#wake-sees-your-worktrees">Wake sees your worktrees</a></li><li><a href="#reading-a-stack-as-one-change">Reading a stack as one change</a></li><li><a href="#the-rest-of-the-polish">The rest of the polish</a></li><li><a href="#next">Next</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>

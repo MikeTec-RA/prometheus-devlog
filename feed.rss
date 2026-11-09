@@ -6,7 +6,123 @@
     <description>Building Prometheus, a custom 2.5D engine and editor, on the way to Forgotten Memories, Endless Abyss.</description>
     <language>en</language>
     <atom:link href="https://blog.prometheanworks.dev/feed.rss" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Mon, 09 Nov 2026 22:59:47 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 09 Nov 2026 23:09:21 GMT</lastBuildDate>
+    <item>
+      <title>Watchfire, and a better Wake</title>
+      <link>https://blog.prometheanworks.dev/posts/2026-11-09-watchfire-and-a-better-wake/</link>
+      <guid isPermaLink="false">prometheus-devlog:2026-11-09-watchfire-and-a-better-wake</guid>
+      <pubDate>Mon, 09 Nov 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<p>Yesterday was about getting Forge onto the internet. Today is about the app I spend all day in. DD-ReForged went from 0.3.18 to 0.3.22 in a couple of days, and it&#39;s on my PC, in VS Code and on my phone.</p>
+<h2>Watchfire</h2>
+<p>When you lead a team, the first question every morning is what&#39;s burning. So DD-ReForged now opens on <strong>Watchfire</strong>, a single page for everything that needs you, across every repo.</p>
+<ul>
+<li><strong>Pull requests sorted by what they need:</strong> resolve conflicts, changes requested, ready to merge, waiting for review, drafts and snoozed.</li>
+<li><strong>Work in progress</strong> across every repo, with staged and unstaged counts for each worktree.</li>
+<li><strong>Personal and Team</strong> views, so you can switch between what&#39;s yours and what&#39;s everyone&#39;s.</li>
+<li><strong>GitHub issues</strong> and repo groups, plus snoozing something for a day, a week or until a date you pick.</li>
+</ul>
+<p>Each repo shows up as it loads, and a slow or broken one gets its own line instead of holding up the rest. The numbers now say what they&#39;re actually counting, too. I&#39;d been glancing at a badge without being sure what it meant, and that&#39;s no good on the page you open first.</p>
+<h2>Wake sees your worktrees</h2>
+<p><img src="https://blog.prometheanworks.dev/images/2026-11-09-watchfire-and-a-better-wake/wake-worktree-wip.png" alt="Wake&#39;s commit graph with a work-in-progress row for the main checkout and one for a worktree, with an Open worktree button"></p>
+<p>I live in worktrees, and Wake only ever showed the changes in the one I had open. Now every worktree gets its own work-in-progress row, sitting right above the commit it&#39;s based on, with a button to open it.</p>
+<h2>Reading a stack as one change</h2>
+<p>This is my favourite of the bunch. Ctrl-click a few commits, or pick <strong>Review stack</strong> from a commit or branch, and Wake shows all their file changes together. An unbroken run of commits gets one true combined diff. If you skip some in the middle, you get a per-file list instead, clearly labelled as not a combined diff, because I&#39;d rather it said so than pretended.</p>
+<h2>The rest of the polish</h2>
+<ul>
+<li><strong>Diffs</strong> have syntax colours and can use your VS Code theme, in reviews and in Wake.</li>
+<li><strong>The graph</strong> now has lines that turn into their lane with one rounded corner, so it&#39;s easier to follow.</li>
+<li><strong>Wake&#39;s toolbar</strong> is three tidy groups and a View menu.</li>
+<li><strong>Right-click menus</strong> on files: open in VS Code or your own editor, reveal the folder, open your diff tool, see history or blame, copy paths, and restore from a commit.</li>
+<li><strong>Repo tabs</strong> can be closed in bulk and given a display name.</li>
+<li><strong>Reviews</strong> are clean capsule rows, with the description and files previewed beside the list.</li>
+</ul>
+<h2>Next</h2>
+<p>The accounts work from yesterday&#39;s post comes first, then the new layout across the rest of the screens, now that I&#39;ve approved the design.</p>
+]]></description>
+      <content:encoded><![CDATA[<p>Yesterday was about getting Forge onto the internet. Today is about the app I spend all day in. DD-ReForged went from 0.3.18 to 0.3.22 in a couple of days, and it&#39;s on my PC, in VS Code and on my phone.</p>
+<h2>Watchfire</h2>
+<p>When you lead a team, the first question every morning is what&#39;s burning. So DD-ReForged now opens on <strong>Watchfire</strong>, a single page for everything that needs you, across every repo.</p>
+<ul>
+<li><strong>Pull requests sorted by what they need:</strong> resolve conflicts, changes requested, ready to merge, waiting for review, drafts and snoozed.</li>
+<li><strong>Work in progress</strong> across every repo, with staged and unstaged counts for each worktree.</li>
+<li><strong>Personal and Team</strong> views, so you can switch between what&#39;s yours and what&#39;s everyone&#39;s.</li>
+<li><strong>GitHub issues</strong> and repo groups, plus snoozing something for a day, a week or until a date you pick.</li>
+</ul>
+<p>Each repo shows up as it loads, and a slow or broken one gets its own line instead of holding up the rest. The numbers now say what they&#39;re actually counting, too. I&#39;d been glancing at a badge without being sure what it meant, and that&#39;s no good on the page you open first.</p>
+<h2>Wake sees your worktrees</h2>
+<p><img src="https://blog.prometheanworks.dev/images/2026-11-09-watchfire-and-a-better-wake/wake-worktree-wip.png" alt="Wake&#39;s commit graph with a work-in-progress row for the main checkout and one for a worktree, with an Open worktree button"></p>
+<p>I live in worktrees, and Wake only ever showed the changes in the one I had open. Now every worktree gets its own work-in-progress row, sitting right above the commit it&#39;s based on, with a button to open it.</p>
+<h2>Reading a stack as one change</h2>
+<p>This is my favourite of the bunch. Ctrl-click a few commits, or pick <strong>Review stack</strong> from a commit or branch, and Wake shows all their file changes together. An unbroken run of commits gets one true combined diff. If you skip some in the middle, you get a per-file list instead, clearly labelled as not a combined diff, because I&#39;d rather it said so than pretended.</p>
+<h2>The rest of the polish</h2>
+<ul>
+<li><strong>Diffs</strong> have syntax colours and can use your VS Code theme, in reviews and in Wake.</li>
+<li><strong>The graph</strong> now has lines that turn into their lane with one rounded corner, so it&#39;s easier to follow.</li>
+<li><strong>Wake&#39;s toolbar</strong> is three tidy groups and a View menu.</li>
+<li><strong>Right-click menus</strong> on files: open in VS Code or your own editor, reveal the folder, open your diff tool, see history or blame, copy paths, and restore from a commit.</li>
+<li><strong>Repo tabs</strong> can be closed in bulk and given a display name.</li>
+<li><strong>Reviews</strong> are clean capsule rows, with the description and files previewed beside the list.</li>
+</ul>
+<h2>Next</h2>
+<p>The accounts work from yesterday&#39;s post comes first, then the new layout across the rest of the screens, now that I&#39;ve approved the design.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Forge gets a real address</title>
+      <link>https://blog.prometheanworks.dev/posts/2026-11-08-forge-gets-a-real-address/</link>
+      <guid isPermaLink="false">prometheus-devlog:2026-11-08-forge-gets-a-real-address</guid>
+      <pubDate>Sun, 08 Nov 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[<p>Until this weekend, Forge lived at an address that only meant something on my own network. Now it has a real one, and so does this blog.</p>
+<h2>prometheanworks.dev</h2>
+<p>I bought <strong>prometheanworks.dev</strong> for the whole project and put Forge on it. I&#39;m still looking into proper server hosting, so for now I&#39;m self-hosting on Linux and reaching the internet through a Cloudflare tunnel, which means I didn&#39;t have to open anything on my home network. The web pages sit behind a second login on top of Forge&#39;s own.</p>
+<p>My local Forge data got copied across, I claimed my account on the hosted copy, and GitHub sign-in works there. DD-ReForged now has the address built in, with a switch if you&#39;d rather point it at your own server. The test I cared about most: my phone, off Wi-Fi, on cellular, signing in to Forge. It works.</p>
+<p>Development stays on my own PC. There&#39;s one self-hosted Forge, and that&#39;s all that&#39;s hosted for now. Updating it is one command, and it has a way back if an update fails.</p>
+<p>The devlog moved too. It now lives at <a href="https://blog.prometheanworks.dev/">blog.prometheanworks.dev</a>, and the old address redirects here. If you follow the RSS feed, it&#39;s worth updating the link.</p>
+<h2>Stoker</h2>
+<p>Running all of this had turned into a pile of console windows and commands I had to remember, so I built <strong>Stoker</strong>, in keeping with the fire names. It&#39;s one desktop window that starts and stops everything, shows the logs, and watches both the local stack and the hosted Forge. A button rebuilds and reinstalls DD-ReForged. It stores no secrets at all, so the dangerous jobs aren&#39;t buttons.</p>
+<h2>The phone</h2>
+<p>Last time I said app lock had only been tried on an emulator. It has now passed on my real phone, including the fingerprint and a wrong finger. When a session ends, the phone can now renew it with your fingerprint instead of going through a code and a browser again. The first sign-in on a phone still uses the code, and revoking a device on Forge still ends it.</p>
+<p>I also made the first properly signed Android build, which the phone needs before anyone else can install it.</p>
+<h2>The test that didn&#39;t pass</h2>
+<p>Before anyone else gets DD-ReForged, I want to see what a stranger sees, so I made a brand new Windows user and went through the whole thing from download to uninstall.</p>
+<p>It didn&#39;t pass. Some of what I meant to record never got recorded, so I&#39;m treating it as a baseline, and nobody gets a build until a run does pass. What it did do is convince me to redo accounts first.</p>
+<p>The new rule is simple: an account reaches whatever its own GitHub account can reach. You sign in to GitHub yourself, the sign-in stays on your PC, and no server token is involved. If you run your own server, the server decides what shows. The first pieces are in: the Repos page now tells the truth about what it can see, and when GitHub refuses a clone, fetch or push, the app says it was GitHub.</p>
+<h2>On the list</h2>
+<p>Three plans got written down this weekend:</p>
+<ul>
+<li><strong>Encrypted by default.</strong> Forge&#39;s data, in transit and at rest, and end to end where only the apps need to read it. I&#39;m being careful with that promise, because review diffs, search and git itself all run on the server and have to read the content. So it&#39;s layers, with the strict meaning kept for what no server feature needs.</li>
+<li><strong>One look.</strong> A shared theme across every app, so the tools feel like one family.</li>
+<li><strong>Every app updates itself,</strong> from a signed list on Forge. On Android you&#39;ll still get asked once, because Android always asks.</li>
+</ul>
+<h2>Next</h2>
+<p>Finish the accounts work, run the brand new user test again, and then the first testers.</p>
+]]></description>
+      <content:encoded><![CDATA[<p>Until this weekend, Forge lived at an address that only meant something on my own network. Now it has a real one, and so does this blog.</p>
+<h2>prometheanworks.dev</h2>
+<p>I bought <strong>prometheanworks.dev</strong> for the whole project and put Forge on it. I&#39;m still looking into proper server hosting, so for now I&#39;m self-hosting on Linux and reaching the internet through a Cloudflare tunnel, which means I didn&#39;t have to open anything on my home network. The web pages sit behind a second login on top of Forge&#39;s own.</p>
+<p>My local Forge data got copied across, I claimed my account on the hosted copy, and GitHub sign-in works there. DD-ReForged now has the address built in, with a switch if you&#39;d rather point it at your own server. The test I cared about most: my phone, off Wi-Fi, on cellular, signing in to Forge. It works.</p>
+<p>Development stays on my own PC. There&#39;s one self-hosted Forge, and that&#39;s all that&#39;s hosted for now. Updating it is one command, and it has a way back if an update fails.</p>
+<p>The devlog moved too. It now lives at <a href="https://blog.prometheanworks.dev/">blog.prometheanworks.dev</a>, and the old address redirects here. If you follow the RSS feed, it&#39;s worth updating the link.</p>
+<h2>Stoker</h2>
+<p>Running all of this had turned into a pile of console windows and commands I had to remember, so I built <strong>Stoker</strong>, in keeping with the fire names. It&#39;s one desktop window that starts and stops everything, shows the logs, and watches both the local stack and the hosted Forge. A button rebuilds and reinstalls DD-ReForged. It stores no secrets at all, so the dangerous jobs aren&#39;t buttons.</p>
+<h2>The phone</h2>
+<p>Last time I said app lock had only been tried on an emulator. It has now passed on my real phone, including the fingerprint and a wrong finger. When a session ends, the phone can now renew it with your fingerprint instead of going through a code and a browser again. The first sign-in on a phone still uses the code, and revoking a device on Forge still ends it.</p>
+<p>I also made the first properly signed Android build, which the phone needs before anyone else can install it.</p>
+<h2>The test that didn&#39;t pass</h2>
+<p>Before anyone else gets DD-ReForged, I want to see what a stranger sees, so I made a brand new Windows user and went through the whole thing from download to uninstall.</p>
+<p>It didn&#39;t pass. Some of what I meant to record never got recorded, so I&#39;m treating it as a baseline, and nobody gets a build until a run does pass. What it did do is convince me to redo accounts first.</p>
+<p>The new rule is simple: an account reaches whatever its own GitHub account can reach. You sign in to GitHub yourself, the sign-in stays on your PC, and no server token is involved. If you run your own server, the server decides what shows. The first pieces are in: the Repos page now tells the truth about what it can see, and when GitHub refuses a clone, fetch or push, the app says it was GitHub.</p>
+<h2>On the list</h2>
+<p>Three plans got written down this weekend:</p>
+<ul>
+<li><strong>Encrypted by default.</strong> Forge&#39;s data, in transit and at rest, and end to end where only the apps need to read it. I&#39;m being careful with that promise, because review diffs, search and git itself all run on the server and have to read the content. So it&#39;s layers, with the strict meaning kept for what no server feature needs.</li>
+<li><strong>One look.</strong> A shared theme across every app, so the tools feel like one family.</li>
+<li><strong>Every app updates itself,</strong> from a signed list on Forge. On Android you&#39;ll still get asked once, because Android always asks.</li>
+</ul>
+<h2>Next</h2>
+<p>Finish the accounts work, run the brand new user test again, and then the first testers.</p>
+]]></content:encoded>
+    </item>
     <item>
       <title>The night I deleted my own Forge</title>
       <link>https://blog.prometheanworks.dev/posts/2026-11-07-the-night-i-deleted-my-own-forge/</link>

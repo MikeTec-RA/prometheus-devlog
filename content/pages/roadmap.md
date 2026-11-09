@@ -30,7 +30,8 @@ Where Prometheus stands and what has to happen before launch. Dates are hopes, n
 - Licences for DD-ReForged and the editor plugins, with a free version that never locks; the
   engine will be free once my game is built with it (working end to end since October 29)
 - Finishing the tools before any new game content, decided October 31: a git toolkit where every
-  write can be undone (in DD-ReForged since October 31), a hosted Forge, and the first testers
+  write can be undone (in DD-ReForged since October 31), a hosted Forge (live on its own domain since November 8),
+  and the first testers
 - Thinking through how the rest of the game gets built on the engine, starting with the
   living world: terrain that only exists once a player or a monster travels into it
 

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forge gets a real address · Prometheus devlog</title>
+<meta name="description" content="I bought a domain and Forge moved in, a new desktop app runs the whole stack from one window, the phone signs in with a fingerprint, and the first run as a brand new user didn't pass.">
+<meta property="og:site_name" content="Prometheus devlog">
+<meta property="og:title" content="Forge gets a real address">
+<meta property="og:description" content="I bought a domain and Forge moved in, a new desktop app runs the whole stack from one window, the phone signs in with a fingerprint, and the first run as a brand new user didn't pass.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.prometheanworks.dev/posts/2026-11-08-forge-gets-a-real-address/">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Prometheus devlog" href="../../feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Prometheus devlog" href="../../atom.xml">
+<link rel="stylesheet" href="../../assets/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="../../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5.2-2.8 7.1C7.9 11 7 12.6 7 14.6A5 5 0 0 0 12 20a5 5 0 0 0 5-5.2c0-2.3-1.2-4-2.3-5.3-.4 1.5-1.1 2.4-2.1 2.9.6-3.4-.1-6.9-.6-10.4Z" fill="currentColor"/></svg><span>Prometheus</span><span class="brand-sub">devlog</span></a>
+    <nav class="tabs" aria-label="Sections"><a href="../../" aria-current="page">Devlog</a><a href="../../why/">Why</a><a href="../../roadmap/">Roadmap</a><a href="../../gallery/">Gallery</a><a href="../../about/">About</a></nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="../../feed.xml" title="RSS feed" aria-label="RSS feed"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4a15 15 0 0 1 15 15h-3A12 12 0 0 0 5 7V4Zm0 6a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6v-3Zm1.5 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" fill="currentColor"/></svg></a>
+      <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18V3Z" fill="currentColor"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="post-layout">
+<article class="post">
+  <header class="post-head">
+    <a class="back" href="../../"><span aria-hidden="true">←</span> All posts</a>
+    <h1>Forge gets a real address</h1>
+    <p class="meta"><time datetime="2026-11-08">November 8, 2026</time> · 3 min read</p>
+  </header>
+  <details class="toc-inline"><summary>Contents</summary><ol><li><a href="#prometheanworks-dev">prometheanworks.dev</a></li><li><a href="#stoker">Stoker</a></li><li><a href="#the-phone">The phone</a></li><li><a href="#the-test-that-didn-t-pass">The test that didn&#39;t pass</a></li><li><a href="#on-the-list">On the list</a></li><li><a href="#next">Next</a></li></ol></details>
+  <div class="prose">
+<p>Until this weekend, Forge lived at an address that only meant something on my own network. Now it has a real one, and so does this blog.</p>
+<h2 id="prometheanworks-dev">prometheanworks.dev</h2>
+<p>I bought <strong>prometheanworks.dev</strong> for the whole project and put Forge on it. I&#39;m still looking into proper server hosting, so for now I&#39;m self-hosting on Linux and reaching the internet through a Cloudflare tunnel, which means I didn&#39;t have to open anything on my home network. The web pages sit behind a second login on top of Forge&#39;s own.</p>
+<p>My local Forge data got copied across, I claimed my account on the hosted copy, and GitHub sign-in works there. DD-ReForged now has the address built in, with a switch if you&#39;d rather point it at your own server. The test I cared about most: my phone, off Wi-Fi, on cellular, signing in to Forge. It works.</p>
+<p>Development stays on my own PC. There&#39;s one self-hosted Forge, and that&#39;s all that&#39;s hosted for now. Updating it is one command, and it has a way back if an update fails.</p>
+<p>The devlog moved too. It now lives at <a href="https://blog.prometheanworks.dev/">blog.prometheanworks.dev</a>, and the old address redirects here. If you follow the RSS feed, it&#39;s worth updating the link.</p>
+<h2 id="stoker">Stoker</h2>
+<p>Running all of this had turned into a pile of console windows and commands I had to remember, so I built <strong>Stoker</strong>, in keeping with the fire names. It&#39;s one desktop window that starts and stops everything, shows the logs, and watches both the local stack and the hosted Forge. A button rebuilds and reinstalls DD-ReForged. It stores no secrets at all, so the dangerous jobs aren&#39;t buttons.</p>
+<h2 id="the-phone">The phone</h2>
+<p>Last time I said app lock had only been tried on an emulator. It has now passed on my real phone, including the fingerprint and a wrong finger. When a session ends, the phone can now renew it with your fingerprint instead of going through a code and a browser again. The first sign-in on a phone still uses the code, and revoking a device on Forge still ends it.</p>
+<p>I also made the first properly signed Android build, which the phone needs before anyone else can install it.</p>
+<h2 id="the-test-that-didn-t-pass">The test that didn&#39;t pass</h2>
+<p>Before anyone else gets DD-ReForged, I want to see what a stranger sees, so I made a brand new Windows user and went through the whole thing from download to uninstall.</p>
+<p>It didn&#39;t pass. Some of what I meant to record never got recorded, so I&#39;m treating it as a baseline, and nobody gets a build until a run does pass. What it did do is convince me to redo accounts first.</p>
+<p>The new rule is simple: an account reaches whatever its own GitHub account can reach. You sign in to GitHub yourself, the sign-in stays on your PC, and no server token is involved. If you run your own server, the server decides what shows. The first pieces are in: the Repos page now tells the truth about what it can see, and when GitHub refuses a clone, fetch or push, the app says it was GitHub.</p>
+<h2 id="on-the-list">On the list</h2>
+<p>Three plans got written down this weekend:</p>
+<ul>
+<li><strong>Encrypted by default.</strong> Forge&#39;s data, in transit and at rest, and end to end where only the apps need to read it. I&#39;m being careful with that promise, because review diffs, search and git itself all run on the server and have to read the content. So it&#39;s layers, with the strict meaning kept for what no server feature needs.</li>
+<li><strong>One look.</strong> A shared theme across every app, so the tools feel like one family.</li>
+<li><strong>Every app updates itself,</strong> from a signed list on Forge. On Android you&#39;ll still get asked once, because Android always asks.</li>
+</ul>
+<h2 id="next">Next</h2>
+<p>Finish the accounts work, run the brand new user test again, and then the first testers.</p>
+
+  </div>
+  <nav class="post-nav" aria-label="More posts">
+    <a class="older" href="../../posts/2026-11-07-the-night-i-deleted-my-own-forge/"><span>← Older</span>The night I deleted my own Forge</a>
+    <a class="newer" href="../../posts/2026-11-09-watchfire-and-a-better-wake/"><span>Newer →</span>Watchfire, and a better Wake</a>
+  </nav>
+</article>
+<aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#prometheanworks-dev">prometheanworks.dev</a></li><li><a href="#stoker">Stoker</a></li><li><a href="#the-phone">The phone</a></li><li><a href="#the-test-that-didn-t-pass">The test that didn&#39;t pass</a></li><li><a href="#on-the-list">On the list</a></li><li><a href="#next">Next</a></li></ol></aside>
+</div>
+</main>
+<footer class="site-footer">
+  <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by MikeTec-RA.</p>
+  <p><a href="https://gamedev.net/projects/431-prometheus/">GameDev.net project</a> · <a href="../../feed.xml">RSS</a> · <a href="../../atom.xml">Atom</a></p>
+</footer>
+</body>
+</html>
