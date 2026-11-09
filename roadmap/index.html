@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Roadmap · PrometheanWorks devlog</title>
-<meta name="description" content="Rebuild underway: the desktop editor and its plugins are being built">
+<meta name="description" content="Tools first: finishing the apps and getting them to the first testers">
 <meta property="og:site_name" content="PrometheanWorks devlog">
 <meta property="og:title" content="Roadmap">
-<meta property="og:description" content="Rebuild underway: the desktop editor and its plugins are being built">
+<meta property="og:description" content="Tools first: finishing the apps and getting them to the first testers">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://blog.prometheanworks.dev/roadmap/">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -31,7 +31,7 @@
 </header>
 <main id="main">
 <div class="wrap narrow">
-<section class="page-head"><h1>Roadmap</h1><p class="status"><span class="dot" aria-hidden="true"></span>Rebuild underway: the desktop editor and its plugins are being built</p></section>
+<section class="page-head"><h1>Roadmap</h1><p class="status"><span class="dot" aria-hidden="true"></span>Tools first: finishing the apps and getting them to the first testers</p></section>
 <div class="prose roadmap">
 <p>Where Prometheus stands and what has to happen before launch. Dates are hopes, not promises.</p>
 <h2 id="done-the-engine-foundations">Done: the engine foundations</h2>
@@ -42,31 +42,46 @@
 <li>Gameplay groundwork: input, UI, scripting, AI and navigation, physics queries, dialogue</li>
 <li>Device budgets, region streaming and a static export for phones</li>
 </ul>
-<h2 id="now-the-rebuild">Now: the rebuild</h2>
+<h2 id="done-the-rebuild-so-far">Done: the rebuild so far</h2>
 <ul>
-<li>Moving the editor into a desktop app built on Electron</li>
-<li>Rebuilding the platform around plugins, which means a full rewrite</li>
-<li>Designing the new editor in Figma before building it: round one approved on October 20,
-round two (Play mode, 3D dev tools, Frieze as a plugin, first run, phone and Steam previews) on
-October 21, round three drawn and waiting for review</li>
-<li>Building from the approved designs, started October 21: the desktop app, the plugin host,
-Jobs as the first plugin, and the first slice of the new shell</li>
-<li>Making the tools work for a team, not just me: sign-in, invites and roles on Forge, and the
-engine recording who made each edit (in code since October 22, switched on once I finish
-the setup steps)</li>
-<li>Making scene saves safe before plugins can be turned off: anything the engine can&#39;t load is
-kept, shown read-only in the editor, and saved back untouched (done October 27)</li>
-<li>Licences for DD-ReForged and the editor plugins, with a free version that never locks; the
-engine will be free once my game is built with it (working end to end since October 29)</li>
-<li>Finishing the tools before any new game content, decided October 31: a git toolkit where every
-write can be undone (in DD-ReForged since October 31), a hosted Forge (live on its own domain since November 8),
-and the first testers</li>
-<li>Thinking through how the rest of the game gets built on the engine, starting with the
-living world: terrain that only exists once a player or a monster travels into it</li>
+<li>The new editor designed in Figma before building it: round one approved October 20, round two
+October 21, round three October 29</li>
+<li>The editor as a desktop app with its own installer, the new shell, and a real sign-in screen</li>
+<li>A plugin host with Jobs as the first plugin; plugins can add panels and status items, declare
+their permissions and carry a licence</li>
+<li>Scene saves that are safe when a plugin is off: anything the engine can&#39;t load is kept, shown
+read-only in the editor, and saved back untouched (October 27)</li>
+<li>Sign-in, invites, roles and an audit log on Forge</li>
+<li>Licences for DD-ReForged and the editor plugins, with a free version that never locks
+(working end to end since October 29)</li>
+<li>DD-ReForged&#39;s git toolkit, where every write can be undone (October 31), and Watchfire, a first
+page for everything that needs you (November 7)</li>
+<li>The DD-ReForged phone app, running on a real phone</li>
+<li>Forge on its own domain, prometheanworks.dev (November 8), self-hosted on Linux through
+Cloudflare for now</li>
 </ul>
-<h2 id="next-the-first-vertical-slice">Next: the first vertical slice</h2>
+<h2 id="now-tools-first">Now: tools first</h2>
+<p>No new game content until the tools and every app work properly. I decided that on October 31.</p>
 <ul>
-<li>Now looking like mid to late 2027 (first hoped for late 2026 or early 2027)</li>
+<li>Accounts that follow GitHub: each account reaches what its own GitHub account can reach</li>
+<li>Passing the brand new Windows user test, then getting DD-ReForged to the first testers</li>
+<li>One look across every app, starting with DD-ReForged and Forge</li>
+<li>Every app updating itself, from a signed list on Forge</li>
+<li>Forge&#39;s data encrypted by default, in layers</li>
+<li>Looking into proper server hosting</li>
+<li>Switching the engine over to per-person sign-in, so it records who made each edit (in code since
+October 22, waiting on my setup steps)</li>
+<li>The rest of the plugin platform, starting with plugins that own scene data</li>
+</ul>
+<h2 id="next-back-to-the-game">Next: back to the game</h2>
+<ul>
+<li>Export targets for Android, iOS and Steam</li>
+<li>The game-building tools, starting with the living world: terrain that only exists once a
+player or a monster travels into it</li>
+<li>The first vertical slice, now looking like mid to late 2027 (first hoped for late 2026 or early<ol start="2027">
+<li></li>
+</ol>
+</li>
 <li>My teenagers, who are studying engineering, helping to design and build the game world</li>
 <li>Friends writing the music and ambience while they play the slice</li>
 </ul>
@@ -75,6 +90,8 @@ living world: terrain that only exists once a player or a monster travels into i
 <li>A mobile version for the App Store and Google Play</li>
 <li>A Steam version for PC</li>
 <li>All three released on the same day</li>
+<li>The engine released for free once my game is built with it, with a documented way to build
+your own plugins</li>
 </ul>
 
 </div>

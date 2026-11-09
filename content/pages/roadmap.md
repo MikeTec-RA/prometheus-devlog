@@ -1,6 +1,6 @@
 ---
 title: Roadmap
-status: "Rebuild underway: the desktop editor and its plugins are being built"
+status: "Tools first: finishing the apps and getting them to the first testers"
 ---
 
 Where Prometheus stands and what has to happen before launch. Dates are hopes, not promises.
@@ -13,31 +13,45 @@ Where Prometheus stands and what has to happen before launch. Dates are hopes, n
 - Gameplay groundwork: input, UI, scripting, AI and navigation, physics queries, dialogue
 - Device budgets, region streaming and a static export for phones
 
-## Now: the rebuild
+## Done: the rebuild so far
 
-- Moving the editor into a desktop app built on Electron
-- Rebuilding the platform around plugins, which means a full rewrite
-- Designing the new editor in Figma before building it: round one approved on October 20,
-  round two (Play mode, 3D dev tools, Frieze as a plugin, first run, phone and Steam previews) on
-  October 21, round three drawn and waiting for review
-- Building from the approved designs, started October 21: the desktop app, the plugin host,
-  Jobs as the first plugin, and the first slice of the new shell
-- Making the tools work for a team, not just me: sign-in, invites and roles on Forge, and the
-  engine recording who made each edit (in code since October 22, switched on once I finish
-  the setup steps)
-- Making scene saves safe before plugins can be turned off: anything the engine can't load is
-  kept, shown read-only in the editor, and saved back untouched (done October 27)
-- Licences for DD-ReForged and the editor plugins, with a free version that never locks; the
-  engine will be free once my game is built with it (working end to end since October 29)
-- Finishing the tools before any new game content, decided October 31: a git toolkit where every
-  write can be undone (in DD-ReForged since October 31), a hosted Forge (live on its own domain since November 8),
-  and the first testers
-- Thinking through how the rest of the game gets built on the engine, starting with the
-  living world: terrain that only exists once a player or a monster travels into it
+- The new editor designed in Figma before building it: round one approved October 20, round two
+  October 21, round three October 29
+- The editor as a desktop app with its own installer, the new shell, and a real sign-in screen
+- A plugin host with Jobs as the first plugin; plugins can add panels and status items, declare
+  their permissions and carry a licence
+- Scene saves that are safe when a plugin is off: anything the engine can't load is kept, shown
+  read-only in the editor, and saved back untouched (October 27)
+- Sign-in, invites, roles and an audit log on Forge
+- Licences for DD-ReForged and the editor plugins, with a free version that never locks
+  (working end to end since October 29)
+- DD-ReForged's git toolkit, where every write can be undone (October 31), and Watchfire, a first
+  page for everything that needs you (November 7)
+- The DD-ReForged phone app, running on a real phone
+- Forge on its own domain, prometheanworks.dev (November 8), self-hosted on Linux through
+  Cloudflare for now
 
-## Next: the first vertical slice
+## Now: tools first
 
-- Now looking like mid to late 2027 (first hoped for late 2026 or early 2027)
+No new game content until the tools and every app work properly. I decided that on October 31.
+
+- Accounts that follow GitHub: each account reaches what its own GitHub account can reach
+- Passing the brand new Windows user test, then getting DD-ReForged to the first testers
+- One look across every app, starting with DD-ReForged and Forge
+- Every app updating itself, from a signed list on Forge
+- Forge's data encrypted by default, in layers
+- Looking into proper server hosting
+- Switching the engine over to per-person sign-in, so it records who made each edit (in code since
+  October 22, waiting on my setup steps)
+- The rest of the plugin platform, starting with plugins that own scene data
+
+## Next: back to the game
+
+- Export targets for Android, iOS and Steam
+- The game-building tools, starting with the living world: terrain that only exists once a
+  player or a monster travels into it
+- The first vertical slice, now looking like mid to late 2027 (first hoped for late 2026 or early
+  2027)
 - My teenagers, who are studying engineering, helping to design and build the game world
 - Friends writing the music and ambience while they play the slice
 
@@ -46,3 +60,5 @@ Where Prometheus stands and what has to happen before launch. Dates are hopes, n
 - A mobile version for the App Store and Google Play
 - A Steam version for PC
 - All three released on the same day
+- The engine released for free once my game is built with it, with a documented way to build
+  your own plugins
