@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Prometheus devlog</title>
-    <link>https://miketec-ra.github.io/prometheus-devlog/</link>
+    <link>https://blog.prometheanworks.dev/</link>
     <description>Building Prometheus, a custom 2.5D engine and editor, on the way to Forgotten Memories, Endless Abyss.</description>
     <language>en</language>
-    <atom:link href="https://miketec-ra.github.io/prometheus-devlog/feed.rss" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sat, 07 Nov 2026 09:13:31 GMT</lastBuildDate>
+    <atom:link href="https://blog.prometheanworks.dev/feed.rss" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Mon, 09 Nov 2026 22:59:47 GMT</lastBuildDate>
     <item>
       <title>The night I deleted my own Forge</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-11-07-the-night-i-deleted-my-own-forge/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-11-07-the-night-i-deleted-my-own-forge/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-11-07-the-night-i-deleted-my-own-forge</guid>
-      <pubDate>Sat, 07 Nov 2026 09:13:31 GMT</pubDate>
+      <pubDate>Sat, 07 Nov 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>A little after midnight on Halloween, a routine change to one of my git worktrees deleted most of Forge. Spooky timing. It ended up shaping everything I&#39;ve done since.</p>
 <h2>798 files, gone</h2>
 <p>I keep a lot of worktrees, and they share their dependency folders through Windows junctions, which are links that look like normal folders. Narrowing what one worktree checks out made git follow one of those junctions straight into my main checkout. It took out 798 tracked Forge files, Forge&#39;s dependencies, its settings file and the folder holding its keys.</p>
@@ -39,15 +39,15 @@
 <p>0.3.17 also rearranged the app. Every page now fits in one bar, or a left rail if you&#39;d rather, and Wake and the boards get the whole window. Wake opens from its last known graph and only reads what&#39;s new, and the branch list stays fast past 1,000 branches. I know because the Prometheus repo had 1,013 of them, until I cleared out 1,004 merged ones.</p>
 <p>Boards and cards now work across your own PC and Forge. Cards can hold attachments, images and safe HTML, and a deleted card or board on Forge sticks around for 30 days in case you want it back. A notifications bell and tabs above the toolbar are merged and waiting for the next build.</p>
 <h2>The phone</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-11-07-the-night-i-deleted-my-own-forge/phone-branch-graph.png" alt="The phone&#39;s branch viewer: commit history as a continuous graph, with a Graph and List switch (from the design)"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-11-07-the-night-i-deleted-my-own-forge/phone-branch-graph.png" alt="The phone&#39;s branch viewer: commit history as a continuous graph, with a Graph and List switch (from the design)"></p>
 <p>The phone got a branch viewer with a continuous commit graph, plus commit details and making or deleting a branch on origin. It also got line comments, long-press to move a card, formatted Markdown and importing a photo into your avatar. App lock now uses the device&#39;s own lock and blanks the preview in your recent apps.</p>
 <p>I have to be honest here: the newest of this hasn&#39;t reached my Fold yet, and app lock has only been tried on an emulator with a PIN. Fingerprint, face and folding are still to test.</p>
 <h2>Forge grows up</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-11-07-the-night-i-deleted-my-own-forge/forge-audit.png" alt="Forge&#39;s audit log: who did what, when and how, with filters and exports"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-11-07-the-night-i-deleted-my-own-forge/forge-audit.png" alt="Forge&#39;s audit log: who did what, when and how, with filters and exports"></p>
 <p>Forge now keeps an audit log of who did what, when and how, and you can check your own under <strong>My activity</strong>. Almost every Forge page now works on a phone as well.</p>
 <p>It&#39;s also getting ready to leave my PC. I&#39;ve had a hosted Forge running in a Podman pod with MySQL, Caddy and Tailscale, reachable only on my private network. I haven&#39;t moved over yet. That comes after the testers&#39; pieces are in place: invites that carry a licence, a list of who may sign up, a page for tracking testers, and a Downloads page that only serves builds to people with a licence.</p>
 <h2>Back in the editor</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-11-07-the-night-i-deleted-my-own-forge/editor-sign-in.png" alt="The editor&#39;s new sign-in screen, with GitHub or a Forge password"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-11-07-the-night-i-deleted-my-own-forge/editor-sign-in.png" alt="The editor&#39;s new sign-in screen, with GitHub or a Forge password"></p>
 <p>The plugin platform moved forward as well. Plugins now say where their panels go, add status items, send notifications and get a say before the app quits. They also declare their permissions, and the editor limits their menus, commands and panels to match.</p>
 <p>The editor has a real sign-in screen and a new desktop installer, 0.4.0. Forge can also sign in players from a shipped game now, the first small piece of the game itself touching these tools.</p>
 <p>Scene saving got more careful too. A whole-scene save keeps records it wasn&#39;t sent, a slow asset listing no longer blocks Load and Save, offline deletes survive a reload, and a half-saved script no longer gets imported.</p>
@@ -83,15 +83,15 @@
 <p>0.3.17 also rearranged the app. Every page now fits in one bar, or a left rail if you&#39;d rather, and Wake and the boards get the whole window. Wake opens from its last known graph and only reads what&#39;s new, and the branch list stays fast past 1,000 branches. I know because the Prometheus repo had 1,013 of them, until I cleared out 1,004 merged ones.</p>
 <p>Boards and cards now work across your own PC and Forge. Cards can hold attachments, images and safe HTML, and a deleted card or board on Forge sticks around for 30 days in case you want it back. A notifications bell and tabs above the toolbar are merged and waiting for the next build.</p>
 <h2>The phone</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-11-07-the-night-i-deleted-my-own-forge/phone-branch-graph.png" alt="The phone&#39;s branch viewer: commit history as a continuous graph, with a Graph and List switch (from the design)"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-11-07-the-night-i-deleted-my-own-forge/phone-branch-graph.png" alt="The phone&#39;s branch viewer: commit history as a continuous graph, with a Graph and List switch (from the design)"></p>
 <p>The phone got a branch viewer with a continuous commit graph, plus commit details and making or deleting a branch on origin. It also got line comments, long-press to move a card, formatted Markdown and importing a photo into your avatar. App lock now uses the device&#39;s own lock and blanks the preview in your recent apps.</p>
 <p>I have to be honest here: the newest of this hasn&#39;t reached my Fold yet, and app lock has only been tried on an emulator with a PIN. Fingerprint, face and folding are still to test.</p>
 <h2>Forge grows up</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-11-07-the-night-i-deleted-my-own-forge/forge-audit.png" alt="Forge&#39;s audit log: who did what, when and how, with filters and exports"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-11-07-the-night-i-deleted-my-own-forge/forge-audit.png" alt="Forge&#39;s audit log: who did what, when and how, with filters and exports"></p>
 <p>Forge now keeps an audit log of who did what, when and how, and you can check your own under <strong>My activity</strong>. Almost every Forge page now works on a phone as well.</p>
 <p>It&#39;s also getting ready to leave my PC. I&#39;ve had a hosted Forge running in a Podman pod with MySQL, Caddy and Tailscale, reachable only on my private network. I haven&#39;t moved over yet. That comes after the testers&#39; pieces are in place: invites that carry a licence, a list of who may sign up, a page for tracking testers, and a Downloads page that only serves builds to people with a licence.</p>
 <h2>Back in the editor</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-11-07-the-night-i-deleted-my-own-forge/editor-sign-in.png" alt="The editor&#39;s new sign-in screen, with GitHub or a Forge password"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-11-07-the-night-i-deleted-my-own-forge/editor-sign-in.png" alt="The editor&#39;s new sign-in screen, with GitHub or a Forge password"></p>
 <p>The plugin platform moved forward as well. Plugins now say where their panels go, add status items, send notifications and get a say before the app quits. They also declare their permissions, and the editor limits their menus, commands and panels to match.</p>
 <p>The editor has a real sign-in screen and a new desktop installer, 0.4.0. Forge can also sign in players from a shipped game now, the first small piece of the game itself touching these tools.</p>
 <p>Scene saving got more careful too. A whole-scene save keeps records it wasn&#39;t sent, a slow asset listing no longer blocks Load and Save, offline deletes survive a reload, and a half-saved script no longer gets imported.</p>
@@ -103,7 +103,7 @@
     </item>
     <item>
       <title>Seal: licences for the tools</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-11-07-seal-licences/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-11-07-seal-licences/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-11-07-seal-licences</guid>
       <pubDate>Sun, 01 Nov 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>A few days ago I tackled something I&#39;d been putting off: licensing. I&#39;ve put a lot of time into DD-ReForged and the tools around Prometheus, and I want to protect that before other people start using them. It went from plan to running on my own devices in a single day, and I wanted to think about how to tell you before writing it up.</p>
@@ -124,7 +124,7 @@
 <p>I appreciate you all for your support.</p>
 <h2>How it works</h2>
 <p>In keeping with the fire names, the licensing part of Forge is called <strong>Seal</strong>.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-11-07-seal-licences/desktop-licence.png" alt="DD-ReForged&#39;s Licence tab: Pro active, the features it unlocks, and the three devices using it (from the design)"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-11-07-seal-licences/desktop-licence.png" alt="DD-ReForged&#39;s Licence tab: Pro active, the features it unlocks, and the three devices using it (from the design)"></p>
 <ul>
 <li><strong>A licence is a signed statement.</strong> Forge signs something like &quot;this account has Pro, these features, up to 3 devices, updates until next October&quot;. Every app carries Forge&#39;s public key, so it can check the signature without going online. Nobody can turn Free into Pro without Forge&#39;s private key, and that never leaves the server.</li>
 <li><strong>A key is how you claim it.</strong> You sign in, open Settings → Licence, and enter a key like <code>DDRF-XXXX-XXXX-XXXX-XXXX</code> once.</li>
@@ -132,9 +132,9 @@
 <li><strong>A daily check-in keeps it fresh.</strong> Once a day the app checks in and gets a pass that&#39;s good for another 14 days. If you&#39;re offline, everything keeps working until the 14 days run out. A licence that&#39;s been revoked stops at the next check-in.</li>
 <li><strong>Up to 3 devices.</strong> You can release one yourself, from the desktop or the phone, to free its slot.</li>
 </ul>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-11-07-seal-licences/phone-licence.png" alt="The phone&#39;s licence page: Pro, the features, and the devices (from the design)"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-11-07-seal-licences/phone-licence.png" alt="The phone&#39;s licence page: Pro, the features, and the devices (from the design)"></p>
 <p>When a feature isn&#39;t in your licence, it doesn&#39;t vanish. It shows as locked, says which tier unlocks it, and everything else keeps working.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-11-07-seal-licences/desktop-locked.png" alt="A locked feature: connecting to a Forge server is a Pro feature, with Unlock with Pro (from the design)"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-11-07-seal-licences/desktop-locked.png" alt="A locked feature: connecting to a Forge server is a Pro feature, with Unlock with Pro (from the design)"></p>
 <p>As usual, I drew all of these screens in Figma before building them: activating a key, the licence page, locked features, a failed check-in, the end of the offline grace, the device limit, and Forge&#39;s page for issuing and revoking keys.</p>
 <h2>Being honest about protection</h2>
 <p>Anything checked only inside an app can be cracked by someone determined enough. Desktop apps and Android apps can both be unpacked and patched. So I put the real protection where it can&#39;t be patched out: on the server. The paid features that matter run on Forge, and Forge checks the licence before it does anything. A patched app that skips its own check just gets turned away.</p>
@@ -173,7 +173,7 @@
 <p>I appreciate you all for your support.</p>
 <h2>How it works</h2>
 <p>In keeping with the fire names, the licensing part of Forge is called <strong>Seal</strong>.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-11-07-seal-licences/desktop-licence.png" alt="DD-ReForged&#39;s Licence tab: Pro active, the features it unlocks, and the three devices using it (from the design)"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-11-07-seal-licences/desktop-licence.png" alt="DD-ReForged&#39;s Licence tab: Pro active, the features it unlocks, and the three devices using it (from the design)"></p>
 <ul>
 <li><strong>A licence is a signed statement.</strong> Forge signs something like &quot;this account has Pro, these features, up to 3 devices, updates until next October&quot;. Every app carries Forge&#39;s public key, so it can check the signature without going online. Nobody can turn Free into Pro without Forge&#39;s private key, and that never leaves the server.</li>
 <li><strong>A key is how you claim it.</strong> You sign in, open Settings → Licence, and enter a key like <code>DDRF-XXXX-XXXX-XXXX-XXXX</code> once.</li>
@@ -181,9 +181,9 @@
 <li><strong>A daily check-in keeps it fresh.</strong> Once a day the app checks in and gets a pass that&#39;s good for another 14 days. If you&#39;re offline, everything keeps working until the 14 days run out. A licence that&#39;s been revoked stops at the next check-in.</li>
 <li><strong>Up to 3 devices.</strong> You can release one yourself, from the desktop or the phone, to free its slot.</li>
 </ul>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-11-07-seal-licences/phone-licence.png" alt="The phone&#39;s licence page: Pro, the features, and the devices (from the design)"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-11-07-seal-licences/phone-licence.png" alt="The phone&#39;s licence page: Pro, the features, and the devices (from the design)"></p>
 <p>When a feature isn&#39;t in your licence, it doesn&#39;t vanish. It shows as locked, says which tier unlocks it, and everything else keeps working.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-11-07-seal-licences/desktop-locked.png" alt="A locked feature: connecting to a Forge server is a Pro feature, with Unlock with Pro (from the design)"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-11-07-seal-licences/desktop-locked.png" alt="A locked feature: connecting to a Forge server is a Pro feature, with Unlock with Pro (from the design)"></p>
 <p>As usual, I drew all of these screens in Figma before building them: activating a key, the licence page, locked features, a failed check-in, the end of the offline grace, the device limit, and Forge&#39;s page for issuing and revoking keys.</p>
 <h2>Being honest about protection</h2>
 <p>Anything checked only inside an app can be cracked by someone determined enough. Desktop apps and Android apps can both be unpacked and patched. So I put the real protection where it can&#39;t be patched out: on the server. The paid features that matter run on Forge, and Forge checks the licence before it does anything. A patched app that skips its own check just gets turned away.</p>
@@ -207,7 +207,7 @@
     </item>
     <item>
       <title>A real phone, and scene saving done</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-29-a-real-phone/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-10-29-a-real-phone/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-29-a-real-phone</guid>
       <pubDate>Thu, 29 Oct 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>Last time the phone app had only ever run on an emulator, and scene saving had a few gaps left. This week the app went onto my own phone, the gaps are closed, and DD-ReForged is built as far as I can take it on my own.</p>
@@ -222,11 +222,11 @@
 <p>Forge&#39;s branch list also has a time limit now, so a slow repo can&#39;t leave the phone waiting forever.</p>
 <p>The fixed build went onto the phone as an update, so I didn&#39;t have to sign in again. One mystery is still open: for about five minutes one afternoon, the phone couldn&#39;t reach my PC at all, then it recovered on its own. I&#39;ve noted it and I&#39;m keeping an eye out.</p>
 <h2>Scene saving, finished</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-29-a-real-phone/held-in-hierarchy.png" alt="The Hierarchy with a banner saying some records couldn&#39;t be restored, and a Held group holding two items"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-29-a-real-phone/held-in-hierarchy.png" alt="The Hierarchy with a banner saying some records couldn&#39;t be restored, and a Held group holding two items"></p>
 <p>In the last post, the engine learned to hold on to anything in a scene it can&#39;t load and save it back untouched. This week I finished the part you can see. When a scene has held items, the editor shows a banner and gives them their own <strong>Held</strong> group in the Hierarchy. Each one is marked as either missing (its plugin isn&#39;t in this build) or unavailable (its plugin is there but couldn&#39;t load it).</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-29-a-real-phone/held-inspector.png" alt="The Inspector showing a held item read-only: it is kept and saved exactly as it was written"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-29-a-real-phone/held-inspector.png" alt="The Inspector showing a held item read-only: it is kept and saved exactly as it was written"></p>
 <p>Selecting one shows exactly what was saved, read-only. You can delete it, but only after a confirm that spells out what you&#39;re losing.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-29-a-real-phone/held-delete.png" alt="The delete confirmation for a held item"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-29-a-real-phone/held-delete.png" alt="The delete confirmation for a held item"></p>
 <p>None of this ever shows up for players; the markers only exist in the editor.</p>
 <p>To prove it all works, I ran the full loop against a real backend and editor: open a scene with held items, save it, load a later save back from the database rather than the browser&#39;s copy, delete one with the confirm, and reload. All 20 checks passed.</p>
 <p>That run turned up one more mismatch. The editor and the game disagreed about physics that had been switched off: in one case the editor still built a physics body the game wouldn&#39;t, and in another it was the other way round. They now agree. The editor&#39;s list of avatars and the server&#39;s catalogue also now always give the same entry for the same name.</p>
@@ -253,11 +253,11 @@
 <p>Forge&#39;s branch list also has a time limit now, so a slow repo can&#39;t leave the phone waiting forever.</p>
 <p>The fixed build went onto the phone as an update, so I didn&#39;t have to sign in again. One mystery is still open: for about five minutes one afternoon, the phone couldn&#39;t reach my PC at all, then it recovered on its own. I&#39;ve noted it and I&#39;m keeping an eye out.</p>
 <h2>Scene saving, finished</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-29-a-real-phone/held-in-hierarchy.png" alt="The Hierarchy with a banner saying some records couldn&#39;t be restored, and a Held group holding two items"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-29-a-real-phone/held-in-hierarchy.png" alt="The Hierarchy with a banner saying some records couldn&#39;t be restored, and a Held group holding two items"></p>
 <p>In the last post, the engine learned to hold on to anything in a scene it can&#39;t load and save it back untouched. This week I finished the part you can see. When a scene has held items, the editor shows a banner and gives them their own <strong>Held</strong> group in the Hierarchy. Each one is marked as either missing (its plugin isn&#39;t in this build) or unavailable (its plugin is there but couldn&#39;t load it).</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-29-a-real-phone/held-inspector.png" alt="The Inspector showing a held item read-only: it is kept and saved exactly as it was written"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-29-a-real-phone/held-inspector.png" alt="The Inspector showing a held item read-only: it is kept and saved exactly as it was written"></p>
 <p>Selecting one shows exactly what was saved, read-only. You can delete it, but only after a confirm that spells out what you&#39;re losing.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-29-a-real-phone/held-delete.png" alt="The delete confirmation for a held item"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-29-a-real-phone/held-delete.png" alt="The delete confirmation for a held item"></p>
 <p>None of this ever shows up for players; the markers only exist in the editor.</p>
 <p>To prove it all works, I ran the full loop against a real backend and editor: open a scene with held items, save it, load a later save back from the database rather than the browser&#39;s copy, delete one with the confirm, and reload. All 20 checks passed.</p>
 <p>That run turned up one more mismatch. The editor and the game disagreed about physics that had been switched off: in one case the editor still built a physics body the game wouldn&#39;t, and in another it was the other way round. They now agree. The editor&#39;s list of avatars and the server&#39;s catalogue also now always give the same entry for the same name.</p>
@@ -275,12 +275,12 @@
     </item>
     <item>
       <title>Forge in my pocket, and scenes that forget nothing</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-25-forge-in-my-pocket/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-10-25-forge-in-my-pocket/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-25-forge-in-my-pocket</guid>
       <pubDate>Sun, 25 Oct 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>Two days ago the phone app was nineteen drawings in Figma. Last night it signed in to my Forge, read a pull request, left a comment, approved it and merged it, all on an Android emulator. Along the way Forge learned to push updates as they happen, and I spent part of the day on something less flashy that matters more for the game: making sure a scene can&#39;t quietly lose data.</p>
 <h2>The phone app is real</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/phone-inbox.png" alt="The phone&#39;s inbox: a card assigned and a new review comment, with Reviews and Boards filters"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-25-forge-in-my-pocket/phone-inbox.png" alt="The phone&#39;s inbox: a card assigned and a new review comment, with Reviews and Boards filters"></p>
 <p>The app is a small React project wrapped with Capacitor, so it shares DD-ReForged&#39;s colours and components with the desktop app instead of copying them. It does what the drawings said it would:</p>
 <ul>
 <li><strong>Sign in.</strong> Personal Forge signs in with a code, like the desktop apps. The phone shows a short code, you approve it on Forge, and you&#39;re in.</li>
@@ -290,14 +290,14 @@
 <li><strong>Boards.</strong> View a board, move a card, comment on it. Docs are read-only for now.</li>
 <li><strong>Settings.</strong> Accounts, an app lock, and the avatar editor.</li>
 </ul>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/phone-device-code.png" alt="Approve this phone: a short code to type into Forge, with Copy and Open GitHub"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-25-forge-in-my-pocket/phone-device-code.png" alt="Approve this phone: a short code to type into Forge, with Copy and Open GitHub"></p>
 <p>The first Android build ran on a headless emulator. Then I ran the whole thing end to end against a scratch Forge: sign in, read the inbox, open a board, move a card, comment, open a pull request, read the diff, approve and merge. Forge&#39;s own records agreed with what the phone said had happened.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/phone-merge.png" alt="Merging from the phone: the merge sheet over an approved pull request, with &quot;The branches merge cleanly&quot;"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-25-forge-in-my-pocket/phone-merge.png" alt="Merging from the phone: the merge sheet over an approved pull request, with &quot;The branches merge cleanly&quot;"></p>
 <p>Personal Forge lives on my PC at home, so the phone talks to it over the home network. I decided plain http is fine there for now. Forge only listens on the network if you turn that on, and it can also be reached through Tailscale when I&#39;m away. Proper HTTPS on the home network is a later job.</p>
 <h2>Forge talks back</h2>
 <p>Until now everything that showed Forge&#39;s data had to keep asking whether anything had changed. Forge now has a live event stream instead. When a review gets a comment or a card moves, Forge sends a small hint saying what changed, never the content itself. Each person only gets hints about things they&#39;re allowed to see.</p>
 <p>Forge&#39;s web pages refresh themselves from it, and DD-ReForged on the desktop refreshes and shows a notification. Each person also has their own notification list now, with read and unread, and that&#39;s what feeds the phone&#39;s inbox.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/forge-web-phone.png" alt="Forge&#39;s Bench board at phone width"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-25-forge-in-my-pocket/forge-web-phone.png" alt="Forge&#39;s Bench board at phone width"></p>
 <p>Forge&#39;s web pages work on a phone now too: the menu, the boards and the reviews all fit at 360 pixels wide. Forge also fetches every repo it knows about on its own, every 15 minutes, and there&#39;s an <strong>Open in DD-ReForged</strong> button for jumping from a review in the browser straight into the desktop app.</p>
 <h2>Who sees which repos, done</h2>
 <p>The rule from the last two posts is finished. A teammate on my Forge only sees the repos their own GitHub account can reach, and the boards, cards and docs that belong to those repos. I also went after the sneaky ways a hidden repo could still give itself away: a name in a list, a parent folder, a path, or even the wording of an error. A member now learns nothing about something hidden from any of those. Before turning it on, I checked that my GitHub token could only read, not write.</p>
@@ -322,7 +322,7 @@
 ]]></description>
       <content:encoded><![CDATA[<p>Two days ago the phone app was nineteen drawings in Figma. Last night it signed in to my Forge, read a pull request, left a comment, approved it and merged it, all on an Android emulator. Along the way Forge learned to push updates as they happen, and I spent part of the day on something less flashy that matters more for the game: making sure a scene can&#39;t quietly lose data.</p>
 <h2>The phone app is real</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/phone-inbox.png" alt="The phone&#39;s inbox: a card assigned and a new review comment, with Reviews and Boards filters"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-25-forge-in-my-pocket/phone-inbox.png" alt="The phone&#39;s inbox: a card assigned and a new review comment, with Reviews and Boards filters"></p>
 <p>The app is a small React project wrapped with Capacitor, so it shares DD-ReForged&#39;s colours and components with the desktop app instead of copying them. It does what the drawings said it would:</p>
 <ul>
 <li><strong>Sign in.</strong> Personal Forge signs in with a code, like the desktop apps. The phone shows a short code, you approve it on Forge, and you&#39;re in.</li>
@@ -332,14 +332,14 @@
 <li><strong>Boards.</strong> View a board, move a card, comment on it. Docs are read-only for now.</li>
 <li><strong>Settings.</strong> Accounts, an app lock, and the avatar editor.</li>
 </ul>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/phone-device-code.png" alt="Approve this phone: a short code to type into Forge, with Copy and Open GitHub"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-25-forge-in-my-pocket/phone-device-code.png" alt="Approve this phone: a short code to type into Forge, with Copy and Open GitHub"></p>
 <p>The first Android build ran on a headless emulator. Then I ran the whole thing end to end against a scratch Forge: sign in, read the inbox, open a board, move a card, comment, open a pull request, read the diff, approve and merge. Forge&#39;s own records agreed with what the phone said had happened.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/phone-merge.png" alt="Merging from the phone: the merge sheet over an approved pull request, with &quot;The branches merge cleanly&quot;"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-25-forge-in-my-pocket/phone-merge.png" alt="Merging from the phone: the merge sheet over an approved pull request, with &quot;The branches merge cleanly&quot;"></p>
 <p>Personal Forge lives on my PC at home, so the phone talks to it over the home network. I decided plain http is fine there for now. Forge only listens on the network if you turn that on, and it can also be reached through Tailscale when I&#39;m away. Proper HTTPS on the home network is a later job.</p>
 <h2>Forge talks back</h2>
 <p>Until now everything that showed Forge&#39;s data had to keep asking whether anything had changed. Forge now has a live event stream instead. When a review gets a comment or a card moves, Forge sends a small hint saying what changed, never the content itself. Each person only gets hints about things they&#39;re allowed to see.</p>
 <p>Forge&#39;s web pages refresh themselves from it, and DD-ReForged on the desktop refreshes and shows a notification. Each person also has their own notification list now, with read and unread, and that&#39;s what feeds the phone&#39;s inbox.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-25-forge-in-my-pocket/forge-web-phone.png" alt="Forge&#39;s Bench board at phone width"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-25-forge-in-my-pocket/forge-web-phone.png" alt="Forge&#39;s Bench board at phone width"></p>
 <p>Forge&#39;s web pages work on a phone now too: the menu, the boards and the reviews all fit at 360 pixels wide. Forge also fetches every repo it knows about on its own, every 15 minutes, and there&#39;s an <strong>Open in DD-ReForged</strong> button for jumping from a review in the browser straight into the desktop app.</p>
 <h2>Who sees which repos, done</h2>
 <p>The rule from the last two posts is finished. A teammate on my Forge only sees the repos their own GitHub account can reach, and the boards, cards and docs that belong to those repos. I also went after the sneaky ways a hidden repo could still give itself away: a name in a list, a parent folder, a path, or even the wording of an error. A member now learns nothing about something hidden from any of those. Before turning it on, I checked that my GitHub token could only read, not write.</p>
@@ -365,17 +365,17 @@
     </item>
     <item>
       <title>A team of more than one</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-23-a-team-of-more-than-one/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-10-23-a-team-of-more-than-one/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-23-a-team-of-more-than-one</guid>
       <pubDate>Fri, 23 Oct 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>Yesterday Forge got a front door. Since then I&#39;ve been getting the rest of the house ready for guests: Forge knows who is on the team, the engine knows who is editing, and DD-ReForged can talk to GitHub without borrowing anyone&#39;s token.</p>
 <h2>Forge has a team</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-23-a-team-of-more-than-one/team-people.png" alt="The Team page: me as the Super User and one invited developer, with their GitHub name, role and last sign-in"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-23-a-team-of-more-than-one/team-people.png" alt="The Team page: me as the Super User and one invited developer, with their GitHub name, role and last sign-in"></p>
 <p>Forge now has a Team page that only Admins and the Super User can see. It lists everyone who can sign in, their role and when they last signed in. If someone needs to go, I can disable them without wiping their history.</p>
 <p>Adding someone starts with an invite. I pick a role, Forge gives me a link, and that link works once and expires after a week. Whoever opens it sees who invited them and what the role lets them do, then joins with GitHub or sets a password.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-23-a-team-of-more-than-one/invite-page.png" alt="The invite page: who sent it, the role and what it allows, and the choice of GitHub or a password"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-23-a-team-of-more-than-one/invite-page.png" alt="The invite page: who sent it, the role and what it allows, and the choice of GitHub or a password"></p>
 <p>Roles are a grid: one row per permission, one column per role. The built-in ones (admin, dev, member, player) sit next to any I make myself. The Super User has every key and isn&#39;t a role at all, so nobody can edit their way into it.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-23-a-team-of-more-than-one/roles-matrix.png" alt="The roles grid: Anvil, Bench and Kiln permissions down the side, the roles across the top"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-23-a-team-of-more-than-one/roles-matrix.png" alt="The roles grid: Anvil, Bench and Kiln permissions down the side, the roles across the top"></p>
 <p>There are service tokens for scripts too. A token is shown once, can be revoked, and can never do more than the person who made it. That&#39;s the rule everywhere on this page: you can only hand out what you already have. I found one spot where a change skipped that check, so now every kind of change has its own test for it.</p>
 <h2>The engine knows who you are</h2>
 <p>Until now the engine trusted one shared key, the same mistake Forge used to make. Now it accepts a Forge sign-in, both on its regular API and on the live connection the editor uses. A session can only be picked back up by the person who started it. Every edit, version and session records who made it, so when two people bump into each other the editor tells you who, not just &quot;conflict&quot;. Settings are per person now, and asset downloads use short-lived tickets tied to one session.</p>
@@ -385,7 +385,7 @@
 <h2>Who sees which repos</h2>
 <p>Yesterday I said a teammate should only ever see the repos their own GitHub account can reach. That now has a plan, and I&#39;ve made the calls it needed. Teammates won&#39;t be able to push, merge or open pull requests through my GitHub token in Forge; they&#39;ll do that from DD-ReForged with their own login. Repos show up only for people who are collaborators on them, even public ones, and anything on GitHub that Forge doesn&#39;t track stays hidden. Building it starts with a read-only check of the token, before anything can write.</p>
 <h2>DD-ReForged connects to GitHub itself</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-23-a-team-of-more-than-one/wake-file-diff.png" alt="DD-ReForged&#39;s Wake view, with a file from a commit open as a side-by-side diff"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-23-a-team-of-more-than-one/wake-file-diff.png" alt="DD-ReForged&#39;s Wake view, with a file from a commit open as a side-by-side diff"></p>
 <p>DD-ReForged can now connect to GitHub on your own PC through Git Credential Manager, the same sign-in git already uses, or with a pasted token. That turns on GitHub features that were already built but had no way to reach GitHub, including a pull request sweep that had been sitting there unused.</p>
 <p>Also new in DD-ReForged:</p>
 <ul>
@@ -398,18 +398,18 @@
 <h2>A phone app, drawn first</h2>
 <p>DD-ReForged is getting a phone app for reviewing and merging pull requests and moving cards around. Same rule as the editor: Figma before code. I&#39;ve drawn nineteen screens in both themes, from sign-in to the inbox, a diff, the merge sheet and the boards, all built from DD&#39;s own theme and components.</p>
 <p>The interesting part is Personal Forge. It runs on my PC at home, so until it&#39;s hosted somewhere the phone can only reach it on the home Wi-Fi. The app is upfront about that: it shows the last thing it read and tells you why.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-23-a-team-of-more-than-one/mobile-away-from-home.png" alt="Away from home: the last read is kept, with a note that Personal Forge is on the home network"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-23-a-team-of-more-than-one/mobile-away-from-home.png" alt="Away from home: the last read is kept, with a note that Personal Forge is on the home network"></p>
 <h2>Next</h2>
 <p>Repo visibility on Forge, a live event stream from Forge, and the rest of that list. Once that&#39;s done, DD-ReForged is in good enough shape that I can get back to the engine.</p>
 ]]></description>
       <content:encoded><![CDATA[<p>Yesterday Forge got a front door. Since then I&#39;ve been getting the rest of the house ready for guests: Forge knows who is on the team, the engine knows who is editing, and DD-ReForged can talk to GitHub without borrowing anyone&#39;s token.</p>
 <h2>Forge has a team</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-23-a-team-of-more-than-one/team-people.png" alt="The Team page: me as the Super User and one invited developer, with their GitHub name, role and last sign-in"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-23-a-team-of-more-than-one/team-people.png" alt="The Team page: me as the Super User and one invited developer, with their GitHub name, role and last sign-in"></p>
 <p>Forge now has a Team page that only Admins and the Super User can see. It lists everyone who can sign in, their role and when they last signed in. If someone needs to go, I can disable them without wiping their history.</p>
 <p>Adding someone starts with an invite. I pick a role, Forge gives me a link, and that link works once and expires after a week. Whoever opens it sees who invited them and what the role lets them do, then joins with GitHub or sets a password.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-23-a-team-of-more-than-one/invite-page.png" alt="The invite page: who sent it, the role and what it allows, and the choice of GitHub or a password"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-23-a-team-of-more-than-one/invite-page.png" alt="The invite page: who sent it, the role and what it allows, and the choice of GitHub or a password"></p>
 <p>Roles are a grid: one row per permission, one column per role. The built-in ones (admin, dev, member, player) sit next to any I make myself. The Super User has every key and isn&#39;t a role at all, so nobody can edit their way into it.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-23-a-team-of-more-than-one/roles-matrix.png" alt="The roles grid: Anvil, Bench and Kiln permissions down the side, the roles across the top"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-23-a-team-of-more-than-one/roles-matrix.png" alt="The roles grid: Anvil, Bench and Kiln permissions down the side, the roles across the top"></p>
 <p>There are service tokens for scripts too. A token is shown once, can be revoked, and can never do more than the person who made it. That&#39;s the rule everywhere on this page: you can only hand out what you already have. I found one spot where a change skipped that check, so now every kind of change has its own test for it.</p>
 <h2>The engine knows who you are</h2>
 <p>Until now the engine trusted one shared key, the same mistake Forge used to make. Now it accepts a Forge sign-in, both on its regular API and on the live connection the editor uses. A session can only be picked back up by the person who started it. Every edit, version and session records who made it, so when two people bump into each other the editor tells you who, not just &quot;conflict&quot;. Settings are per person now, and asset downloads use short-lived tickets tied to one session.</p>
@@ -419,7 +419,7 @@
 <h2>Who sees which repos</h2>
 <p>Yesterday I said a teammate should only ever see the repos their own GitHub account can reach. That now has a plan, and I&#39;ve made the calls it needed. Teammates won&#39;t be able to push, merge or open pull requests through my GitHub token in Forge; they&#39;ll do that from DD-ReForged with their own login. Repos show up only for people who are collaborators on them, even public ones, and anything on GitHub that Forge doesn&#39;t track stays hidden. Building it starts with a read-only check of the token, before anything can write.</p>
 <h2>DD-ReForged connects to GitHub itself</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-23-a-team-of-more-than-one/wake-file-diff.png" alt="DD-ReForged&#39;s Wake view, with a file from a commit open as a side-by-side diff"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-23-a-team-of-more-than-one/wake-file-diff.png" alt="DD-ReForged&#39;s Wake view, with a file from a commit open as a side-by-side diff"></p>
 <p>DD-ReForged can now connect to GitHub on your own PC through Git Credential Manager, the same sign-in git already uses, or with a pasted token. That turns on GitHub features that were already built but had no way to reach GitHub, including a pull request sweep that had been sitting there unused.</p>
 <p>Also new in DD-ReForged:</p>
 <ul>
@@ -432,36 +432,36 @@
 <h2>A phone app, drawn first</h2>
 <p>DD-ReForged is getting a phone app for reviewing and merging pull requests and moving cards around. Same rule as the editor: Figma before code. I&#39;ve drawn nineteen screens in both themes, from sign-in to the inbox, a diff, the merge sheet and the boards, all built from DD&#39;s own theme and components.</p>
 <p>The interesting part is Personal Forge. It runs on my PC at home, so until it&#39;s hosted somewhere the phone can only reach it on the home Wi-Fi. The app is upfront about that: it shows the last thing it read and tells you why.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-23-a-team-of-more-than-one/mobile-away-from-home.png" alt="Away from home: the last read is kept, with a note that Personal Forge is on the home network"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-23-a-team-of-more-than-one/mobile-away-from-home.png" alt="Away from home: the last read is kept, with a note that Personal Forge is on the home network"></p>
 <h2>Next</h2>
 <p>Repo visibility on Forge, a live event stream from Forge, and the rest of that list. Once that&#39;s done, DD-ReForged is in good enough shape that I can get back to the engine.</p>
 ]]></content:encoded>
     </item>
     <item>
       <title>The shell, the engine and a front door</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-22-the-shell-the-engine-and-a-front-door/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-10-22-the-shell-the-engine-and-a-front-door/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-22-the-shell-the-engine-and-a-front-door</guid>
       <pubDate>Thu, 22 Oct 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>Yesterday the code for the rebuild started. Today three pieces of it came together, and the team got a new build of the git tool.</p>
 <h2>The shell is built</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-22-the-shell-the-engine-and-a-front-door/editor-shell.png" alt="The editor shell at 1600 pixels wide: the title bar with the transport, the command search, the Hierarchy on the left and the Inspector on the right"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-22-the-shell-the-engine-and-a-front-door/editor-shell.png" alt="The editor shell at 1600 pixels wide: the title bar with the transport, the command search, the Hierarchy on the left and the Inspector on the right"></p>
 <p>The frame from the design round is now the real editor: a title bar with the menus, the scene switcher, the mode switch and the transport (play, pause, stop) in the middle, and a command palette on the right. Press the search box and you can run any command the editor or a plugin offers.</p>
 <p>The bigger change is how panels dock. The Hierarchy sits in a zone on the left and the Inspector in a zone on the right. Tool windows can dock into a zone as tabs or float, and a bottom zone holds wide panels.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-22-the-shell-the-engine-and-a-front-door/jobs-docked.png" alt="Jobs docked into the bottom zone, under the viewport"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-22-the-shell-the-engine-and-a-front-door/jobs-docked.png" alt="Jobs docked into the bottom zone, under the viewport"></p>
 <p>Jobs, the server-side job list, now lives there. When the window gets small the left zone folds into a flyout and the bottom zone shrinks, while the right zone holds on longest. If a panel would not fit anywhere, the editor tells you instead of quietly hiding it. A fresh install opens with the Hierarchy left and the Inspector right, and <strong>Reset layout</strong> in Settings puts you back there in one click. Splitters work from the keyboard too.</p>
 <p>Before any of this was called done, I ran the whole shell against my real scene in the browser, read-only. It passed, and it also found two real bugs: the editor could open on a theme that had been retired, and Space on a focused switch did nothing. Both were fixed the same night.</p>
 <h2>The desktop editor runs its own engine</h2>
 <p>The desktop editor used to need a backend started by hand. Now Settings has an Engine section: point it at the engine&#39;s folder, press Start, and the editor checks that the folder is the right one, that nothing already answers, and that the database is up, and only then starts the engine as a child process.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-22-the-shell-the-engine-and-a-front-door/engine-running.png" alt="The Engine row in Settings showing the engine running, with Start and Stop"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-22-the-shell-the-engine-and-a-front-door/engine-running.png" alt="The Engine row in Settings showing the engine running, with Start and Stop"></p>
 <p>I ran it for real, against the real engine and database: about 6.6 seconds from pressing Start to &quot;Running&quot;, and about 3 seconds from Stop to &quot;Stopped&quot; with the engine confirming it had flushed its scenes. Quitting the editor takes the engine with it.</p>
 <p>There is an option to keep the engine running after the editor quits, and it had a Windows quirk worth a paragraph. A program started from another inherits every inheritable handle its parent holds, not only the three it was meant to get. A kept engine was therefore quietly holding on to the editor&#39;s own debugging socket after the editor had gone, so the next launch couldn&#39;t use it. The fix is a tiny launcher that starts the engine and passes it only the handful of pipes it needs. After the editor dies, it no longer owns anything.</p>
 <h2>Forge has a front door</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-22-the-shell-the-engine-and-a-front-door/forge-sign-in.png" alt="The new Forge sign-in card: Sign in with GitHub, or an email and password"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-22-the-shell-the-engine-and-a-front-door/forge-sign-in.png" alt="The new Forge sign-in card: Sign in with GitHub, or an email and password"></p>
 <p>Forge, the git manager, used to trust one shared key, so anyone who reached it was effectively me. That was fine for one person and wrong for a team. Forge now has people.</p>
 <p>You can sign in with an email and password, or with GitHub. A new account gets a one-time password that must be changed on first use. Wrong passwords and unknown emails get the same answer, and repeated failures are rate-limited. The card shows when a key is still the shipped default, and refuses to run until it is changed.</p>
 <p>GitHub here means identity, not git access. When you sign in, Forge reads your GitHub id and your primary verified email, then throws the token away. It is never stored and never logged. That matches the rule I&#39;m building toward for the team: a teammate should only ever see the repos their own GitHub account can reach, never mine through my token, and nothing of theirs should sit on my server. The sign-in half is done; the repo-visibility half is still ahead.</p>
 <p>Desktop apps have no browser cookie, so DD-ReForged and the editor use a device flow. The app asks Forge for a short code and shows it, you open Forge in your browser, type the code and approve.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-22-the-shell-the-engine-and-a-front-door/device-approval.png" alt="The Approve a device page, naming the app that is asking"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-22-the-shell-the-engine-and-a-front-door/device-approval.png" alt="The Approve a device page, naming the app that is asking"></p>
 <p>The code is never put in a link, so a phishing message can&#39;t carry it. The page names the app and where the request came from, and the shared key cannot approve a device. Only a signed-in person can.</p>
 <h2>DD-ReForged 0.3.2, for the team</h2>
 <p>The review build for the team is 0.3.2, with a matching VS Code extension. It stops Settings saves from restarting the local agent unless a setting the agent actually reads has changed, makes a restart wait up to 30 seconds for a busy agent, and keeps a redacted log per profile. Building it found that the agent change had broken the packaged app in a way the tests hadn&#39;t caught, so that was fixed and guarded before it went out.</p>
@@ -470,24 +470,24 @@
 ]]></description>
       <content:encoded><![CDATA[<p>Yesterday the code for the rebuild started. Today three pieces of it came together, and the team got a new build of the git tool.</p>
 <h2>The shell is built</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-22-the-shell-the-engine-and-a-front-door/editor-shell.png" alt="The editor shell at 1600 pixels wide: the title bar with the transport, the command search, the Hierarchy on the left and the Inspector on the right"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-22-the-shell-the-engine-and-a-front-door/editor-shell.png" alt="The editor shell at 1600 pixels wide: the title bar with the transport, the command search, the Hierarchy on the left and the Inspector on the right"></p>
 <p>The frame from the design round is now the real editor: a title bar with the menus, the scene switcher, the mode switch and the transport (play, pause, stop) in the middle, and a command palette on the right. Press the search box and you can run any command the editor or a plugin offers.</p>
 <p>The bigger change is how panels dock. The Hierarchy sits in a zone on the left and the Inspector in a zone on the right. Tool windows can dock into a zone as tabs or float, and a bottom zone holds wide panels.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-22-the-shell-the-engine-and-a-front-door/jobs-docked.png" alt="Jobs docked into the bottom zone, under the viewport"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-22-the-shell-the-engine-and-a-front-door/jobs-docked.png" alt="Jobs docked into the bottom zone, under the viewport"></p>
 <p>Jobs, the server-side job list, now lives there. When the window gets small the left zone folds into a flyout and the bottom zone shrinks, while the right zone holds on longest. If a panel would not fit anywhere, the editor tells you instead of quietly hiding it. A fresh install opens with the Hierarchy left and the Inspector right, and <strong>Reset layout</strong> in Settings puts you back there in one click. Splitters work from the keyboard too.</p>
 <p>Before any of this was called done, I ran the whole shell against my real scene in the browser, read-only. It passed, and it also found two real bugs: the editor could open on a theme that had been retired, and Space on a focused switch did nothing. Both were fixed the same night.</p>
 <h2>The desktop editor runs its own engine</h2>
 <p>The desktop editor used to need a backend started by hand. Now Settings has an Engine section: point it at the engine&#39;s folder, press Start, and the editor checks that the folder is the right one, that nothing already answers, and that the database is up, and only then starts the engine as a child process.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-22-the-shell-the-engine-and-a-front-door/engine-running.png" alt="The Engine row in Settings showing the engine running, with Start and Stop"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-22-the-shell-the-engine-and-a-front-door/engine-running.png" alt="The Engine row in Settings showing the engine running, with Start and Stop"></p>
 <p>I ran it for real, against the real engine and database: about 6.6 seconds from pressing Start to &quot;Running&quot;, and about 3 seconds from Stop to &quot;Stopped&quot; with the engine confirming it had flushed its scenes. Quitting the editor takes the engine with it.</p>
 <p>There is an option to keep the engine running after the editor quits, and it had a Windows quirk worth a paragraph. A program started from another inherits every inheritable handle its parent holds, not only the three it was meant to get. A kept engine was therefore quietly holding on to the editor&#39;s own debugging socket after the editor had gone, so the next launch couldn&#39;t use it. The fix is a tiny launcher that starts the engine and passes it only the handful of pipes it needs. After the editor dies, it no longer owns anything.</p>
 <h2>Forge has a front door</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-22-the-shell-the-engine-and-a-front-door/forge-sign-in.png" alt="The new Forge sign-in card: Sign in with GitHub, or an email and password"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-22-the-shell-the-engine-and-a-front-door/forge-sign-in.png" alt="The new Forge sign-in card: Sign in with GitHub, or an email and password"></p>
 <p>Forge, the git manager, used to trust one shared key, so anyone who reached it was effectively me. That was fine for one person and wrong for a team. Forge now has people.</p>
 <p>You can sign in with an email and password, or with GitHub. A new account gets a one-time password that must be changed on first use. Wrong passwords and unknown emails get the same answer, and repeated failures are rate-limited. The card shows when a key is still the shipped default, and refuses to run until it is changed.</p>
 <p>GitHub here means identity, not git access. When you sign in, Forge reads your GitHub id and your primary verified email, then throws the token away. It is never stored and never logged. That matches the rule I&#39;m building toward for the team: a teammate should only ever see the repos their own GitHub account can reach, never mine through my token, and nothing of theirs should sit on my server. The sign-in half is done; the repo-visibility half is still ahead.</p>
 <p>Desktop apps have no browser cookie, so DD-ReForged and the editor use a device flow. The app asks Forge for a short code and shows it, you open Forge in your browser, type the code and approve.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-22-the-shell-the-engine-and-a-front-door/device-approval.png" alt="The Approve a device page, naming the app that is asking"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-22-the-shell-the-engine-and-a-front-door/device-approval.png" alt="The Approve a device page, naming the app that is asking"></p>
 <p>The code is never put in a link, so a phishing message can&#39;t carry it. The page names the app and where the request came from, and the shared key cannot approve a device. Only a signed-in person can.</p>
 <h2>DD-ReForged 0.3.2, for the team</h2>
 <p>The review build for the team is 0.3.2, with a matching VS Code extension. It stops Settings saves from restarting the local agent unless a setting the agent actually reads has changed, makes a restart wait up to 30 seconds for a busy agent, and keeps a redacted log per profile. Building it found that the agent change had broken the packaged app in a way the tests hadn&#39;t caught, so that was fixed and guarded before it went out.</p>
@@ -497,7 +497,7 @@
     </item>
     <item>
       <title>The rebuild starts: a desktop app and its first plugin</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-21-the-rebuild-starts/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-10-21-the-rebuild-starts/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-21-the-rebuild-starts</guid>
       <pubDate>Wed, 21 Oct 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>A day after round one of the designs was approved, the code started. Four pieces landed today.</p>
@@ -511,13 +511,13 @@ Electron the window simply goes, with no close event at all. So now every way ou
 quitting, Windows shutting down) waits up to a second while the last draft is written, and the
 page saves its own work on the one event that still fires on its way out.</p>
 <h2>The new title bar</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-21-the-rebuild-starts/title-bar.png" alt="The title bar as designed in Figma on October 19, and as built on October 21"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-21-the-rebuild-starts/title-bar.png" alt="The title bar as designed in Figma on October 19, and as built on October 21"></p>
 <p>The first slice of the new shell is in: the frame, the title bar with the menus and the
 transport in the middle, the Forge and Blue themes, and the dock layout underneath. It&#39;s checked
 against the Figma frames screenshot by screenshot. The scene switcher, the modes and command
 search come in the next slices.</p>
 <h2>Plugins, for real</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-21-the-rebuild-starts/plugin-guard.png" alt="The plugin manager refusing to turn off a plugin with unsaved work"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-21-the-rebuild-starts/plugin-guard.png" alt="The plugin manager refusing to turn off a plugin with unsaved work"></p>
 <p>The plugin host is in. Plugins can add commands, menu entries, windows and settings pages, and a
 Plugins manager lists them and turns them on and off. The test plugin above has an unsaved
 draft, so the manager won&#39;t turn it off until that draft is dealt with. That&#39;s the close guard
@@ -546,13 +546,13 @@ Electron the window simply goes, with no close event at all. So now every way ou
 quitting, Windows shutting down) waits up to a second while the last draft is written, and the
 page saves its own work on the one event that still fires on its way out.</p>
 <h2>The new title bar</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-21-the-rebuild-starts/title-bar.png" alt="The title bar as designed in Figma on October 19, and as built on October 21"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-21-the-rebuild-starts/title-bar.png" alt="The title bar as designed in Figma on October 19, and as built on October 21"></p>
 <p>The first slice of the new shell is in: the frame, the title bar with the menus and the
 transport in the middle, the Forge and Blue themes, and the dock layout underneath. It&#39;s checked
 against the Figma frames screenshot by screenshot. The scene switcher, the modes and command
 search come in the next slices.</p>
 <h2>Plugins, for real</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-21-the-rebuild-starts/plugin-guard.png" alt="The plugin manager refusing to turn off a plugin with unsaved work"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-21-the-rebuild-starts/plugin-guard.png" alt="The plugin manager refusing to turn off a plugin with unsaved work"></p>
 <p>The plugin host is in. Plugins can add commands, menu entries, windows and settings pages, and a
 Plugins manager lists them and turns them on and off. The test plugin above has an unsaved
 draft, so the manager won&#39;t turn it off until that draft is dealt with. That&#39;s the close guard
@@ -573,27 +573,27 @@ tools move into plugins one at a time. Round three of the designs is drawn and w
     </item>
     <item>
       <title>Round two: play, previews and Frieze</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-21-round-two-play-previews-and-frieze/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-10-21-round-two-play-previews-and-frieze/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-21-round-two-play-previews-and-frieze</guid>
       <pubDate>Wed, 21 Oct 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>Round two of the editor designs was approved today. Round one was the frame and the everyday
 tools. Round two is everything you do in the editor besides building.</p>
 <h2>Play mode</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-21-round-two-play-previews-and-frieze/play-mode.png" alt="Play mode: the layout changes, the inspector reads out live state, and scripted sequences sit in a panel at the bottom"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-21-round-two-play-previews-and-frieze/play-mode.png" alt="Play mode: the layout changes, the inspector reads out live state, and scripted sequences sit in a panel at the bottom"></p>
 <p>Pressing Play switches to a Play layout instead of just setting the viewport running. The
 inspector becomes a live readout of the selected character: its position and velocity, which
 behaviour-tree node it&#39;s running and what&#39;s on its blackboard. Values update live, but edits
 wait until Stop, so nothing you poke at while playing quietly ends up saved. Dialogue and
 scripted sequences get their own panel, with Play, Cancel and Replay.</p>
 <h2>Frieze as a plugin</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-21-round-two-play-previews-and-frieze/frieze-plugin.png" alt="Frieze at the Review step: an eight-direction sprite sheet with its animation states, palette and frame events"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-21-round-two-play-previews-and-frieze/frieze-plugin.png" alt="Frieze at the Review step: an eight-direction sprite sheet with its animation states, palette and frame events"></p>
 <p>Frieze, the sprite maker, moves out of a floating window and into a document tab of its own.
 Models and drawings sit on the left, the live preview and the whole sheet in the middle, and the
 sheet&#39;s settings on the right: cell size, eight directions, palette, rig, animation states, and
 frame events such as which frames of the walk play a footstep. Batch re-bakes run as server jobs
 in the panel underneath.</p>
 <h2>Seeing it on a phone</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-21-round-two-play-previews-and-frieze/phone-preview.png" alt="Previewing the game on an iPhone 14 Pro with its safe area and touch controls. This is a design mock-up, so the numbers are placeholders."></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-21-round-two-play-previews-and-frieze/phone-preview.png" alt="Previewing the game on an iPhone 14 Pro with its safe area and touch controls. This is a design mock-up, so the numbers are placeholders."></p>
 <p>The game ships to phones and Steam, so the editor will preview it on them: an iPhone, a Galaxy
 Fold, a Steam Deck or a desktop screen, in portrait or landscape, with the safe area drawn in
 and the touch controls where a thumb would land. There&#39;s even a fake language that makes every
@@ -610,21 +610,21 @@ their own.</p>
       <content:encoded><![CDATA[<p>Round two of the editor designs was approved today. Round one was the frame and the everyday
 tools. Round two is everything you do in the editor besides building.</p>
 <h2>Play mode</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-21-round-two-play-previews-and-frieze/play-mode.png" alt="Play mode: the layout changes, the inspector reads out live state, and scripted sequences sit in a panel at the bottom"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-21-round-two-play-previews-and-frieze/play-mode.png" alt="Play mode: the layout changes, the inspector reads out live state, and scripted sequences sit in a panel at the bottom"></p>
 <p>Pressing Play switches to a Play layout instead of just setting the viewport running. The
 inspector becomes a live readout of the selected character: its position and velocity, which
 behaviour-tree node it&#39;s running and what&#39;s on its blackboard. Values update live, but edits
 wait until Stop, so nothing you poke at while playing quietly ends up saved. Dialogue and
 scripted sequences get their own panel, with Play, Cancel and Replay.</p>
 <h2>Frieze as a plugin</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-21-round-two-play-previews-and-frieze/frieze-plugin.png" alt="Frieze at the Review step: an eight-direction sprite sheet with its animation states, palette and frame events"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-21-round-two-play-previews-and-frieze/frieze-plugin.png" alt="Frieze at the Review step: an eight-direction sprite sheet with its animation states, palette and frame events"></p>
 <p>Frieze, the sprite maker, moves out of a floating window and into a document tab of its own.
 Models and drawings sit on the left, the live preview and the whole sheet in the middle, and the
 sheet&#39;s settings on the right: cell size, eight directions, palette, rig, animation states, and
 frame events such as which frames of the walk play a footstep. Batch re-bakes run as server jobs
 in the panel underneath.</p>
 <h2>Seeing it on a phone</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-21-round-two-play-previews-and-frieze/phone-preview.png" alt="Previewing the game on an iPhone 14 Pro with its safe area and touch controls. This is a design mock-up, so the numbers are placeholders."></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-21-round-two-play-previews-and-frieze/phone-preview.png" alt="Previewing the game on an iPhone 14 Pro with its safe area and touch controls. This is a design mock-up, so the numbers are placeholders."></p>
 <p>The game ships to phones and Steam, so the editor will preview it on them: an iPhone, a Galaxy
 Fold, a Steam Deck or a desktop screen, in portrait or landscape, with the safe area drawn in
 and the touch controls where a thumb would land. There&#39;s even a fake language that makes every
@@ -641,7 +641,7 @@ their own.</p>
     </item>
     <item>
       <title>Design first: drawing the new editor</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-20-design-first/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-10-20-design-first/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-20-design-first</guid>
       <pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>The rebuild has started, and the first tool I picked up wasn&#39;t a code editor. The new Prometheus
@@ -649,7 +649,7 @@ editor is being designed in Figma first, approved screen by screen, and only the
 rule for the whole rebuild: the design comes first, changes go into the design, and then the
 code changes to match.</p>
 <h2>The shell</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-20-design-first/shell.png" alt="The new editor shell in the Forge theme. The labels in the margins mark which parts are plugin slots."></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-20-design-first/shell.png" alt="The new editor shell in the Forge theme. The labels in the margins mark which parts are plugin slots."></p>
 <p>This is the frame everything else plugs into. It&#39;s drawn as the desktop app, with a browser
 version kept alongside.</p>
 <ul>
@@ -665,18 +665,18 @@ frame stats and the device budget.</li>
 with its way in: a menu path, an icon, a command or a shortcut. If you can&#39;t find a feature, it
 might as well not exist.</p>
 <h2>Everyday editing</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-20-design-first/scene-editing.png" alt="Scene editing: hierarchy, viewport and inspector. The right-click menu has a &quot;From plugins&quot; section, and an undo toast confirms the move."></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-20-design-first/scene-editing.png" alt="Scene editing: hierarchy, viewport and inspector. The right-click menu has a &quot;From plugins&quot; section, and an undo toast confirms the move."></p>
 <p>The everyday loop is select, move, edit, undo, save. Plugins show up where you&#39;d look for
 them. Here a Lightning plugin adds &quot;Strike from this light&quot; to the right-click menu and its own
 section to the inspector, with a small badge saying which plugin it came from.</p>
 <h2>Turning a plugin off</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-20-design-first/plugin-off.png" alt="Turning off a plugin that owns data: its records are held, locked and kept by saves, never dropped."></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-20-design-first/plugin-off.png" alt="Turning off a plugin that owns data: its records are held, locked and kept by saves, never dropped."></p>
 <p>The plugin manager lists what&#39;s installed, what each plugin adds and where to find it, what it
 needs and what needs it. Core plugins are always on.</p>
 <p>The interesting part is turning one off. If the Lightning plugin owns three things in the scene,
 the editor doesn&#39;t delete them or pretend they&#39;re gone. It holds them, shows them locked and
 keeps saving them, so turning the plugin back on brings everything back. That&#39;s
-<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-10-the-save-that-deleted-things/">the save that deleted things</a>, designed out
+<a href="https://blog.prometheanworks.dev/posts/2026-09-10-the-save-that-deleted-things/">the save that deleted things</a>, designed out
 from the first sketch.</p>
 <h2>Round one, approved</h2>
 <p>Round one is six screens: the shell, scene editing, the plugin manager, settings with a page
@@ -688,14 +688,14 @@ same scene, a script with a compile error. I approved them today.</p>
 world builders, and previews of the game on a phone and on Steam from inside the editor.</p>
 <h2>On the calendar</h2>
 <p>To be honest about time: with a full rewrite in front of it, the first vertical slice now looks
-more like mid to late 2027 than the end of this year. The <a href="https://miketec-ra.github.io/prometheus-devlog/roadmap/">roadmap</a> has the details.</p>
+more like mid to late 2027 than the end of this year. The <a href="https://blog.prometheanworks.dev/roadmap/">roadmap</a> has the details.</p>
 ]]></description>
       <content:encoded><![CDATA[<p>The rebuild has started, and the first tool I picked up wasn&#39;t a code editor. The new Prometheus
 editor is being designed in Figma first, approved screen by screen, and only then built. The
 rule for the whole rebuild: the design comes first, changes go into the design, and then the
 code changes to match.</p>
 <h2>The shell</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-20-design-first/shell.png" alt="The new editor shell in the Forge theme. The labels in the margins mark which parts are plugin slots."></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-20-design-first/shell.png" alt="The new editor shell in the Forge theme. The labels in the margins mark which parts are plugin slots."></p>
 <p>This is the frame everything else plugs into. It&#39;s drawn as the desktop app, with a browser
 version kept alongside.</p>
 <ul>
@@ -711,18 +711,18 @@ frame stats and the device budget.</li>
 with its way in: a menu path, an icon, a command or a shortcut. If you can&#39;t find a feature, it
 might as well not exist.</p>
 <h2>Everyday editing</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-20-design-first/scene-editing.png" alt="Scene editing: hierarchy, viewport and inspector. The right-click menu has a &quot;From plugins&quot; section, and an undo toast confirms the move."></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-20-design-first/scene-editing.png" alt="Scene editing: hierarchy, viewport and inspector. The right-click menu has a &quot;From plugins&quot; section, and an undo toast confirms the move."></p>
 <p>The everyday loop is select, move, edit, undo, save. Plugins show up where you&#39;d look for
 them. Here a Lightning plugin adds &quot;Strike from this light&quot; to the right-click menu and its own
 section to the inspector, with a small badge saying which plugin it came from.</p>
 <h2>Turning a plugin off</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-20-design-first/plugin-off.png" alt="Turning off a plugin that owns data: its records are held, locked and kept by saves, never dropped."></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-20-design-first/plugin-off.png" alt="Turning off a plugin that owns data: its records are held, locked and kept by saves, never dropped."></p>
 <p>The plugin manager lists what&#39;s installed, what each plugin adds and where to find it, what it
 needs and what needs it. Core plugins are always on.</p>
 <p>The interesting part is turning one off. If the Lightning plugin owns three things in the scene,
 the editor doesn&#39;t delete them or pretend they&#39;re gone. It holds them, shows them locked and
 keeps saving them, so turning the plugin back on brings everything back. That&#39;s
-<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-10-the-save-that-deleted-things/">the save that deleted things</a>, designed out
+<a href="https://blog.prometheanworks.dev/posts/2026-09-10-the-save-that-deleted-things/">the save that deleted things</a>, designed out
 from the first sketch.</p>
 <h2>Round one, approved</h2>
 <p>Round one is six screens: the shell, scene editing, the plugin manager, settings with a page
@@ -734,15 +734,15 @@ same scene, a script with a compile error. I approved them today.</p>
 world builders, and previews of the game on a phone and on Steam from inside the editor.</p>
 <h2>On the calendar</h2>
 <p>To be honest about time: with a full rewrite in front of it, the first vertical slice now looks
-more like mid to late 2027 than the end of this year. The <a href="https://miketec-ra.github.io/prometheus-devlog/roadmap/">roadmap</a> has the details.</p>
+more like mid to late 2027 than the end of this year. The <a href="https://blog.prometheanworks.dev/roadmap/">roadmap</a> has the details.</p>
 ]]></content:encoded>
     </item>
     <item>
       <title>A plugin-shaped future</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-plugins-and-the-rebuild/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-10-18-plugins-and-the-rebuild/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-18-plugins-and-the-rebuild</guid>
       <pubDate>Sun, 18 Oct 2026 12:00:00 GMT</pubDate>
-      <description><![CDATA[<p>The <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-catching-up/">catching-up post</a> ended with development pausing for a
+      <description><![CDATA[<p>The <a href="https://blog.prometheanworks.dev/posts/2026-10-18-catching-up/">catching-up post</a> ended with development pausing for a
 rebuild. Here&#39;s the thinking behind it.</p>
 <h2>The problem</h2>
 <p>Today, adding something to Prometheus means editing the core in a dozen places: the list of
@@ -752,7 +752,7 @@ Nothing can be switched off without deleting code, and nothing outside the core 
 engine.</p>
 <h2>Plugins, widgets and modes</h2>
 <p>The rebuild turns each of those places into a socket.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-plugins-and-the-rebuild/plugin-layers.png" alt="The planned layers: a core every project needs, built-in plugins on by default, optional plugins on top, and modes that bundle them"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-18-plugins-and-the-rebuild/plugin-layers.png" alt="The planned layers: a core every project needs, built-in plugins on by default, optional plugins on top, and modes that bundle them"></p>
 <ul>
 <li>A <strong>plugin</strong> is a package that adds capabilities: new kinds of entity, components, simulation
 systems, script commands, importers, server jobs.</li>
@@ -772,7 +772,7 @@ behaviour-tree authoring, generation labs, and git and review tools.</p>
 <h2>The rule it can&#39;t break</h2>
 <p><strong>Unloading a plugin never loses data.</strong> A scene that uses a plugin you don&#39;t have loaded must
 still open, save, restore and export with that plugin&#39;s data intact, held exactly as it was.
-It&#39;s <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-10-the-save-that-deleted-things/">the save that deleted things</a>, grown up:
+It&#39;s <a href="https://blog.prometheanworks.dev/posts/2026-09-10-the-save-that-deleted-things/">the save that deleted things</a>, grown up:
 missing isn&#39;t the same as unavailable, so hold, don&#39;t drop.</p>
 <h2>The desktop and beyond</h2>
 <p>The editor is moving into a desktop app built on Electron, and it will keep running in a browser
@@ -782,7 +782,7 @@ plans, not promises.</p>
 <p>The order is: settle the plugin contracts, build a minimal desktop editor, then move the first
 tool out of the core and into a plugin. After that the rest follow, one at a time.</p>
 ]]></description>
-      <content:encoded><![CDATA[<p>The <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-catching-up/">catching-up post</a> ended with development pausing for a
+      <content:encoded><![CDATA[<p>The <a href="https://blog.prometheanworks.dev/posts/2026-10-18-catching-up/">catching-up post</a> ended with development pausing for a
 rebuild. Here&#39;s the thinking behind it.</p>
 <h2>The problem</h2>
 <p>Today, adding something to Prometheus means editing the core in a dozen places: the list of
@@ -792,7 +792,7 @@ Nothing can be switched off without deleting code, and nothing outside the core 
 engine.</p>
 <h2>Plugins, widgets and modes</h2>
 <p>The rebuild turns each of those places into a socket.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-plugins-and-the-rebuild/plugin-layers.png" alt="The planned layers: a core every project needs, built-in plugins on by default, optional plugins on top, and modes that bundle them"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-18-plugins-and-the-rebuild/plugin-layers.png" alt="The planned layers: a core every project needs, built-in plugins on by default, optional plugins on top, and modes that bundle them"></p>
 <ul>
 <li>A <strong>plugin</strong> is a package that adds capabilities: new kinds of entity, components, simulation
 systems, script commands, importers, server jobs.</li>
@@ -812,7 +812,7 @@ behaviour-tree authoring, generation labs, and git and review tools.</p>
 <h2>The rule it can&#39;t break</h2>
 <p><strong>Unloading a plugin never loses data.</strong> A scene that uses a plugin you don&#39;t have loaded must
 still open, save, restore and export with that plugin&#39;s data intact, held exactly as it was.
-It&#39;s <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-10-the-save-that-deleted-things/">the save that deleted things</a>, grown up:
+It&#39;s <a href="https://blog.prometheanworks.dev/posts/2026-09-10-the-save-that-deleted-things/">the save that deleted things</a>, grown up:
 missing isn&#39;t the same as unavailable, so hold, don&#39;t drop.</p>
 <h2>The desktop and beyond</h2>
 <p>The editor is moving into a desktop app built on Electron, and it will keep running in a browser
@@ -825,7 +825,7 @@ tool out of the core and into a plugin. After that the rest follow, one at a tim
     </item>
     <item>
       <title>Catching up: two months of Prometheus</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-catching-up/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-10-18-catching-up/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-18-catching-up</guid>
       <pubDate>Sun, 18 Oct 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>Two months and a little over 1,800 commits in, this is where Prometheus stands, with links to
@@ -836,13 +836,13 @@ being built toward <em>Forgotten Memories, Endless Abyss</em>, an online MMO set
 that reshapes itself around how its players behave. The game itself is still a future milestone.
 Right now the work is the engine and the tools.</p>
 <h2>The editor and the server</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/reforged.png" alt="The Re-Forged showcase scene in the editor: lightning, particle effects, camera paths and sprite characters"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-18-catching-up/reforged.png" alt="The Re-Forged showcase scene in the editor: lightning, particle effects, camera paths and sprite characters"></p>
 <p>The editor is a remote session into a backend that owns the simulation. The browser renders
 locally and trades state snapshots with the server rather than streaming video. In September
 that hit its first real milestone: two browser tabs editing the same scene at once, with undo
 carrying across them and nothing lost when a tab refreshes mid-edit. The same simulation
 package runs on the server in the editor and locally in an exported game, so what you test is
-what ships. More in <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-12-the-server-owns-the-world/">The server owns the world</a>.</p>
+what ships. More in <a href="https://blog.prometheanworks.dev/posts/2026-09-12-the-server-owns-the-world/">The server owns the world</a>.</p>
 <p>On top of that there&#39;s now most of what you&#39;d expect from a scene editor: a hierarchy and
 inspector, a four-pane quad view, lights and shadows, materials, post-processing, particle
 effects (campfires with flames, smoke and embers, wall torches, lightning), Rapier physics, and
@@ -852,26 +852,26 @@ the editor recovers unsaved edits after a crash.</p>
 tour that walks through the engine feature by feature. It&#39;s the scene in the screenshot above,
 and it&#39;s how I check that new work actually reaches the screen and doesn&#39;t just pass its tests.</p>
 <h2>Frieze: from 3D models to pixel sprites</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/sprite-generator.png" alt="The sprite generator baking an animated character from a 3D model"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-18-catching-up/sprite-generator.png" alt="The sprite generator baking an animated character from a 3D model"></p>
 <p>Every sprite in the game starts life as a real 3D model. <strong>Frieze</strong> imports the model, borrows
 animation clips from a shared library and retargets them to the model&#39;s rig, then captures it
 from several angles and bakes the result into pixel-art sprite sheets. It has its own palettes,
 a pixel editor for touch-ups, and batch re-baking when a source changes. More in
-<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-15-frieze-pixel-art-from-3d/">Frieze: pixel art from 3D models</a>.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/frieze-review.png" alt="Frieze reviewing an imported prop, with the import report beside it"></p>
+<a href="https://blog.prometheanworks.dev/posts/2026-09-15-frieze-pixel-art-from-3d/">Frieze: pixel art from 3D models</a>.</p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-18-catching-up/frieze-review.png" alt="Frieze reviewing an imported prop, with the import report beside it"></p>
 <p>The sprites also bake a normal map, so a flat sprite catches light from the 3D scene around it:
 a torch on its left lights its left side. The whole route, from importing a model to baking it,
 publishing it and placing it in a scene, is now one workflow with a readable report at each step.</p>
 <h2>Walking around: Delve</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/delve.png" alt="Delve: a third-person 2.5D camera following a sprite character"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-18-catching-up/delve.png" alt="Delve: a third-person 2.5D camera following a sprite character"></p>
 <p><strong>Delve</strong> is the first mode where you actually walk around: a third-person camera at a 35° tilt
 following a sprite character, with the billboards turning to face the camera and switching
 animation frames as they move. The first stress test put fifty animated billboards in a scene
 and held a mean of 12.7 ms per frame on my desktop. That&#39;s a dev machine, not a phone, so it&#39;s a
-baseline, not a verdict. More in <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-18-first-steps-in-delve/">First steps in Delve</a>.</p>
+baseline, not a verdict. More in <a href="https://blog.prometheanworks.dev/posts/2026-09-18-first-steps-in-delve/">First steps in Delve</a>.</p>
 <h2>The gameplay foundation</h2>
 <p>None of this is gameplay yet, but most of what gameplay will stand on now exists (more in
-<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-06-teaching-sprites-to-think/">Teaching sprites to think</a>):</p>
+<a href="https://blog.prometheanworks.dev/posts/2026-10-06-teaching-sprites-to-think/">Teaching sprites to think</a>):</p>
 <ul>
 <li><strong>Input:</strong> keyboard, mouse and gamepad, with rebinding.</li>
 <li><strong>UI:</strong> widgets and HUD panels with anchoring, focus and keyboard/gamepad navigation.</li>
@@ -883,20 +883,20 @@ crowds that send a couple of hundred agents to one goal along a shared flow fiel
 animation states, dialogue, localisation, entity pooling and a component model.</li>
 </ul>
 <h2>Built for phones</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/budget-hud.png" alt="The budget readout comparing a running scene against mobile limits"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-18-catching-up/budget-hud.png" alt="The budget readout comparing a running scene against mobile limits"></p>
 <p>The game is aimed at mobile, so the editor measures every scene against a device budget:
 triangles, draw calls, texture memory, sprite sheets and entity counts, each checked against
 mobile, browser and desktop limits. The world is split into regions that load and unload
 around the camera, so distant areas give their memory back and come back intact when you
 return. A scene can also be exported as a static build that runs with no backend at all. More,
 including the first numbers from real phones, in
-<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-09-will-it-run-on-a-phone/">Will it run on a phone?</a></p>
+<a href="https://blog.prometheanworks.dev/posts/2026-10-09-will-it-run-on-a-phone/">Will it run on a phone?</a></p>
 <h2>What&#39;s next: a pause to rebuild</h2>
 <p>Two decisions have changed the plan. The editor is moving into a desktop app built on
 Electron, and the platform is becoming plugin-based, so features plug into a core rather
 than being built into it. Together those mean a full rewrite. So development is on pause
 while I rework: new designs in Figma, and the platform redesigned from the plugin
-perspective from the ground up. More in <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-plugins-and-the-rebuild/">A plugin-shaped future</a>.</p>
+perspective from the ground up. More in <a href="https://blog.prometheanworks.dev/posts/2026-10-18-plugins-and-the-rebuild/">A plugin-shaped future</a>.</p>
 <p>The engine work is more or less done. What it needs now is more thought about how to make
 the rest of the game a reality on top of it. The biggest piece of that thinking is the living
 world. The dungeon won&#39;t be a complete map hidden under fog; ground that nobody has reached
@@ -904,7 +904,7 @@ doesn&#39;t exist yet. Terrain is generated as players, and monsters, actually t
 monster wandering off on its own extends the world along the path it walks, without revealing
 that ground to anyone. What each player has discovered stays private to them, while the
 terrain itself is shared by everyone. More in
-<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-22-a-world-that-isnt-there-yet/">A world that isn&#39;t there yet</a>.</p>
+<a href="https://blog.prometheanworks.dev/posts/2026-09-22-a-world-that-isnt-there-yet/">A world that isn&#39;t there yet</a>.</p>
 <h2>Three stores, one launch</h2>
 <p>Beyond the editor, the game still needs a mobile version for the App Store and Google Play,
 and a Steam version for PC. All three will release at the same time. That&#39;s a substantial
@@ -924,13 +924,13 @@ being built toward <em>Forgotten Memories, Endless Abyss</em>, an online MMO set
 that reshapes itself around how its players behave. The game itself is still a future milestone.
 Right now the work is the engine and the tools.</p>
 <h2>The editor and the server</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/reforged.png" alt="The Re-Forged showcase scene in the editor: lightning, particle effects, camera paths and sprite characters"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-18-catching-up/reforged.png" alt="The Re-Forged showcase scene in the editor: lightning, particle effects, camera paths and sprite characters"></p>
 <p>The editor is a remote session into a backend that owns the simulation. The browser renders
 locally and trades state snapshots with the server rather than streaming video. In September
 that hit its first real milestone: two browser tabs editing the same scene at once, with undo
 carrying across them and nothing lost when a tab refreshes mid-edit. The same simulation
 package runs on the server in the editor and locally in an exported game, so what you test is
-what ships. More in <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-12-the-server-owns-the-world/">The server owns the world</a>.</p>
+what ships. More in <a href="https://blog.prometheanworks.dev/posts/2026-09-12-the-server-owns-the-world/">The server owns the world</a>.</p>
 <p>On top of that there&#39;s now most of what you&#39;d expect from a scene editor: a hierarchy and
 inspector, a four-pane quad view, lights and shadows, materials, post-processing, particle
 effects (campfires with flames, smoke and embers, wall torches, lightning), Rapier physics, and
@@ -940,26 +940,26 @@ the editor recovers unsaved edits after a crash.</p>
 tour that walks through the engine feature by feature. It&#39;s the scene in the screenshot above,
 and it&#39;s how I check that new work actually reaches the screen and doesn&#39;t just pass its tests.</p>
 <h2>Frieze: from 3D models to pixel sprites</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/sprite-generator.png" alt="The sprite generator baking an animated character from a 3D model"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-18-catching-up/sprite-generator.png" alt="The sprite generator baking an animated character from a 3D model"></p>
 <p>Every sprite in the game starts life as a real 3D model. <strong>Frieze</strong> imports the model, borrows
 animation clips from a shared library and retargets them to the model&#39;s rig, then captures it
 from several angles and bakes the result into pixel-art sprite sheets. It has its own palettes,
 a pixel editor for touch-ups, and batch re-baking when a source changes. More in
-<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-15-frieze-pixel-art-from-3d/">Frieze: pixel art from 3D models</a>.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/frieze-review.png" alt="Frieze reviewing an imported prop, with the import report beside it"></p>
+<a href="https://blog.prometheanworks.dev/posts/2026-09-15-frieze-pixel-art-from-3d/">Frieze: pixel art from 3D models</a>.</p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-18-catching-up/frieze-review.png" alt="Frieze reviewing an imported prop, with the import report beside it"></p>
 <p>The sprites also bake a normal map, so a flat sprite catches light from the 3D scene around it:
 a torch on its left lights its left side. The whole route, from importing a model to baking it,
 publishing it and placing it in a scene, is now one workflow with a readable report at each step.</p>
 <h2>Walking around: Delve</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/delve.png" alt="Delve: a third-person 2.5D camera following a sprite character"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-18-catching-up/delve.png" alt="Delve: a third-person 2.5D camera following a sprite character"></p>
 <p><strong>Delve</strong> is the first mode where you actually walk around: a third-person camera at a 35° tilt
 following a sprite character, with the billboards turning to face the camera and switching
 animation frames as they move. The first stress test put fifty animated billboards in a scene
 and held a mean of 12.7 ms per frame on my desktop. That&#39;s a dev machine, not a phone, so it&#39;s a
-baseline, not a verdict. More in <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-18-first-steps-in-delve/">First steps in Delve</a>.</p>
+baseline, not a verdict. More in <a href="https://blog.prometheanworks.dev/posts/2026-09-18-first-steps-in-delve/">First steps in Delve</a>.</p>
 <h2>The gameplay foundation</h2>
 <p>None of this is gameplay yet, but most of what gameplay will stand on now exists (more in
-<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-06-teaching-sprites-to-think/">Teaching sprites to think</a>):</p>
+<a href="https://blog.prometheanworks.dev/posts/2026-10-06-teaching-sprites-to-think/">Teaching sprites to think</a>):</p>
 <ul>
 <li><strong>Input:</strong> keyboard, mouse and gamepad, with rebinding.</li>
 <li><strong>UI:</strong> widgets and HUD panels with anchoring, focus and keyboard/gamepad navigation.</li>
@@ -971,20 +971,20 @@ crowds that send a couple of hundred agents to one goal along a shared flow fiel
 animation states, dialogue, localisation, entity pooling and a component model.</li>
 </ul>
 <h2>Built for phones</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-18-catching-up/budget-hud.png" alt="The budget readout comparing a running scene against mobile limits"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-18-catching-up/budget-hud.png" alt="The budget readout comparing a running scene against mobile limits"></p>
 <p>The game is aimed at mobile, so the editor measures every scene against a device budget:
 triangles, draw calls, texture memory, sprite sheets and entity counts, each checked against
 mobile, browser and desktop limits. The world is split into regions that load and unload
 around the camera, so distant areas give their memory back and come back intact when you
 return. A scene can also be exported as a static build that runs with no backend at all. More,
 including the first numbers from real phones, in
-<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-09-will-it-run-on-a-phone/">Will it run on a phone?</a></p>
+<a href="https://blog.prometheanworks.dev/posts/2026-10-09-will-it-run-on-a-phone/">Will it run on a phone?</a></p>
 <h2>What&#39;s next: a pause to rebuild</h2>
 <p>Two decisions have changed the plan. The editor is moving into a desktop app built on
 Electron, and the platform is becoming plugin-based, so features plug into a core rather
 than being built into it. Together those mean a full rewrite. So development is on pause
 while I rework: new designs in Figma, and the platform redesigned from the plugin
-perspective from the ground up. More in <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-18-plugins-and-the-rebuild/">A plugin-shaped future</a>.</p>
+perspective from the ground up. More in <a href="https://blog.prometheanworks.dev/posts/2026-10-18-plugins-and-the-rebuild/">A plugin-shaped future</a>.</p>
 <p>The engine work is more or less done. What it needs now is more thought about how to make
 the rest of the game a reality on top of it. The biggest piece of that thinking is the living
 world. The dungeon won&#39;t be a complete map hidden under fog; ground that nobody has reached
@@ -992,7 +992,7 @@ doesn&#39;t exist yet. Terrain is generated as players, and monsters, actually t
 monster wandering off on its own extends the world along the path it walks, without revealing
 that ground to anyone. What each player has discovered stays private to them, while the
 terrain itself is shared by everyone. More in
-<a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-22-a-world-that-isnt-there-yet/">A world that isn&#39;t there yet</a>.</p>
+<a href="https://blog.prometheanworks.dev/posts/2026-09-22-a-world-that-isnt-there-yet/">A world that isn&#39;t there yet</a>.</p>
 <h2>Three stores, one launch</h2>
 <p>Beyond the editor, the game still needs a mobile version for the App Store and Google Play,
 and a Steam version for PC. All three will release at the same time. That&#39;s a substantial
@@ -1007,14 +1007,14 @@ then, so stand by.</p>
     </item>
     <item>
       <title>The tools behind the tools</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-17-the-tools-behind-the-tools/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-10-17-the-tools-behind-the-tools/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-17-the-tools-behind-the-tools</guid>
       <pubDate>Sat, 17 Oct 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>Prometheus has a sibling: <strong>Forge</strong>, a set of project tools that lives in the same repository and
 runs beside the editor. It started life as tools I&#39;d built for earlier projects, got ported in
 under new names, and has grown since.</p>
 <h2>What&#39;s in it</h2>
-<p>The names follow the rule from <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-07-20-reforged-from-the-ashes/">the start of the project</a>:
+<p>The names follow the rule from <a href="https://blog.prometheanworks.dev/posts/2026-07-20-reforged-from-the-ashes/">the start of the project</a>:
 tools that build the game get fire and forging names, and systems inside the game get abyss and
 memory names.</p>
 <ul>
@@ -1038,7 +1038,7 @@ something I can search.</p>
 runs beside the editor. It started life as tools I&#39;d built for earlier projects, got ported in
 under new names, and has grown since.</p>
 <h2>What&#39;s in it</h2>
-<p>The names follow the rule from <a href="https://miketec-ra.github.io/prometheus-devlog/posts/2026-07-20-reforged-from-the-ashes/">the start of the project</a>:
+<p>The names follow the rule from <a href="https://blog.prometheanworks.dev/posts/2026-07-20-reforged-from-the-ashes/">the start of the project</a>:
 tools that build the game get fire and forging names, and systems inside the game get abyss and
 memory names.</p>
 <ul>
@@ -1061,7 +1061,7 @@ something I can search.</p>
     </item>
     <item>
       <title>Stocking the shelves</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-10-stocking-the-shelves/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-10-10-stocking-the-shelves/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-10-stocking-the-shelves</guid>
       <pubDate>Sat, 10 Oct 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>A sprite generator is only as good as what you feed it, so this week went into the pantry.</p>
@@ -1075,7 +1075,7 @@ exact duplicates are kept on purpose. I&#39;ve learned not to delete things on a
 <h2>Models</h2>
 <p>For the world itself: 409 models from two of Kenney&#39;s free CC0 packs, the Nature Kit with 329
 models and the Survival Kit with 80. Trees, rocks, cliffs, fences, logs and barrels.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-10-stocking-the-shelves/kenney-packs.png" alt="Kenney&#39;s Nature and Survival kits in the library: 409 CC0 models waiting to become sprites"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-10-stocking-the-shelves/kenney-packs.png" alt="Kenney&#39;s Nature and Survival kits in the library: 409 CC0 models waiting to become sprites"></p>
 <p>They&#39;re split into 13 import batches by category, at most 80 to a folder, each with its licence
 and source kept alongside. Next stop for them is Frieze, to come out the other side as pixel-art
 sprites. Thanks to Kenney for making these free for everyone.</p>
@@ -1091,7 +1091,7 @@ exact duplicates are kept on purpose. I&#39;ve learned not to delete things on a
 <h2>Models</h2>
 <p>For the world itself: 409 models from two of Kenney&#39;s free CC0 packs, the Nature Kit with 329
 models and the Survival Kit with 80. Trees, rocks, cliffs, fences, logs and barrels.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-10-stocking-the-shelves/kenney-packs.png" alt="Kenney&#39;s Nature and Survival kits in the library: 409 CC0 models waiting to become sprites"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-10-stocking-the-shelves/kenney-packs.png" alt="Kenney&#39;s Nature and Survival kits in the library: 409 CC0 models waiting to become sprites"></p>
 <p>They&#39;re split into 13 import batches by category, at most 80 to a folder, each with its licence
 and source kept alongside. Next stop for them is Frieze, to come out the other side as pixel-art
 sprites. Thanks to Kenney for making these free for everyone.</p>
@@ -1099,7 +1099,7 @@ sprites. Thanks to Kenney for making these free for everyone.</p>
     </item>
     <item>
       <title>Will it run on a phone?</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-09-will-it-run-on-a-phone/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-10-09-will-it-run-on-a-phone/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-09-will-it-run-on-a-phone</guid>
       <pubDate>Fri, 09 Oct 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>The game is meant for phones first, so this week was about finding out how far the engine is
@@ -1108,7 +1108,7 @@ from that, with real numbers instead of hopes.</p>
 <p>The editor now measures a scene against a device budget (triangles, draw calls, texture memory,
 sprite sheets and entity counts) with separate limits for mobile, browser and desktop. The first
 time I pointed it at the showcase scene, it said texture memory was 78% over the mobile budget.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-09-will-it-run-on-a-phone/budget-hud.png" alt="The budget readout on the showcase scene, flagging texture memory"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-09-will-it-run-on-a-phone/budget-hud.png" alt="The budget readout on the showcase scene, flagging texture memory"></p>
 <p>That turned out to be the meter: it was counting shared textures more than once. Counted
 properly, the scene was under budget all along. Phones still shouldn&#39;t download desktop-sized
 textures, though, so a new asset pipeline publishes a separate version of each texture per
@@ -1123,12 +1123,12 @@ wait warm, and distant ones give back their memory, then come back intact when y
 <p>A scene can now be exported as a static build: plain files that run in a browser with no server
 behind them, with the simulation running on the device. That&#39;s the shape a shipped game will
 take.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-09-will-it-run-on-a-phone/static-export.png" alt="A static mobile export running on its own, with its own controls"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-09-will-it-run-on-a-phone/static-export.png" alt="A static mobile export running on its own, with its own controls"></p>
 <h2>Real phones</h2>
 <p>Then the real test. A profiling page runs a fixed workload on the phone itself and records the
 results. I ran it on a Galaxy Z Fold7, folded and unfolded, and on an iPhone 14 Pro, against a
 hall of about 60 sprites.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-09-will-it-run-on-a-phone/phone-profiler.png" alt="The on-device profiler, set up on an iPhone 14 Pro"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-09-will-it-run-on-a-phone/phone-profiler.png" alt="The on-device profiler, set up on an iPhone 14 Pro"></p>
 <p>The median frame came in right on 60 fps on the Fold7 (16.6 to 16.7 ms) and a little slower on
 the iPhone (19 to 21 ms). The slowest frames ran past the 60 fps budget on both. Treat these as
 early samples rather than benchmarks, but the verdict is clear enough: close, not there yet, and
@@ -1140,7 +1140,7 @@ from that, with real numbers instead of hopes.</p>
 <p>The editor now measures a scene against a device budget (triangles, draw calls, texture memory,
 sprite sheets and entity counts) with separate limits for mobile, browser and desktop. The first
 time I pointed it at the showcase scene, it said texture memory was 78% over the mobile budget.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-09-will-it-run-on-a-phone/budget-hud.png" alt="The budget readout on the showcase scene, flagging texture memory"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-09-will-it-run-on-a-phone/budget-hud.png" alt="The budget readout on the showcase scene, flagging texture memory"></p>
 <p>That turned out to be the meter: it was counting shared textures more than once. Counted
 properly, the scene was under budget all along. Phones still shouldn&#39;t download desktop-sized
 textures, though, so a new asset pipeline publishes a separate version of each texture per
@@ -1155,12 +1155,12 @@ wait warm, and distant ones give back their memory, then come back intact when y
 <p>A scene can now be exported as a static build: plain files that run in a browser with no server
 behind them, with the simulation running on the device. That&#39;s the shape a shipped game will
 take.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-09-will-it-run-on-a-phone/static-export.png" alt="A static mobile export running on its own, with its own controls"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-09-will-it-run-on-a-phone/static-export.png" alt="A static mobile export running on its own, with its own controls"></p>
 <h2>Real phones</h2>
 <p>Then the real test. A profiling page runs a fixed workload on the phone itself and records the
 results. I ran it on a Galaxy Z Fold7, folded and unfolded, and on an iPhone 14 Pro, against a
 hall of about 60 sprites.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-09-will-it-run-on-a-phone/phone-profiler.png" alt="The on-device profiler, set up on an iPhone 14 Pro"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-09-will-it-run-on-a-phone/phone-profiler.png" alt="The on-device profiler, set up on an iPhone 14 Pro"></p>
 <p>The median frame came in right on 60 fps on the Fold7 (16.6 to 16.7 ms) and a little slower on
 the iPhone (19 to 21 ms). The slowest frames ran past the 60 fps budget on both. Treat these as
 early samples rather than benchmarks, but the verdict is clear enough: close, not there yet, and
@@ -1169,7 +1169,7 @@ now it&#39;s something I can measure instead of guess.</p>
     </item>
     <item>
       <title>Teaching sprites to think</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-06-teaching-sprites-to-think/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-10-06-teaching-sprites-to-think/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-06-teaching-sprites-to-think</guid>
       <pubDate>Tue, 06 Oct 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>The last few weeks went into the systems game logic will be written on. The last pieces of a
@@ -1186,19 +1186,19 @@ and write, which is how two characters can hold a conversation or a group can co
 <h2>Seeing and hearing</h2>
 <p>A character can have a view cone, a hearing range and a memory, and its behaviour tree reads
 them. In the editor I can show the cone and the hearing ring and tune them live.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-06-teaching-sprites-to-think/perception.png" alt="Perception on a sprite: the blue view cone, the hearing ring and their settings"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-06-teaching-sprites-to-think/perception.png" alt="Perception on a sprite: the blue view cone, the hearing ring and their settings"></p>
 <h2>Getting around, together</h2>
 <p>Characters find routes across the navigation grid. Crowds go one better. When many characters
 head for the same goal, the engine builds one flow field, a grid of arrows pointing the way, and
 they all read it instead of each searching for its own route. In a test with 200 characters
 heading for one goal, that meant zero route searches per second and at most one field build.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-06-teaching-sprites-to-think/crowd.png" alt="Fifty characters on a shared flow field; each arrow points the way to the goal"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-06-teaching-sprites-to-think/crowd.png" alt="Fifty characters on a shared flow field; each arrow points the way to the goal"></p>
 <h2>Talking</h2>
 <p>There&#39;s a dialogue system too: lines, choices and branches, with the camera able to move to
 whoever is speaking. The first test conversation in the showcase scene goes: <em>&quot;You found the
 stairs. Most people forget them.&quot;</em> Choose <em>&quot;I remember.&quot;</em> and the reply is <em>&quot;Then the abyss
 remembers you too.&quot;</em></p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-06-teaching-sprites-to-think/dialogue.png" alt="The dialogue reply floating above the speaker in the showcase scene"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-06-teaching-sprites-to-think/dialogue.png" alt="The dialogue reply floating above the speaker in the showcase scene"></p>
 <h2>And the rest</h2>
 <p>Gamepads and rebindable controls, UI widgets and HUD panels, an event bus, a game clock,
 localisation, collision layers, physics queries for AI, and entity pooling so a burst of spawns
@@ -1218,19 +1218,19 @@ and write, which is how two characters can hold a conversation or a group can co
 <h2>Seeing and hearing</h2>
 <p>A character can have a view cone, a hearing range and a memory, and its behaviour tree reads
 them. In the editor I can show the cone and the hearing ring and tune them live.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-06-teaching-sprites-to-think/perception.png" alt="Perception on a sprite: the blue view cone, the hearing ring and their settings"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-06-teaching-sprites-to-think/perception.png" alt="Perception on a sprite: the blue view cone, the hearing ring and their settings"></p>
 <h2>Getting around, together</h2>
 <p>Characters find routes across the navigation grid. Crowds go one better. When many characters
 head for the same goal, the engine builds one flow field, a grid of arrows pointing the way, and
 they all read it instead of each searching for its own route. In a test with 200 characters
 heading for one goal, that meant zero route searches per second and at most one field build.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-06-teaching-sprites-to-think/crowd.png" alt="Fifty characters on a shared flow field; each arrow points the way to the goal"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-06-teaching-sprites-to-think/crowd.png" alt="Fifty characters on a shared flow field; each arrow points the way to the goal"></p>
 <h2>Talking</h2>
 <p>There&#39;s a dialogue system too: lines, choices and branches, with the camera able to move to
 whoever is speaking. The first test conversation in the showcase scene goes: <em>&quot;You found the
 stairs. Most people forget them.&quot;</em> Choose <em>&quot;I remember.&quot;</em> and the reply is <em>&quot;Then the abyss
 remembers you too.&quot;</em></p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-06-teaching-sprites-to-think/dialogue.png" alt="The dialogue reply floating above the speaker in the showcase scene"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-06-teaching-sprites-to-think/dialogue.png" alt="The dialogue reply floating above the speaker in the showcase scene"></p>
 <h2>And the rest</h2>
 <p>Gamepads and rebindable controls, UI widgets and HUD panels, an event bus, a game clock,
 localisation, collision layers, physics queries for AI, and entity pooling so a burst of spawns
@@ -1239,21 +1239,21 @@ doesn&#39;t stall a frame. None of it is a game yet. It&#39;s the toolbox the ga
     </item>
     <item>
       <title>A guided tour of every feature</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-10-05-a-guided-tour-of-every-feature/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-10-05-a-guided-tour-of-every-feature/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-10-05-a-guided-tour-of-every-feature</guid>
       <pubDate>Mon, 05 Oct 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>Every feature that lands goes into one showcase scene, Re-Forged. By this month it had become a
 pile: lights, particles, sprites, widgets and physics props all fighting over the same patch of
 floor. So I rebuilt it as a tour.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-05-a-guided-tour-of-every-feature/overview.png" alt="The tour hall from above: ten stations down a long hall, with the camera flight weaving between them"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-05-a-guided-tour-of-every-feature/overview.png" alt="The tour hall from above: ten stations down a long hall, with the camera flight weaving between them"></p>
 <h2>Ten stations</h2>
 <p>It&#39;s now a hall 40 metres wide and 140 long, with numbered stations down its length, each with a
 sign: a welcome, then sprites and paths, behaviour trees, scripting, physics, lighting,
 particles, UI widgets, shared simulation, and a wall of materials. A saved camera flight weaves
 between them, so the whole tour plays as a fly-through.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-05-a-guided-tour-of-every-feature/physics.png" alt="The physics station: a scripted spawner sends balls rolling down a ramp"></p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-05-a-guided-tour-of-every-feature/particles.png" alt="Particles and effects: campfire, torch, pyre, fog and lightning"></p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-05-a-guided-tour-of-every-feature/materials.png" alt="The materials wall: brick lit by three spotlights over a row of materials"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-05-a-guided-tour-of-every-feature/physics.png" alt="The physics station: a scripted spawner sends balls rolling down a ramp"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-05-a-guided-tour-of-every-feature/particles.png" alt="Particles and effects: campfire, torch, pyre, fog and lightning"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-05-a-guided-tour-of-every-feature/materials.png" alt="The materials wall: brick lit by three spotlights over a row of materials"></p>
 <h2>The dry run caught three mistakes</h2>
 <p>I didn&#39;t build the new layout straight into the saved scene. A script built the proposed version
 as a private copy, flew a camera to each station and took a picture, without saving anything.
@@ -1274,15 +1274,15 @@ camera run against the saved scene gave the same pictures.</p>
       <content:encoded><![CDATA[<p>Every feature that lands goes into one showcase scene, Re-Forged. By this month it had become a
 pile: lights, particles, sprites, widgets and physics props all fighting over the same patch of
 floor. So I rebuilt it as a tour.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-05-a-guided-tour-of-every-feature/overview.png" alt="The tour hall from above: ten stations down a long hall, with the camera flight weaving between them"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-05-a-guided-tour-of-every-feature/overview.png" alt="The tour hall from above: ten stations down a long hall, with the camera flight weaving between them"></p>
 <h2>Ten stations</h2>
 <p>It&#39;s now a hall 40 metres wide and 140 long, with numbered stations down its length, each with a
 sign: a welcome, then sprites and paths, behaviour trees, scripting, physics, lighting,
 particles, UI widgets, shared simulation, and a wall of materials. A saved camera flight weaves
 between them, so the whole tour plays as a fly-through.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-05-a-guided-tour-of-every-feature/physics.png" alt="The physics station: a scripted spawner sends balls rolling down a ramp"></p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-05-a-guided-tour-of-every-feature/particles.png" alt="Particles and effects: campfire, torch, pyre, fog and lightning"></p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-10-05-a-guided-tour-of-every-feature/materials.png" alt="The materials wall: brick lit by three spotlights over a row of materials"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-05-a-guided-tour-of-every-feature/physics.png" alt="The physics station: a scripted spawner sends balls rolling down a ramp"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-05-a-guided-tour-of-every-feature/particles.png" alt="Particles and effects: campfire, torch, pyre, fog and lightning"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-10-05-a-guided-tour-of-every-feature/materials.png" alt="The materials wall: brick lit by three spotlights over a row of materials"></p>
 <h2>The dry run caught three mistakes</h2>
 <p>I didn&#39;t build the new layout straight into the saved scene. A script built the proposed version
 as a private copy, flew a camera to each station and took a picture, without saving anything.
@@ -1303,7 +1303,7 @@ camera run against the saved scene gave the same pictures.</p>
     </item>
     <item>
       <title>A world that isn't there yet</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-22-a-world-that-isnt-there-yet/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-09-22-a-world-that-isnt-there-yet/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-09-22-a-world-that-isnt-there-yet</guid>
       <pubDate>Tue, 22 Sep 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>This week I pinned down one of the most important rules of the game world, and it changes what
@@ -1340,7 +1340,7 @@ above a cave, so a single height per point isn&#39;t enough.</li>
 <p>None of this is gameplay yet. These are engine requirements, and the first building block
 arrived the same day: navigation. The editor can now bake a grid that says where an agent of a
 given size fits, and find a route across it.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-22-a-world-that-isnt-there-yet/navigation-grid.png" alt="A baked navigation grid: green cells fit an agent, red cells are blocked, and the pink line is a route"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-22-a-world-that-isnt-there-yet/navigation-grid.png" alt="A baked navigation grid: green cells fit an agent, red cells are blocked, and the pink line is a route"></p>
 <p>Today that works on flat floors in scenes I&#39;ve built by hand. Terrain that generates itself as
 monsters walk into it is the long road from here.</p>
 ]]></description>
@@ -1378,14 +1378,14 @@ above a cave, so a single height per point isn&#39;t enough.</li>
 <p>None of this is gameplay yet. These are engine requirements, and the first building block
 arrived the same day: navigation. The editor can now bake a grid that says where an agent of a
 given size fits, and find a route across it.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-22-a-world-that-isnt-there-yet/navigation-grid.png" alt="A baked navigation grid: green cells fit an agent, red cells are blocked, and the pink line is a route"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-22-a-world-that-isnt-there-yet/navigation-grid.png" alt="A baked navigation grid: green cells fit an agent, red cells are blocked, and the pink line is a route"></p>
 <p>Today that works on flat floors in scenes I&#39;ve built by hand. Terrain that generates itself as
 monsters walk into it is the long road from here.</p>
 ]]></content:encoded>
     </item>
     <item>
       <title>First steps in Delve</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-18-first-steps-in-delve/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-09-18-first-steps-in-delve/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-09-18-first-steps-in-delve</guid>
       <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>Until this week, Prometheus was something you looked at. Now you can walk around in it.</p>
@@ -1398,9 +1398,9 @@ I&#39;m building, walk around it, and step back out to carry on editing.</p>
 actions like <em>move</em> and <em>turn</em>, and whatever the player is holding supplies them. On a keyboard
 that&#39;s the usual keys. On a touchscreen a virtual stick appears bottom-left, with turn buttons
 on the right:</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-18-first-steps-in-delve/touch-controls.png" alt="Delve with touch controls: a virtual stick bottom-left, turn and exit buttons bottom-right"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-18-first-steps-in-delve/touch-controls.png" alt="Delve with touch controls: a virtual stick bottom-left, turn and exit buttons bottom-right"></p>
 <p>Hide the editor around it and what&#39;s left is what a player would see:</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-18-first-steps-in-delve/player-view.png" alt="The same character with the editor hidden: the player&#39;s view"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-18-first-steps-in-delve/player-view.png" alt="The same character with the editor hidden: the player&#39;s view"></p>
 <h2>How heavy is a crowd of sprites?</h2>
 <p>Every billboard has to be turned, framed and positioned every frame, so I measured that early.
 Fifty animated billboards held a mean of 12.7 ms per frame on my desktop while I walked around
@@ -1417,9 +1417,9 @@ I&#39;m building, walk around it, and step back out to carry on editing.</p>
 actions like <em>move</em> and <em>turn</em>, and whatever the player is holding supplies them. On a keyboard
 that&#39;s the usual keys. On a touchscreen a virtual stick appears bottom-left, with turn buttons
 on the right:</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-18-first-steps-in-delve/touch-controls.png" alt="Delve with touch controls: a virtual stick bottom-left, turn and exit buttons bottom-right"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-18-first-steps-in-delve/touch-controls.png" alt="Delve with touch controls: a virtual stick bottom-left, turn and exit buttons bottom-right"></p>
 <p>Hide the editor around it and what&#39;s left is what a player would see:</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-18-first-steps-in-delve/player-view.png" alt="The same character with the editor hidden: the player&#39;s view"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-18-first-steps-in-delve/player-view.png" alt="The same character with the editor hidden: the player&#39;s view"></p>
 <h2>How heavy is a crowd of sprites?</h2>
 <p>Every billboard has to be turned, framed and positioned every frame, so I measured that early.
 Fifty animated billboards held a mean of 12.7 ms per frame on my desktop while I walked around
@@ -1429,7 +1429,7 @@ measure later work against rather than a verdict.</p>
     </item>
     <item>
       <title>Frieze: pixel art from 3D models</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-15-frieze-pixel-art-from-3d/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-09-15-frieze-pixel-art-from-3d/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-09-15-frieze-pixel-art-from-3d</guid>
       <pubDate>Tue, 15 Sep 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>Every character and prop in Prometheus is a 2D pixel-art sprite standing in a 3D world. Drawing
@@ -1442,26 +1442,26 @@ come with the model or be borrowed from a shared library and retargeted to the m
 so one walk cycle can serve many characters.</p>
 <p>It also works from 2D art. A drawing can be given joints and animated with the same library
 clips. For testing that I used a free character turnaround from OpenGameArt:</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/turnaround.png" alt="A CC0 character turnaround by Technopeasant on OpenGameArt, used to test rigging 2D art"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-15-frieze-pixel-art-from-3d/turnaround.png" alt="A CC0 character turnaround by Technopeasant on OpenGameArt, used to test rigging 2D art"></p>
 <h2>Palettes</h2>
 <p>A sheet can be indexed, so each colour belongs to a palette slot. Change a slot and the character
 changes colour everywhere it appears, with no new bake. The green-trousered character here is
 the same artwork as the blue one, with four of its thirteen palette slots changed:</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/palette-swap.png" alt="Two characters from one bake, four palette slots apart"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-15-frieze-pixel-art-from-3d/palette-swap.png" alt="Two characters from one bake, four palette slots apart"></p>
 <h2>Touching up by hand</h2>
 <p>Automatic isn&#39;t always right, so Frieze has a pixel editor built in, with onion skinning across
 frames. A bad frame can be fixed in place without leaving the tool or re-baking the sheet.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/pixel-editor.png" alt="The pixel editor inside Frieze, with its tools, palette and frame strip"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-15-frieze-pixel-art-from-3d/pixel-editor.png" alt="The pixel editor inside Frieze, with its tools, palette and frame strip"></p>
 <h2>Sprites that catch the light</h2>
 <p>Each bake also produces a normal map, so a flat sprite reacts to the 3D lights around it: a
 campfire on its left lights its left side.</p>
 <p>That led to my favourite bug so far. Seen from behind at a low angle, a character&#39;s shoes glowed
 white-hot, as if lit from inside:</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/glowing-shoes-before.png" alt="Before: the shoes glow at a grazing angle"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-15-frieze-pixel-art-from-3d/glowing-shoes-before.png" alt="Before: the shoes glow at a grazing angle"></p>
 <p>The cause was in the sprite material. A tweak that softens how light wraps around a sprite was
 also being applied to its reflections, and at grazing angles that amplified the reflection
 enormously, even on a completely rough surface. Limiting the softening to diffuse light fixed it:</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/glowing-shoes-after.png" alt="After: the same view, correctly shaded"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-15-frieze-pixel-art-from-3d/glowing-shoes-after.png" alt="After: the same view, correctly shaded"></p>
 ]]></description>
       <content:encoded><![CDATA[<p>Every character and prop in Prometheus is a 2D pixel-art sprite standing in a 3D world. Drawing
 all of those by hand, from eight directions, for every animation, isn&#39;t something a solo
@@ -1473,31 +1473,31 @@ come with the model or be borrowed from a shared library and retargeted to the m
 so one walk cycle can serve many characters.</p>
 <p>It also works from 2D art. A drawing can be given joints and animated with the same library
 clips. For testing that I used a free character turnaround from OpenGameArt:</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/turnaround.png" alt="A CC0 character turnaround by Technopeasant on OpenGameArt, used to test rigging 2D art"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-15-frieze-pixel-art-from-3d/turnaround.png" alt="A CC0 character turnaround by Technopeasant on OpenGameArt, used to test rigging 2D art"></p>
 <h2>Palettes</h2>
 <p>A sheet can be indexed, so each colour belongs to a palette slot. Change a slot and the character
 changes colour everywhere it appears, with no new bake. The green-trousered character here is
 the same artwork as the blue one, with four of its thirteen palette slots changed:</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/palette-swap.png" alt="Two characters from one bake, four palette slots apart"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-15-frieze-pixel-art-from-3d/palette-swap.png" alt="Two characters from one bake, four palette slots apart"></p>
 <h2>Touching up by hand</h2>
 <p>Automatic isn&#39;t always right, so Frieze has a pixel editor built in, with onion skinning across
 frames. A bad frame can be fixed in place without leaving the tool or re-baking the sheet.</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/pixel-editor.png" alt="The pixel editor inside Frieze, with its tools, palette and frame strip"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-15-frieze-pixel-art-from-3d/pixel-editor.png" alt="The pixel editor inside Frieze, with its tools, palette and frame strip"></p>
 <h2>Sprites that catch the light</h2>
 <p>Each bake also produces a normal map, so a flat sprite reacts to the 3D lights around it: a
 campfire on its left lights its left side.</p>
 <p>That led to my favourite bug so far. Seen from behind at a low angle, a character&#39;s shoes glowed
 white-hot, as if lit from inside:</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/glowing-shoes-before.png" alt="Before: the shoes glow at a grazing angle"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-15-frieze-pixel-art-from-3d/glowing-shoes-before.png" alt="Before: the shoes glow at a grazing angle"></p>
 <p>The cause was in the sprite material. A tweak that softens how light wraps around a sprite was
 also being applied to its reflections, and at grazing angles that amplified the reflection
 enormously, even on a completely rough surface. Limiting the softening to diffuse light fixed it:</p>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-15-frieze-pixel-art-from-3d/glowing-shoes-after.png" alt="After: the same view, correctly shaded"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-15-frieze-pixel-art-from-3d/glowing-shoes-after.png" alt="After: the same view, correctly shaded"></p>
 ]]></content:encoded>
     </item>
     <item>
       <title>The server owns the world</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-12-the-server-owns-the-world/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-09-12-the-server-owns-the-world/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-09-12-the-server-owns-the-world</guid>
       <pubDate>Sat, 12 Sep 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>The editor passed its first real milestone today, so it&#39;s a good moment to explain the decision
@@ -1528,7 +1528,7 @@ watched the simulation from the other, through a full stop and restart of the ba
 <p>It doesn&#39;t look like much in a screenshot, but everything else stands on it: the editor is a
 window onto a world the server owns, and that world survives the window closing.</p>
 <h2>A scene for every feature</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-12-the-server-owns-the-world/early-showcase.png" alt="The showcase scene in its first week: lights, shiny materials, particle fire and smoke, and a camera rail"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-12-the-server-owns-the-world/early-showcase.png" alt="The showcase scene in its first week: lights, shiny materials, particle fire and smoke, and a camera rail"></p>
 <p>Every feature also goes into one scene, <strong>Re-Forged</strong>, so new work can be seen rather than read
 about. This is how it looked in its first week: a handful of lights, shiny materials, particle
 fire and smoke, and a camera rail for fly-throughs. It will grow with everything that lands.</p>
@@ -1561,7 +1561,7 @@ watched the simulation from the other, through a full stop and restart of the ba
 <p>It doesn&#39;t look like much in a screenshot, but everything else stands on it: the editor is a
 window onto a world the server owns, and that world survives the window closing.</p>
 <h2>A scene for every feature</h2>
-<p><img src="https://miketec-ra.github.io/prometheus-devlog/images/2026-09-12-the-server-owns-the-world/early-showcase.png" alt="The showcase scene in its first week: lights, shiny materials, particle fire and smoke, and a camera rail"></p>
+<p><img src="https://blog.prometheanworks.dev/images/2026-09-12-the-server-owns-the-world/early-showcase.png" alt="The showcase scene in its first week: lights, shiny materials, particle fire and smoke, and a camera rail"></p>
 <p>Every feature also goes into one scene, <strong>Re-Forged</strong>, so new work can be seen rather than read
 about. This is how it looked in its first week: a handful of lights, shiny materials, particle
 fire and smoke, and a camera rail for fly-throughs. It will grow with everything that lands.</p>
@@ -1569,7 +1569,7 @@ fire and smoke, and a camera rail for fly-throughs. It will grow with everything
     </item>
     <item>
       <title>Six times faster type checking</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-11-six-times-faster-type-checking/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-09-11-six-times-faster-type-checking/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-09-11-six-times-faster-type-checking</guid>
       <pubDate>Fri, 11 Sep 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>Prometheus is TypeScript across three workspaces: the editor, the engine backend and Forge, my
@@ -1661,7 +1661,7 @@ compiler by its full path.</p>
     </item>
     <item>
       <title>The save that deleted things</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-10-the-save-that-deleted-things/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-09-10-the-save-that-deleted-things/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-09-10-the-save-that-deleted-things</guid>
       <pubDate>Thu, 10 Sep 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>This week I found four bugs that could permanently lose work. They looked unrelated. They turned
@@ -1737,7 +1737,7 @@ save writes when its load goes wrong.</p>
     </item>
     <item>
       <title>The game behind the engine</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-09-04-the-game-behind-the-engine/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-09-04-the-game-behind-the-engine/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-09-04-the-game-behind-the-engine</guid>
       <pubDate>Fri, 04 Sep 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>Before the engine posts start, here&#39;s what all of it is for.</p>
@@ -1839,7 +1839,7 @@ no vendor royalties. The next posts are about that.</p>
     </item>
     <item>
       <title>Reforged from the ashes</title>
-      <link>https://miketec-ra.github.io/prometheus-devlog/posts/2026-07-20-reforged-from-the-ashes/</link>
+      <link>https://blog.prometheanworks.dev/posts/2026-07-20-reforged-from-the-ashes/</link>
       <guid isPermaLink="false">prometheus-devlog:2026-07-20-reforged-from-the-ashes</guid>
       <pubDate>Mon, 20 Jul 2026 12:00:00 GMT</pubDate>
       <description><![CDATA[<p>Prometheus didn&#39;t start from nothing. It started from the ashes of something else.</p>

@@ -13,7 +13,7 @@
 import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { marked } from 'marked';
 
-const SITE_URL = 'https://miketec-ra.github.io/prometheus-devlog/';
+const SITE_URL = 'https://blog.prometheanworks.dev/';
 const SITE_TITLE = 'Prometheus devlog';
 const SITE_DESCRIPTION =
   'Building Prometheus, a custom 2.5D engine and editor, on the way to Forgotten Memories, Endless Abyss.';
@@ -392,7 +392,7 @@ writeFileSync('atom.xml', `<?xml version="1.0" encoding="UTF-8"?>
   <subtitle>${escapeHtml(SITE_DESCRIPTION)}</subtitle>
   <link href="${SITE_URL}" rel="alternate" type="text/html"/>
   <link href="${SITE_URL}atom.xml" rel="self" type="application/atom+xml"/>
-  <id>${SITE_URL}</id>
+  <id>https://miketec-ra.github.io/prometheus-devlog/</id>
   <updated>${buildTime.toISOString()}</updated>
   <author><name>${AUTHOR}</name></author>
 ${entries}
