@@ -47,6 +47,9 @@ No new game content until the tools and every app work properly. I decided that 
 
 ## Next: back to the game
 
+- Rewriting the rendering parts of the engine on Vulkan for maximum performance. WebGL has been
+  great, but the world I have in mind is huge, and I'd rather optimize early. Not everything gets
+  rewritten, just the rendering parts that matter for the graphics
 - Export targets for Android, iOS and Steam
 - The game-building tools, starting with the living world: terrain that only exists once a
   player or a monster travels into it
