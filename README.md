@@ -4,10 +4,10 @@ Source for the Prometheus devlog site and its feeds. Markdown in `content/` beco
 static site (Devlog, Why, Roadmap, Gallery and About tabs) plus RSS and Atom feeds. GitHub Pages
 serves it, and GameDev.net can import new posts from the feed.
 
-- Site: https://miketec-ra.github.io/prometheus-devlog/
-- Feeds: [feed.xml](https://miketec-ra.github.io/prometheus-devlog/feed.xml) (RSS),
-  [feed.rss](https://miketec-ra.github.io/prometheus-devlog/feed.rss) (the same, served as RSS),
-  [atom.xml](https://miketec-ra.github.io/prometheus-devlog/atom.xml) (Atom)
+- Site: https://blog.prometheanworks.dev/
+- Feeds: [feed.xml](https://blog.prometheanworks.dev/feed.xml) (RSS),
+  [feed.rss](https://blog.prometheanworks.dev/feed.rss) (the same, served as RSS),
+  [atom.xml](https://blog.prometheanworks.dev/atom.xml) (Atom)
 
 ## Where things live
 
