@@ -19,6 +19,8 @@ const SITE_DESCRIPTION =
   'Building Prometheus, a custom 2.5D engine and editor, on the way to Forgotten Memories, Endless Abyss.';
 const AUTHOR = 'MikeTec-RA';
 const GAMEDEV_URL = 'https://gamedev.net/projects/431-prometheus/';
+const GAME_URL = 'https://prometheanworks.dev/';
+const REFORGED_URL = 'https://reforged.prometheanworks.dev/';
 const HOME_LEDE =
   'A custom 2.5D engine and editor, built for <em>Forgotten Memories, Endless Abyss</em>: an online MMO set in an endless dungeon that reshapes itself around its players.';
 const TABS = [
@@ -164,6 +166,8 @@ ${image ? `<meta property="og:image" content="${new URL(image, SITE_URL)}">\n<me
     <a class="brand" href="${prefix}">${ICONS.flame}<span>PrometheanWorks</span><span class="brand-sub">devlog</span></a>
     <nav class="tabs" aria-label="Sections">${tabs}</nav>
     <div class="nav-actions">
+      <a class="nav-site" href="${GAME_URL}">The game</a>
+      <a class="nav-site" href="${REFORGED_URL}">DD-ReForged</a>
       <a class="icon-btn" href="${prefix}feed.xml" title="RSS feed" aria-label="RSS feed">${ICONS.rss}</a>
       <button class="icon-btn" type="button" data-theme-toggle title="Switch light/dark" aria-label="Switch light or dark theme">${ICONS.theme}</button>
     </div>
@@ -174,7 +178,7 @@ ${main}
 </main>
 <footer class="site-footer">
   <p>Prometheus and <em>Forgotten Memories, Endless Abyss</em> are made by ${AUTHOR}.</p>
-  <p><a href="${GAMEDEV_URL}">GameDev.net project</a> · <a href="${prefix}feed.xml">RSS</a> · <a href="${prefix}atom.xml">Atom</a></p>
+  <p><a href="${GAME_URL}">The game</a> · <a href="${REFORGED_URL}">DD-ReForged</a> · <a href="${GAMEDEV_URL}">GameDev.net project</a> · <a href="${prefix}feed.xml">RSS</a> · <a href="${prefix}atom.xml">Atom</a></p>
 </footer>
 </body>
 </html>

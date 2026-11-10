@@ -116,6 +116,8 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .icon-btn:hover { background: var(--surface-2); color: var(--text); }
 .icon-btn svg { width: 18px; height: 18px; }
+.nav-site { padding: 6px 8px; color: var(--muted); font-size: 14px; font-weight: 500; text-decoration: none; white-space: nowrap; }
+.nav-site:hover { color: var(--text); }
 
 @media (max-width: 680px) {
   .nav-inner { flex-wrap: wrap; gap: 0 12px; min-height: 0; padding-top: 10px; }
